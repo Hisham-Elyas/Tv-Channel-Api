@@ -97,9 +97,10 @@ app.use((error, req, res, next) => {
 // Database connection
 const db = require("./api/config/db");
 db.initializeDatabase();
-// scrapeTodayMatches();
-setInterval(scrapeTodayMatches, 43200000); // Scrape every 12 hours
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
+// scrapeTodayMatches();
+setInterval(scrapeTodayMatches, 43200000); // Scrape every 12 hours
   console.log(`Server running on port ${PORT}`);
 });
