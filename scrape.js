@@ -4,6 +4,11 @@ const fs = require("fs");
 
 // Enable stealth plugin
 puppeteer.use(StealthPlugin());
+exports.log = (message) => {
+  const logMessage = `${new Date().toISOString()} - ${message}\n`;
+  fs.appendFileSync("./api/Logs/log.txt", logMessage);
+  console.log(logMessage); // Optional: Log to console
+};
 
 // Configure realistic user agents
 const userAgents = [
@@ -146,12 +151,15 @@ const filterMatches = () => {
       "utf-8"
     );
     console.log(`Filtered matches saved to ${outputFilePath}`);
+    log(`Filtered matches saved to ${outputFilePath}`);
   } catch (error) {
     console.error("Error processing matches:", error.message || error);
+    log(`Error processing matches:${error.message} || ${error}`);
   }
 };
 
-const scrapeTodayMatches = async () => {
+exports.scrapeTodayMatches = async () => {
+  log("Script executed successfully!");
   const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
 
@@ -212,10 +220,14 @@ const scrapeTodayMatches = async () => {
     console.log(
       `Scraped ${matches.length} matches. Starting detailed scraping...`
     );
+    log(`Scraped ${matches.length} matches. Starting detailed scraping...`);
 
     for (const [index, match] of matches.entries()) {
       if (!match.matchLink) {
         console.log(
+          `Skipping match with no link: ${match.homeTeam} vs ${match.awayTeam}`
+        );
+        log(
           `Skipping match with no link: ${match.homeTeam} vs ${match.awayTeam}`
         );
         continue;
@@ -223,6 +235,7 @@ const scrapeTodayMatches = async () => {
 
       try {
         console.log(`Processing match ${index + 1}/${matches.length}`);
+        log(`Processing match ${index + 1}/${matches.length}`);
         await page.goto(match.matchLink, {
           waitUntil: "networkidle2",
           timeout: 30000,
@@ -263,6 +276,7 @@ const scrapeTodayMatches = async () => {
         match.details = matchDetails;
       } catch (error) {
         console.error(`Error scraping details for ${match.matchLink}:`, error);
+        log(`Error scraping details for ${match.matchLink}: ${error}`);
         match.details = { error: "Failed to retrieve details" };
       }
     }
@@ -288,19 +302,21 @@ const scrapeTodayMatches = async () => {
     const filePath = "matches.json";
     fs.writeFileSync(filePath, JSON.stringify(matches, null, 2), "utf-8");
     console.log("Data saved to matches.json");
+    log("Data saved to matches.json");
     // Run the filter function
     filterMatches();
   } catch (error) {
     console.error("Error scraping matches:", error);
+    log(`Error scraping matches:${error}`);
   } finally {
     await browser.close();
   }
 };
 
 // Run the scraper
-
+// log("test1");
 // scrapeTodayMatches();
 
 // filterMatches();
 
-module.exports = scrapeTodayMatches;
+// module.exports = scrapeTodayMatches;

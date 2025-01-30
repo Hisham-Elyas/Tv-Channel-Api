@@ -5,6 +5,9 @@ const morgan = require("morgan");
 const userRoutes = require("./api/routes/user");
 const today_matchesRoutes = require("./api/routes/today_matches");
 const scrapeTodayMatches = require("./scrape");
+const fs = require("fs");
+const path = require("path");
+const cron = require("node-cron");
 const app = express();
 
 // Middleware
@@ -26,6 +29,32 @@ app.use((req, res, next) => {
 });
 app.use("/api/users", userRoutes);
 app.use("/api/today_matches", today_matchesRoutes);
+
+app.get("/api/run-script", (req, res) => {
+  scrapeTodayMatches.scrapeTodayMatches();
+  res.json("Script executed successfully!");
+});
+app.get("/api/run-script/log", (req, res) => {
+  const filePath = path.join(__dirname, "./api/Logs/log.txt");
+
+  // try {
+  console.log(filePath);
+
+  // Read the Log file after scraping
+  fs.readFile(filePath, "utf-8", (err, data) => {
+    if (err) {
+      console.error("Error reading file:", err);
+      return res.status(500).json({ error: "Failed to read the file" });
+    }
+
+    try {
+      res.send(data);
+    } catch (parseErr) {
+      console.error("Error parsing JSON:", parseErr);
+      res.status(500).json({ error: "Invalid JSON format in the file" });
+    }
+  });
+});
 // API Documentation Route
 app.get("/", (req, res) => {
   const documentation = {
@@ -98,7 +127,21 @@ app.use((error, req, res, next) => {
 const db = require("./api/config/db");
 db.initializeDatabase();
 // scrapeTodayMatches();
-setInterval(scrapeTodayMatches, 43200000); // Scrape every 12 hours
+
+cron.schedule(
+  ///This setup will ensure your script runs every day at 00:00 UTC+3 .
+  "* * * * *",
+  () => {
+    scrapeTodayMatches.log(`Script running at: ${new Date().toISOString()} `);
+    // scrapeTodayMatches.scrapeTodayMatches();
+  },
+  {
+    timezone: "Europe/Istanbul", // UTC+3 timezone
+  }
+);
+// setInterval(() => {
+//   scrapeTodayMatches.scrapeTodayMatches();
+// }, 43200000); // Scrape every 12 hours
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

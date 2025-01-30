@@ -1,0 +1,20 @@
+2025-01-28T11:32:55.341Z - Script executed successfully!
+2025-01-28T11:33:13.081Z - Scraped 14 matches. Starting detailed scraping...
+2025-01-28T11:33:13.083Z - Processing match 1/14
+2025-01-28T11:33:16.381Z - Processing match 2/14
+2025-01-28T11:33:19.173Z - Processing match 3/14
+2025-01-28T11:33:22.213Z - Processing match 4/14
+2025-01-28T11:33:32.544Z - Processing match 5/14
+2025-01-28T11:33:55.452Z - Processing match 6/14
+2025-01-28T11:33:59.131Z - Processing match 7/14
+2025-01-28T11:34:02.574Z - Processing match 8/14
+2025-01-28T11:34:05.466Z - Processing match 9/14
+2025-01-28T11:34:08.617Z - Processing match 10/14
+2025-01-28T11:34:13.050Z - Processing match 11/14
+2025-01-28T11:34:17.554Z - Processing match 12/14
+2025-01-28T11:34:20.811Z - Processing match 13/14
+2025-01-28T11:34:24.547Z - Processing match 14/14
+2025-01-28T11:34:27.440Z - Data saved to matches.json
+2025-01-28T11:34:27.445Z - Filtered matches saved to filter_matches.json
+2025-01-30T15:43:00.203Z - Script running at: 2025-01-30T15:43:00.202Z 
+2025-01-30T15:44:00.918Z - Script running at: 2025-01-30T15:44:00.918Z 

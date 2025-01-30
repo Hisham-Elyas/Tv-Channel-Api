@@ -1,4 +1,3 @@
-const mongoose = require("mongoose");
 const path = require("path");
 const fs = require("fs");
 exports.get_all_matches = async (req, res, next) => {
