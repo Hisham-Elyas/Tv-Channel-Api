@@ -130,10 +130,10 @@ db.initializeDatabase();
 
 cron.schedule(
   ///This setup will ensure your script runs every day at 00:00 UTC+3 .
-  "* * * * *",
+  "0 21 * * *",
   () => {
     scrapeTodayMatches.log(`Script running at: ${new Date().toISOString()} `);
-    // scrapeTodayMatches.scrapeTodayMatches();
+    scrapeTodayMatches.scrapeTodayMatches();
   },
   {
     timezone: "Europe/Istanbul", // UTC+3 timezone
