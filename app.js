@@ -3,14 +3,17 @@ const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
 const userRoutes = require("./api/routes/user");
+const authRoutes = require("./api/routes/authRoutes");
 const today_matchesRoutes = require("./api/routes/today_matches");
+const groupRoutes = require("./api/routes/groupRoutes");
+const channelRoutes = require("./api/routes/channelRoutes");
 const scrapeTodayMatches = require("./scrape");
-const fs = require("fs");
-const path = require("path");
 const cron = require("node-cron");
+const helmet = require("helmet");
 const app = express();
 
 // Middleware
+app.use(helmet());
 app.use(cors());
 app.use(express.json());
 app.use(morgan("dev"));
@@ -27,6 +30,9 @@ app.use((req, res, next) => {
   }
   next();
 });
+app.use("/api/auth", authRoutes);
+app.use("/api/groups", groupRoutes);
+app.use("/api/channels", channelRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/today_matches", today_matchesRoutes);
 
