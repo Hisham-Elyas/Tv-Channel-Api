@@ -31,8 +31,11 @@ app.use("/api/users", userRoutes);
 app.use("/api/today_matches", today_matchesRoutes);
 
 app.get("/api/run-script", (req, res) => {
-  scrapeTodayMatches.scrapeTodayMatches(1);
-  res.json("Script executed successfully!");
+  const { nextDaytoScrape = 0 } = req.body;
+  scrapeTodayMatches.scrapeTodayMatches(nextDaytoScrape);
+  res.json(
+    "Script executed successfully! Next day to scrape: " + nextDaytoScrape
+  );
 });
 // app.get("/api/run-script/log", (req, res) => {
 //   const filePath = path.join(__dirname, "./api/Logs/log.txt");
@@ -128,18 +131,15 @@ const db = require("./api/config/db");
 db.initializeDatabase();
 // scrapeTodayMatches();
 
-cron.schedule(
-  ///This setup will ensure your script runs every day at 00:00 UTC+3 .
-  "0 21 * * *",
-  () => {
-    //scrapeTodayMatches.log(`Script running at: ${new Date().toISOString()} `);
-    console.log(`Script schedule running at: ${new Date().toISOString()} `);
-    scrapeTodayMatches.scrapeTodayMatches();
-  },
-  {
-    timezone: "Europe/Istanbul", // UTC+3 timezone
+cron.schedule("0 0 * * *", async () => {
+  try {
+    console.log(`Script schedule running at: ${new Date().toISOString()}`);
+    await scrapeTodayMatches.scrapeTodayMatches(0);
+    console.log("Scraping completed successfully.");
+  } catch (error) {
+    console.error("Error occurred in scheduled task:", error);
   }
-);
+});
 // setInterval(() => {
 //   scrapeTodayMatches.scrapeTodayMatches();
 // }, 43200000); // Scrape every 12 hours

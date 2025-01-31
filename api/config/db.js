@@ -38,6 +38,30 @@ const initializeDatabase = async () => {
   //   console.error("Database initialization failed:", error);
   //   process.exit(1);
   // }
+
+  // await pool.query(`
+  //     CREATE TABLE matches (
+  //   id INT AUTO_INCREMENT PRIMARY KEY,
+  //   league VARCHAR(255),
+  //   leagueLogo TEXT,
+  //   homeTeam VARCHAR(255),
+  //   awayTeam VARCHAR(255),
+  //   homeTeamLogo TEXT,
+  //   awayTeamLogo TEXT,
+  //   time VARCHAR(255),
+  //   matchTime VARCHAR(255),
+  //   matchDate VARCHAR(255)
+  // )
+  //     `);
+  // await pool.query(`
+  //     CREATE TABLE channels (
+  //   id INT AUTO_INCREMENT PRIMARY KEY,
+  //   match_id INT,
+  //   channel VARCHAR(255),
+  //   commentator VARCHAR(255),
+  //   FOREIGN KEY (match_id) REFERENCES matches(id) ON DELETE CASCADE
+  // )
+  //     `);
 };
 
 module.exports = {

@@ -1,6 +1,34 @@
 const path = require("path");
 const fs = require("fs");
-exports.get_all_matches = async (req, res, next) => {
+const { pool } = require("../config/db");
+
+exports.get_all_matches = async (req, res) => {
+  try {
+    // Fetch matches
+    const [matches] = await pool.execute("SELECT * FROM matches");
+
+    // Fetch channels for all matches
+    const [channels] = await pool.execute("SELECT * FROM channels");
+
+    // Map channels to their respective matches
+    const matchesWithChannels = matches.map((match) => {
+      match.channelsAndCommentators = channels
+        .filter((channel) => channel.match_id === match.id)
+        .map((channel) => ({
+          Channel: channel.channel,
+          Commentator: channel.commentator,
+        }));
+      return match;
+    });
+
+    // Return matches with their channels
+    res.json(matchesWithChannels);
+  } catch (error) {
+    console.error("Database error:", error);
+    res.status(500).json({ error: "Failed to fetch matches from database" });
+  }
+};
+exports.get_all_matches_from_file = async (req, res, next) => {
   const filePath = path.join(__dirname, "../../filter_matches.json");
 
   // try {

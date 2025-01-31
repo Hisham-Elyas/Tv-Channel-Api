@@ -1,6 +1,61 @@
 const puppeteer = require("puppeteer-extra");
 const StealthPlugin = require("puppeteer-extra-plugin-stealth");
 const fs = require("fs");
+const { pool } = require("./api/config/db");
+async function insertMatches(matches) {
+  try {
+    // Start a transaction to ensure data consistency
+    await pool.query("START TRANSACTION");
+
+    // Check if there is existing data
+    const [rows] = await pool.query("SELECT COUNT(*) as count FROM matches");
+    if (rows[0].count > 0) {
+      console.log("Old data found. Deleting...");
+
+      // Delete old matches and related channels
+      await pool.query("DELETE FROM channels"); // Channels depend on matches, so delete them first
+      await pool.query("DELETE FROM matches");
+
+      console.log("Old data deleted successfully!");
+    } else {
+      console.log("No old data found. Proceeding with insertion...");
+    }
+
+    // Insert new matches
+    for (const match of matches) {
+      // Insert match data into `matches` table
+      const [matchResult] = await pool.query(
+        `INSERT INTO matches (league, leagueLogo, homeTeam, awayTeam, homeTeamLogo, awayTeamLogo, time, matchTime, matchDate)
+               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        [
+          match.league,
+          match.leagueLogo,
+          match.homeTeam,
+          match.awayTeam,
+          match.homeTeamLogo,
+          match.awayTeamLogo,
+          match.time,
+          match.matchTime,
+          match.matchDate,
+        ]
+      );
+
+      const matchId = matchResult.insertId; // Get the inserted match ID
+
+      // Insert channels if they exist
+      for (const channel of match.channelsAndCommentators) {
+        await pool.query(
+          `INSERT INTO channels (match_id, channel, commentator) VALUES (?, ?, ?)`,
+          [matchId, channel.Channel, channel.Commentator]
+        );
+      }
+    }
+
+    console.log("Data inserted successfully!");
+  } catch (error) {
+    console.error("Error inserting data:", error);
+  }
+}
 function delay(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
@@ -64,14 +119,15 @@ function addHour(timeStr) {
   return `${newHours12}:${newMinutes} ${newPeriod}`;
 }
 
-const filterMatches = () => {
+const filterMatches = (matchlist) => {
   const inputFilePath = "matches.json"; // Input file with all matches
   const outputFilePath = "filter_matches.json"; // Filtered matches output file
 
   try {
     // Read the input JSON file
     const data = fs.readFileSync(inputFilePath, "utf-8");
-    const matches = JSON.parse(data);
+    // const matches = JSON.parse(data);
+    const matches = matchlist;
 
     // Filter matches
     const filteredMatches = matches.map((match) => {
@@ -152,13 +208,14 @@ const filterMatches = () => {
     });
 
     // Save filtered matches to a new file
-    fs.writeFileSync(
-      outputFilePath,
-      JSON.stringify(filteredMatches, null, 2),
-      "utf-8"
-    );
-    console.log(`Filtered matches saved to ${outputFilePath}`);
-    log(`Filtered matches saved to ${outputFilePath}`);
+    // fs.writeFileSync(
+    //   outputFilePath,
+    //   JSON.stringify(filteredMatches, null, 2),
+    //   "utf-8"
+    // );
+    insertMatches(filteredMatches);
+    // console.log(`Filtered matches saved to ${outputFilePath}`);
+    // log(`Filtered matches saved to ${outputFilePath}`);
   } catch (error) {
     console.error("Error processing matches:", error.message || error);
     log(`Error processing matches:${error.message} || ${error}`);
@@ -257,7 +314,7 @@ exports.scrapeTodayMatches = async (dayes) => {
           await page.waitForSelector(".next-date.date-next-prev.date_c", {
             visible: true,
           });
-          await delay(10000);
+          // await delay(10000);
           await page.click(".next-date.date-next-prev.date_c");
           await page.waitForSelector(".matches-wrapper", { timeout: 60000 });
           // await page.screenshot({
@@ -272,7 +329,7 @@ exports.scrapeTodayMatches = async (dayes) => {
       }
     }
     // console.log(`allMatches.length}: ${allMatches.length}`);
-    console.log(`allmatches ${allmatches.length} matches `);
+    console.log(`all_matches ${allmatches.length} matches `);
     for (const [index, match] of allmatches.entries()) {
       if (!match.matchLink) {
         console.log(
@@ -351,13 +408,13 @@ exports.scrapeTodayMatches = async (dayes) => {
 
     // Save the data to a JSON file
 
-    const filePath = "matches.json";
-    fs.writeFileSync(filePath, JSON.stringify(allmatches, null, 2), "utf-8");
-    console.log("Data saved to matches.json");
-    log("Data saved to matches.json");
+    // const filePath = "matches.json";
+    // fs.writeFileSync(filePath, JSON.stringify(allmatches, null, 2), "utf-8");
+    // console.log("Data saved to matches.json");
+    // log("Data saved to matches.json");
 
     // Run the filter function
-    filterMatches();
+    filterMatches(allmatches);
   } catch (error) {
     console.error("Error scraping matches:", error);
     log(`Error scraping matches:${error}`);
@@ -366,4 +423,5 @@ exports.scrapeTodayMatches = async (dayes) => {
   }
 };
 // scrapeMatches();
+// filterMatches();
 // scrapeTodayMatches(2);
