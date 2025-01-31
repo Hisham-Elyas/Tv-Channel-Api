@@ -34,27 +34,27 @@ app.get("/api/run-script", (req, res) => {
   scrapeTodayMatches.scrapeTodayMatches();
   res.json("Script executed successfully!");
 });
-app.get("/api/run-script/log", (req, res) => {
-  const filePath = path.join(__dirname, "./api/Logs/log.txt");
+// app.get("/api/run-script/log", (req, res) => {
+//   const filePath = path.join(__dirname, "./api/Logs/log.txt");
 
-  // try {
-  console.log(filePath);
+//   // try {
+//   console.log(filePath);
 
-  // Read the Log file after scraping
-  fs.readFile(filePath, "utf-8", (err, data) => {
-    if (err) {
-      console.error("Error reading file:", err);
-      return res.status(500).json({ error: "Failed to read the file" });
-    }
+//   // Read the Log file after scraping
+//   fs.readFile(filePath, "utf-8", (err, data) => {
+//     if (err) {
+//       console.error("Error reading file:", err);
+//       return res.status(500).json({ error: "Failed to read the file" });
+//     }
 
-    try {
-      res.send(data);
-    } catch (parseErr) {
-      console.error("Error parsing JSON:", parseErr);
-      res.status(500).json({ error: "Invalid JSON format in the file" });
-    }
-  });
-});
+//     try {
+//       res.send(data);
+//     } catch (parseErr) {
+//       console.error("Error parsing JSON:", parseErr);
+//       res.status(500).json({ error: "Invalid JSON format in the file" });
+//     }
+//   });
+// });
 // API Documentation Route
 app.get("/", (req, res) => {
   const documentation = {
@@ -132,7 +132,8 @@ cron.schedule(
   ///This setup will ensure your script runs every day at 00:00 UTC+3 .
   "0 21 * * *",
   () => {
-    scrapeTodayMatches.log(`Script running at: ${new Date().toISOString()} `);
+    //scrapeTodayMatches.log(`Script running at: ${new Date().toISOString()} `);
+    console.log(`Script schedule running at: ${new Date().toISOString()} `);
     scrapeTodayMatches.scrapeTodayMatches();
   },
   {
@@ -144,5 +145,5 @@ cron.schedule(
 // }, 43200000); // Scrape every 12 hours
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`Server api  running on http://172.105.81.117:${PORT}`);
 });

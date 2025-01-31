@@ -4,9 +4,14 @@ const fs = require("fs");
 
 // Enable stealth plugin
 puppeteer.use(StealthPlugin());
+log = (message) => {
+  const logMessage = `${new Date().toISOString()} - ${message}\n`;
+  // fs.appendFileSync("./api/Logs/log.txt", logMessage);
+  console.log(logMessage); // Optional: Log to console
+};
 exports.log = (message) => {
   const logMessage = `${new Date().toISOString()} - ${message}\n`;
-  fs.appendFileSync("./api/Logs/log.txt", logMessage);
+  // fs.appendFileSync("./api/Logs/log.txt", logMessage);
   console.log(logMessage); // Optional: Log to console
 };
 
@@ -158,9 +163,14 @@ const filterMatches = () => {
   }
 };
 
-exports.scrapeTodayMatches = async () => {
+exports.scrapeTodayMatches = async (dayes) => {
   log("Script executed successfully!");
-  const browser = await puppeteer.launch({ headless: true });
+  const startTime = new Date();
+  const browser = await puppeteer.launch({
+    args: ["--no-sandbox", "--disable-setuid-sandbox"],
+    headless: true,
+  });
+  console.log(`Browser launched at: ${startTime.toISOString()}`);
   const page = await browser.newPage();
 
   try {
@@ -179,63 +189,98 @@ exports.scrapeTodayMatches = async () => {
     await page.waitForSelector(".matches-wrapper", { timeout: 60000 });
 
     // Extract matches
-    const matches = await page.evaluate(() => {
-      const baseURL = "https://www.ysscores.com";
-      return (
-        Array.from(document.querySelectorAll(".matches-wrapper"))
-          // .slice(0, 1) // for test 2 matches only
-          .flatMap((championship) => {
-            const leagueName =
-              championship
-                .querySelector(".champ-title b")
-                ?.textContent.trim() || "Unknown League";
-            const leagueNameLogo =
-              championship.querySelector(".champ-title img")?.src || "No Logo";
-            const matchItems = Array.from(
-              championship.querySelectorAll(".ajax-match-item")
-            );
+    const days = dayes || 1;
+    let matches = [];
+    let allmatches = [];
+    for (let i = 0; i <= days; i++) {
+      await page.screenshot({
+        path: `${Date.now()}_${i + 1}days.png`,
+        fullPage: true,
+      });
+      matches = await page.evaluate(() => {
+        const baseURL = "https://www.ysscores.com";
+        return (
+          Array.from(document.querySelectorAll(".matches-wrapper"))
+            // .slice(0, 1) // for test 2 matches only
+            .flatMap((championship) => {
+              const leagueName =
+                championship
+                  .querySelector(".champ-title b")
+                  ?.textContent.trim() || "Unknown League";
+              const leagueNameLogo =
+                championship.querySelector(".champ-title img")?.src ||
+                "No Logo";
+              const matchItems = Array.from(
+                championship.querySelectorAll(".ajax-match-item")
+              );
 
-            return matchItems.map((match) => ({
-              matchLink: match.getAttribute("href") || "No Link",
-              league: leagueName,
-              leagueLogo: leagueNameLogo,
-              homeTeam:
-                match.querySelector(".first-team b")?.textContent.trim() ||
-                "Unknown Team",
-              awayTeam:
-                match.querySelector(".second-team b")?.textContent.trim() ||
-                "Unknown Team",
-              awayTeamLogo:
-                match.querySelector(".second-team img")?.src || "No Logo",
-              homeTeamLogo:
-                match.querySelector(".first-team img")?.src || "No Logo",
-              time:
-                match.querySelector(".match-date")?.textContent.trim() ||
-                "Time not available",
-            }));
-          })
-      );
-    });
+              return matchItems.map((match) => ({
+                matchLink: match.getAttribute("href") || "No Link",
+                league: leagueName,
+                leagueLogo: leagueNameLogo,
+                homeTeam:
+                  match.querySelector(".first-team b")?.textContent.trim() ||
+                  "Unknown Team",
+                awayTeam:
+                  match.querySelector(".second-team b")?.textContent.trim() ||
+                  "Unknown Team",
+                awayTeamLogo:
+                  match.querySelector(".second-team img")?.src || "No Logo",
+                homeTeamLogo:
+                  match.querySelector(".first-team img")?.src || "No Logo",
+                time:
+                  match.querySelector(".match-date")?.textContent.trim() ||
+                  "Time not available",
+              }));
+            })
+        );
+      });
+      allmatches = allmatches.concat(matches);
+      // console.log(
+      //   `Scraped ${matches.length} matches. Starting detailed scraping...`
+      // );
+      // log(`Scraped ${allmatches.length} matches. Starting detailed scraping...`);
 
-    console.log(
-      `Scraped ${matches.length} matches. Starting detailed scraping...`
-    );
-    log(`Scraped ${matches.length} matches. Starting detailed scraping...`);
+      console.log(`Scraped ${matches.length} matches for day ${i + 1}`);
 
-    for (const [index, match] of matches.entries()) {
+      // allMatches.push(matches);
+      if (i <= days - 1) {
+        // Click "Next Date" for the next day
+        // console.log(`Clicking next date button for day ${days - 1}`);
+        try {
+          // await page.screenshot({
+          //   path: `${Date.now()}_${i}days.png`,
+          //   fullPage: true,
+          // });
+          await page.click(".next-date.date-next-prev.date_c");
+          await page.waitForSelector(".matches-wrapper", { timeout: 60000 });
+          // await page.screenshot({
+          //   path: `${Date.now()}_${i + 1}days.png`,
+          //   fullPage: true,
+          // });
+          // await page.waitForTimeout(3000); // Wait for new data to load
+        } catch (error) {
+          console.error("Error clicking next date button:", error);
+          // log(`Error clicking next date button: ${error}`);
+        }
+      }
+    }
+    // console.log(`allMatches.length}: ${allMatches.length}`);
+    console.log(`allmatches ${allmatches.length} matches `);
+    for (const [index, match] of allmatches.entries()) {
       if (!match.matchLink) {
         console.log(
           `Skipping match with no link: ${match.homeTeam} vs ${match.awayTeam}`
         );
-        log(
-          `Skipping match with no link: ${match.homeTeam} vs ${match.awayTeam}`
-        );
+        // log(
+        //   `Skipping match with no link: ${match.homeTeam} vs ${match.awayTeam}`
+        // );
         continue;
       }
 
       try {
-        console.log(`Processing match ${index + 1}/${matches.length}`);
-        log(`Processing match ${index + 1}/${matches.length}`);
+        console.log(`Processing match ${index + 1}/${allmatches.length}`);
+        // log(`Processing match ${index + 1}/${allMatches.length}`);
         await page.goto(match.matchLink, {
           waitUntil: "networkidle2",
           timeout: 30000,
@@ -299,10 +344,12 @@ exports.scrapeTodayMatches = async () => {
     // });
 
     // Save the data to a JSON file
+
     const filePath = "matches.json";
-    fs.writeFileSync(filePath, JSON.stringify(matches, null, 2), "utf-8");
+    fs.writeFileSync(filePath, JSON.stringify(allmatches, null, 2), "utf-8");
     console.log("Data saved to matches.json");
     log("Data saved to matches.json");
+
     // Run the filter function
     filterMatches();
   } catch (error) {
@@ -312,11 +359,5 @@ exports.scrapeTodayMatches = async () => {
     await browser.close();
   }
 };
-
-// Run the scraper
-// log("test1");
-// scrapeTodayMatches();
-
-// filterMatches();
-
-// module.exports = scrapeTodayMatches;
+// scrapeMatches();
+// scrapeTodayMatches(2);
