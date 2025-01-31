@@ -252,6 +252,9 @@ exports.scrapeTodayMatches = async (dayes) => {
           //   path: `${Date.now()}_${i}days.png`,
           //   fullPage: true,
           // });
+          await page.waitForSelector(".next-date.date-next-prev.date_c", {
+            visible: true,
+          });
           await page.click(".next-date.date-next-prev.date_c");
           await page.waitForSelector(".matches-wrapper", { timeout: 60000 });
           // await page.screenshot({
