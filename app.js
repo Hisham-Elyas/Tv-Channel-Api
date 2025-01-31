@@ -31,7 +31,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/today_matches", today_matchesRoutes);
 
 app.get("/api/run-script", (req, res) => {
-  scrapeTodayMatches.scrapeTodayMatches();
+  scrapeTodayMatches.scrapeTodayMatches(2);
   res.json("Script executed successfully!");
 });
 // app.get("/api/run-script/log", (req, res) => {
