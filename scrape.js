@@ -1,7 +1,9 @@
 const puppeteer = require("puppeteer-extra");
 const StealthPlugin = require("puppeteer-extra-plugin-stealth");
 const fs = require("fs");
-
+function delay(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
 // Enable stealth plugin
 puppeteer.use(StealthPlugin());
 log = (message) => {
@@ -193,10 +195,10 @@ exports.scrapeTodayMatches = async (dayes) => {
     let matches = [];
     let allmatches = [];
     for (let i = 0; i <= days; i++) {
-      await page.screenshot({
-        path: `${Date.now()}_${i + 1}days.png`,
-        fullPage: true,
-      });
+      // await page.screenshot({
+      //   path: `${Date.now()}_${i + 1}days.png`,
+      //   fullPage: true,
+      // });
       matches = await page.evaluate(() => {
         const baseURL = "https://www.ysscores.com";
         return (
@@ -255,6 +257,7 @@ exports.scrapeTodayMatches = async (dayes) => {
           await page.waitForSelector(".next-date.date-next-prev.date_c", {
             visible: true,
           });
+          await delay(10000);
           await page.click(".next-date.date-next-prev.date_c");
           await page.waitForSelector(".matches-wrapper", { timeout: 60000 });
           // await page.screenshot({
