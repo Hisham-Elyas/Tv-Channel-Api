@@ -20,8 +20,8 @@ const GroupController = {
     try {
       const groups = await Group.getAllGroups();
       res.status(200).json({
-        count: groups.length,
-        groups: groups,
+        count: groups.length, // Total groups
+        groups: groups, // List of groups with channel counts
       });
     } catch (err) {
       res.status(500).json({ error: err.message });
@@ -40,6 +40,27 @@ const GroupController = {
       }
     } catch (err) {
       res.status(500).json({ error: err.message });
+    }
+  },
+  searchGroups: async (req, res) => {
+    const { title } = req.query;
+
+    if (!title) {
+      return res.status(400).json({ message: "Please provide a search title" });
+    }
+
+    try {
+      const groups = await Group.searchGroupsByTitle(title);
+      res.status(200).json({
+        count: groups.length,
+        groups: groups,
+      });
+    } catch (err) {
+      res.status(500).json({
+        error: true,
+        message: "Error while searching for groups",
+        details: err.message,
+      });
     }
   },
 };

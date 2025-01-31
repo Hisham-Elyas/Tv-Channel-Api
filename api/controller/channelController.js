@@ -52,6 +52,34 @@ const ChannelController = {
       res.status(500).json({ error: err.message });
     }
   },
+  // Search channels within a specific group by channel name
+  searchChannelsInGroup: async (req, res) => {
+    const { group_id } = req.params;
+    const { title } = req.query;
+
+    if (!group_id || !title) {
+      return res
+        .status(400)
+        .json({ message: "Please provide both group ID and search title" });
+    }
+
+    try {
+      const channels = await Channel.searchChannelsInGroupByTitle(
+        group_id,
+        title
+      );
+      res.status(200).json({
+        count: channels.length,
+        channels: channels,
+      });
+    } catch (err) {
+      res.status(500).json({
+        error: true,
+        message: "Error while searching for channels in group",
+        details: err.message,
+      });
+    }
+  },
 };
 
 module.exports = ChannelController;

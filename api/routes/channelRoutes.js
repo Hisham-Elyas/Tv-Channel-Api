@@ -11,4 +11,11 @@ router.get("/", ChannelController.getAllChannels);
 // Get channels by group ID
 router.get("/group/:groupId", ChannelController.getChannelsByGroupId);
 
+// Route to search channels within a specific group
+/// GET /api/groups/groups_id/channels/search?title=Football
+router.get(
+  "/groups/:group_id/channels/search",
+  ChannelController.searchChannelsInGroup
+);
+
 module.exports = router;

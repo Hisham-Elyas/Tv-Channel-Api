@@ -35,6 +35,21 @@ const Channel = {
       throw new Error(err);
     }
   },
+  searchChannelsInGroupByTitle: async (group_id, title) => {
+    try {
+      const [channels] = await db.query(
+        `
+        SELECT * 
+        FROM channels 
+        WHERE group_id = ? AND name LIKE ?
+      `,
+        [group_id, `%${title}%`]
+      );
+      return channels;
+    } catch (err) {
+      throw new Error(err);
+    }
+  },
 };
 
 module.exports = Channel;
