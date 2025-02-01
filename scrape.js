@@ -191,7 +191,7 @@ const filterMatches = (matchlist) => {
         channelsAndCommentators
       );
       channelsAndCommentators =
-        channelsAndCommentators.Channel == "Referee"
+        channelsAndCommentators.Channel === "Referee"
           ? []
           : channelsAndCommentators;
       // const timeplusOneh = addOneHour(matchTime);
@@ -318,8 +318,9 @@ exports.scrapeTodayMatches = async (dayes) => {
           await page.waitForSelector(".next-date.date-next-prev.date_c", {
             visible: true,
           });
-          // await delay(10000);
+          await delay(10000);
           await page.click(".next-date.date-next-prev.date_c");
+          await delay(10000);
           await page.waitForSelector(".matches-wrapper", { timeout: 60000 });
           // await page.screenshot({
           //   path: `${Date.now()}_${i + 1}days.png`,
