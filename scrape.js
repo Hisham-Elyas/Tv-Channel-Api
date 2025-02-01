@@ -190,10 +190,10 @@ const filterMatches = (matchlist) => {
       channelsAndCommentators = mergeChannelsAndCommentators(
         channelsAndCommentators
       );
-      channelsAndCommentators =
-        channelsAndCommentators.Channel === "Referee"
-          ? []
-          : channelsAndCommentators;
+      // channelsAndCommentators =
+      //   channelsAndCommentators.Channel === "Referee"
+      //     ? []
+      //     : channelsAndCommentators;
       // const timeplusOneh = addOneHour(matchTime);
       // Return the filtered match structure
       return {
