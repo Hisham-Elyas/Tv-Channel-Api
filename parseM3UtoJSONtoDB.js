@@ -2,7 +2,7 @@ const fs = require("fs");
 // const { pool } = require("./api/config/db");
 const mysql = require("mysql2/promise");
 
-function parseM3UtoJSON() {
+async function parseM3UtoJSON() {
   const m3uPath = "playlist.m3u";
   const jsonPath = "IP_TV_Playlist.json";
   const groupsPath = "ip-tv-channel-group.js";
@@ -59,7 +59,7 @@ function parseM3UtoJSON() {
     "group-title": groupTitle,
     channels: groups[groupTitle],
   }));
-  insertChannelsAndGroups(result);
+  await insertChannelsAndGroups(result);
 
   // fs.writeFileSync(jsonPath, JSON.stringify(result, null, 4));
 
@@ -73,15 +73,12 @@ function parseM3UtoJSON() {
   // fs.writeFileSync(groupsPath, groupsFileContent);
 
   // filterARGroups(groupsPath, arGroupsPath);
-  // console.log(`
-  //   Conversion complete!
-  //   ====================
-  //   Total channels: ${totalChannels}
-  //   Total groups: ${groupNames.length}
-  //   JSON file: ${jsonPath}
-  //   Groups file: ${groupsPath}
-  //   AR groups file: ${arGroupsPath}
-  //   `);
+  console.log(`
+   ✅ Conversion and inserted complete!✅
+    ===================================
+    Total channels: ${totalChannels}
+    Total groups: ${groupNames.length}
+    `);
 }
 
 function filterARGroups(inputFile, outputFile) {
@@ -111,10 +108,10 @@ function filterARGroups(inputFile, outputFile) {
 // Create a MySQL connection pool (ensure it's outside of the function)
 const pool = mysql.createPool({
   host: "MYSQL1001.site4now.net", // Make sure this is correct (localhost or IP address)
-  user: "ab1096_tvapp", // Replace with your MySQL username
-  password: "tarmiz12345##", // Replace with your MySQL password
-  database: "db_ab1096_tvapp", // Replace with your database name
-  connectionLimit: 10,
+  user: "db_ab2571_ftv2003", // Replace with your MySQL username
+  password: "Faisal@15557", // Replace with your MySQL password
+  database: "ab2571_ftv2003", // Replace with your database name
+  connectionLimit: 100,
   port: 3306, // Ensure it's the correct port
   waitForConnections: true,
   queueLimit: 0,
@@ -124,7 +121,6 @@ const pool = mysql.createPool({
 });
 
 // Initialize the database
-
 async function initializeDatabase() {
   try {
     // Check if 'groups' table exists
@@ -137,7 +133,8 @@ async function initializeDatabase() {
       await pool.query(`
         CREATE TABLE IF NOT EXISTS \`groups\` (
           \`id\` INT AUTO_INCREMENT PRIMARY KEY,
-          \`group_title\` VARCHAR(255) NOT NULL
+          \`group_title\` VARCHAR(255) NOT NULL,
+          created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
       `);
       console.log("Table 'groups' created or already exists!");
@@ -152,6 +149,7 @@ async function initializeDatabase() {
           \`tvg_logo\` VARCHAR(255),
           \`name\` VARCHAR(255),
           \`url\` VARCHAR(255),
+          created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
           FOREIGN KEY (\`group_id\`) REFERENCES \`groups\`(\`id\`) ON DELETE CASCADE
         )
       `);
@@ -181,11 +179,14 @@ async function insertChannelsAndGroups(data) {
     // Step 3: Insert new data
     for (const [index, group] of data.entries()) {
       // Insert Group Title and get its ID
+      const groupNamber = index;
       const [groupResult] = await pool.query(
         "INSERT INTO `groups` (group_title) VALUES (?)",
         [group["group-title"]]
       );
-      console.log(`Processing groups ${index + 1}/${data.length}`);
+      console.log(
+        `Processing groups    =======>    ${index + 1}/${data.length}`
+      );
       const groupId = groupResult.insertId;
 
       // Insert Channels for the Group
@@ -201,13 +202,17 @@ async function insertChannelsAndGroups(data) {
             channel["url"],
           ]
         );
-        console.log(`Processing channel ${index + 1}/${group.channels.length}`);
+        console.log(
+          `Processing channel ${index + 1}/${group.channels.length} for group ${
+            groupNamber + 1
+          }/${data.length}`
+        );
       }
     }
 
-    console.log("Data inserted successfully!");
+    console.log("✅ Data inserted successfully!");
   } catch (error) {
-    console.error("Error during data insertion:", error);
+    console.error("❌ Error during data insertion:", error);
   } finally {
     // Close the connection pool
     await pool.end();

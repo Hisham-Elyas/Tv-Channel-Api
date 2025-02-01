@@ -19,7 +19,7 @@ const Group = {
       const [groups] = await pool.query(`
         SELECT g.id, g.group_title, 
                COUNT(c.id) AS channels
-        FROM groups g
+        FROM \`groups\` g
         LEFT JOIN channels c ON g.id = c.group_id
         GROUP BY g.id
       `);

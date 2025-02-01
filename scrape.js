@@ -251,7 +251,7 @@ exports.scrapeTodayMatches = async (dayes) => {
     const days = dayes;
     let matches = [];
     let allmatches = [];
-    for (let i = 0; i <= days; i++) {
+    for (let i = 0; i < days; i++) {
       // await page.screenshot({
       //   path: `${Date.now()}_${i + 1}days.png`,
       //   fullPage: true,
@@ -303,7 +303,7 @@ exports.scrapeTodayMatches = async (dayes) => {
       console.log(`Scraped ${matches.length} matches for day ${i + 1}`);
 
       // allMatches.push(matches);
-      if (i <= days - 1) {
+      if (i < days - 1) {
         // Click "Next Date" for the next day
         // console.log(`Clicking next date button for day ${days - 1}`);
         try {

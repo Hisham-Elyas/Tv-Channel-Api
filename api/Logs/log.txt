@@ -19,3 +19,11 @@
 2025-01-30T15:43:00.203Z - Script running at: 2025-01-30T15:43:00.202Z 
 2025-01-30T15:44:00.918Z - Script running at: 2025-01-30T15:44:00.918Z 
 2025-01-30T15:46:00.738Z - Script running at: 2025-01-30T15:46:00.737Z 
+2025-01-30T20:01:22.609Z - Script executed successfully!
+2025-01-30T20:01:30.720Z - Error scraping matches:Error: net::ERR_NETWORK_ACCESS_DENIED at https://www.ysscores.com/en/today_matches
+2025-01-30T20:01:33.888Z - Script executed successfully!
+2025-01-30T20:01:58.031Z - Scraped 41 matches. Starting detailed scraping...
+2025-01-30T20:01:58.032Z - Processing match 1/41
+2025-01-30T20:01:59.542Z - Processing match 2/41
+2025-01-30T20:02:00.898Z - Processing match 3/41
+2025-01-30T20:02:02.579Z - Processing match 4/41
