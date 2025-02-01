@@ -3,18 +3,21 @@ const StealthPlugin = require("puppeteer-extra-plugin-stealth");
 const fs = require("fs");
 const { pool } = require("./api/config/db");
 async function insertMatches(matches) {
+  let connection;
   try {
-    // Start a transaction to ensure data consistency
-    await pool.query("START TRANSACTION");
+    connection = await pool.getConnection();
+    await connection.beginTransaction(); // Start transaction on the same connection
 
     // Check if there is existing data
-    const [rows] = await pool.query("SELECT COUNT(*) as count FROM matches");
+    const [rows] = await connection.query(
+      "SELECT COUNT(*) as count FROM matches"
+    );
     if (rows[0].count > 0) {
       console.log("Old data found. Deleting...");
 
       // Delete old matches and related channels
-      await pool.query("DELETE FROM channels_commentator"); // Channels depend on matches, so delete them first
-      await pool.query("DELETE FROM matches");
+      await connection.query("DELETE FROM channels_of_matches"); // Channels depend on matches, so delete them first
+      await connection.query("DELETE FROM matches");
 
       console.log("Old data deleted successfully!");
     } else {
@@ -22,10 +25,15 @@ async function insertMatches(matches) {
     }
 
     // Insert new matches
-    for (const match of matches) {
+    for (const [index, match] of matches.entries()) {
+      console.log(
+        `Inserting match ${index + 1} of ${matches.length}: ${
+          match.homeTeam
+        } vs ${match.awayTeam}`
+      );
       // Insert match data into `matches` table
-      const [matchResult] = await pool.query(
-        `INSERT INTO matches (league, leagueLogo, homeTeam, awayTeam, homeTeamLogo, awayTeamLogo, time, matchTime, matchDate)
+      const [matchResult] = await connection.query(
+        `INSERT INTO \`matches\` (league, leagueLogo, homeTeam, awayTeam, homeTeamLogo, awayTeamLogo, time, matchTime, matchDate)
                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
         [
           match.league,
@@ -44,13 +52,13 @@ async function insertMatches(matches) {
 
       // Insert channels if they exist
       for (const channel of match.channelsAndCommentators) {
-        await pool.query(
-          `INSERT INTO channels_commentator (match_id, channel, commentator) VALUES (?, ?, ?)`,
+        await connection.query(
+          `INSERT INTO \`channels_of_matches\` (match_id, channel, commentator) VALUES (?, ?, ?)`,
           [matchId, channel.Channel, channel.Commentator]
         );
       }
     }
-
+    await connection.commit();
     console.log("✅ Matchs Data inserted successfully!");
   } catch (error) {
     console.error("❌ Error inserting data:", error);
@@ -120,8 +128,8 @@ function addHour(timeStr) {
 }
 
 const filterMatches = (matchlist) => {
-  const inputFilePath = "matches.json"; // Input file with all matches
-  const outputFilePath = "filter_matches.json"; // Filtered matches output file
+  // const inputFilePath = "matches.json"; // Input file with all matches
+  // const outputFilePath = "filter_matches.json"; // Filtered matches output file
 
   try {
     // Read the input JSON file
@@ -321,6 +329,10 @@ exports.scrapeTodayMatches = async (dayes) => {
           await delay(10000);
           await page.click(".next-date.date-next-prev.date_c");
           await delay(10000);
+          const elementExists = await page.$(
+            ".next-date.date-next-prev.date_c"
+          );
+          console.log("Element exists:", !!elementExists); // Debug output
           await page.waitForSelector(".matches-wrapper", { timeout: 60000 });
           // await page.screenshot({
           //   path: `${Date.now()}_${i + 1}days.png`,

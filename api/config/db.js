@@ -13,28 +13,36 @@ const pool = mysql.createPool({
     rejectUnauthorized: false, // Enable SSL for secure connection
   },
 });
-
 const initializeDatabase = async () => {
   try {
+    // Verify database connection
     const connection = await pool.getConnection();
-    console.log("✅ Database connection successful");
     connection.release();
+    console.log("✅ Database connection successful");
   } catch (error) {
     console.error("❌ Database connection failed:", error);
+    process.exit(1);
   }
+
   try {
+    // Execute table creation in transaction
+    await pool.query("START TRANSACTION");
+
+    // Create tables with proper constraints
     await pool.query(`
-  CREATE TABLE IF NOT EXISTS users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(255) NOT NULL UNIQUE,
-    email VARCHAR(255) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL,
-    phone VARCHAR(20) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-  )
+      CREATE TABLE IF NOT EXISTS users (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        username VARCHAR(255) NOT NULL UNIQUE,
+        email VARCHAR(255) NOT NULL UNIQUE,
+        password VARCHAR(255) NOT NULL,
+        phone VARCHAR(20) NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+      )
     `);
+
     await pool.query(`
-    CREATE TABLE IF NOT EXISTS matches (
+      CREATE TABLE IF NOT EXISTS matches (
     id INT AUTO_INCREMENT PRIMARY KEY,
     league VARCHAR(255),
     leagueLogo TEXT,
@@ -44,42 +52,47 @@ const initializeDatabase = async () => {
     awayTeamLogo TEXT,
     time VARCHAR(255),
     matchTime VARCHAR(255),
-    matchDate VARCHAR(255),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    matchDate VARCHAR(255)
   )
-      `);
+    `);
+
     await pool.query(`
-    CREATE TABLE IF NOT EXISTS channels_commentator (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    match_id INT,
-    channel VARCHAR(255),
-    commentator VARCHAR(255),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (match_id) REFERENCES matches(id) ON DELETE CASCADE
-  )
-      `);
+      CREATE TABLE IF NOT EXISTS channels_of_matches (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        match_id INT ,
+        channel VARCHAR(255),
+        commentator VARCHAR(255),
+        FOREIGN KEY (match_id) REFERENCES matches(id) ON DELETE CASCADE
+      )
+    `);
+
     await pool.query(`
-    CREATE TABLE IF NOT EXISTS \`groups\` (
-      \`id\` INT AUTO_INCREMENT PRIMARY KEY,
-      \`group_title\` VARCHAR(255) NOT NULL,
-      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    )
-  `);
+      CREATE TABLE IF NOT EXISTS \`groups\` (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        group_title VARCHAR(255) NOT NULL UNIQUE,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+      )
+    `);
+
     await pool.query(`
-    CREATE TABLE IF NOT EXISTS \`channels\` (
-      \`id\` INT AUTO_INCREMENT PRIMARY KEY,
-      \`group_id\` INT NOT NULL,
-      \`tvg_id\` VARCHAR(255),
-      \`tvg_name\` VARCHAR(255),
-      \`tvg_logo\` VARCHAR(255),
-      \`name\` VARCHAR(255),
-      \`url\` VARCHAR(255),
-      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-      FOREIGN KEY (\`group_id\`) REFERENCES \`groups\`(\`id\`) ON DELETE CASCADE
-    )
-  `);
-    console.log("✅ Database initialized");
+      CREATE TABLE IF NOT EXISTS \`channels\` (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        group_id INT NOT NULL,
+        tvg_id VARCHAR(255),
+        tvg_name VARCHAR(255) NOT NULL,
+        tvg_logo TEXT,
+        name VARCHAR(255) NOT NULL,
+        url VARCHAR(255) NOT NULL UNIQUE,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (group_id) REFERENCES \`groups\`(id) ON DELETE CASCADE
+      )
+    `);
+
+    await pool.query("COMMIT");
+    console.log("✅ Database initialized successfully");
   } catch (error) {
+    await pool.query("ROLLBACK");
     console.error("❌ Database initialization failed:", error);
     process.exit(1);
   }
