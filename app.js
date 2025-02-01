@@ -37,7 +37,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/today_matches", today_matchesRoutes);
 
 app.get("/api/run-script", (req, res) => {
-  const { nextDaytoScrape = 2 } = req.body;
+  const { nextDaytoScrape = 1 } = req.body;
   scrapeTodayMatches.scrapeTodayMatches(nextDaytoScrape);
   res.json(
     "Script executed successfully! Next day to scrape: " + nextDaytoScrape
@@ -140,7 +140,7 @@ db.initializeDatabase();
 cron.schedule("0 0 * * *", async () => {
   try {
     console.log(`Script schedule running at: ${new Date().toISOString()}`);
-    await scrapeTodayMatches.scrapeTodayMatches(2);
+    await scrapeTodayMatches.scrapeTodayMatches(1);
     console.log("Scraping completed successfully.");
   } catch (error) {
     console.error("Error occurred in scheduled task:", error);
