@@ -257,13 +257,12 @@ exports.scrapeTodayMatches = async (dayes) => {
       referer: "https://www.google.com/",
     });
 
-    await page.waitForSelector(".matches-wrapper", { timeout: 60000 });
-
     // Extract matches
     const days = dayes > 0 ? dayes : 1; // Ensure at least 1 day;
     let matches = [];
     let allmatches = [];
     for (let i = 0; i < days; i++) {
+      await page.waitForSelector(".matches-wrapper", { timeout: 60000 });
       // await page.screenshot({
       //   path: `${Date.now()}_${i + 1}days.png`,
       //   fullPage: true,
@@ -326,9 +325,9 @@ exports.scrapeTodayMatches = async (dayes) => {
           await page.waitForSelector(".next-date.date-next-prev.date_c", {
             visible: true,
           });
-          await delay(10000);
+          // await delay(10000);
           await page.click(".next-date.date-next-prev.date_c");
-          await delay(10000);
+
           const elementExists = await page.$(
             ".next-date.date-next-prev.date_c"
           );
