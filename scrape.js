@@ -13,7 +13,7 @@ async function insertMatches(matches) {
       console.log("Old data found. Deleting...");
 
       // Delete old matches and related channels
-      await pool.query("DELETE FROM channels"); // Channels depend on matches, so delete them first
+      await pool.query("DELETE FROM channels_commentator"); // Channels depend on matches, so delete them first
       await pool.query("DELETE FROM matches");
 
       console.log("Old data deleted successfully!");
@@ -45,7 +45,7 @@ async function insertMatches(matches) {
       // Insert channels if they exist
       for (const channel of match.channelsAndCommentators) {
         await pool.query(
-          `INSERT INTO channels (match_id, channel, commentator) VALUES (?, ?, ?)`,
+          `INSERT INTO channels_commentator (match_id, channel, commentator) VALUES (?, ?, ?)`,
           [matchId, channel.Channel, channel.Commentator]
         );
       }
