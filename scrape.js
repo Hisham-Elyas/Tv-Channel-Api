@@ -179,10 +179,12 @@ const filterMatches = (matchlist) => {
           const commentatorObj = channelsAndCommentators[i + 1];
 
           if (channelObj?.Channel && commentatorObj?.Commentator) {
-            merged.push({
-              Channel: channelObj.Channel,
-              Commentator: commentatorObj.Commentator,
-            });
+            if (channelObj.Channel != "Referee") {
+              merged.push({
+                Channel: channelObj.Channel,
+                Commentator: commentatorObj.Commentator,
+              });
+            }
           }
         }
         return merged.slice(0, 2);
