@@ -51,9 +51,9 @@ async function insertMatches(matches) {
       }
     }
 
-    console.log("Data inserted successfully!");
+    console.log("✅ Matchs Data inserted successfully!");
   } catch (error) {
-    console.error("Error inserting data:", error);
+    console.error("❌ Error inserting data:", error);
   }
 }
 function delay(ms) {
@@ -125,7 +125,7 @@ const filterMatches = (matchlist) => {
 
   try {
     // Read the input JSON file
-    const data = fs.readFileSync(inputFilePath, "utf-8");
+    // const data = fs.readFileSync(inputFilePath, "utf-8");
     // const matches = JSON.parse(data);
     const matches = matchlist;
 
