@@ -248,7 +248,7 @@ exports.scrapeTodayMatches = async (dayes) => {
     await page.waitForSelector(".matches-wrapper", { timeout: 60000 });
 
     // Extract matches
-    const days = dayes;
+    const days = dayes > 0 ? dayes : 1; // Ensure at least 1 day;
     let matches = [];
     let allmatches = [];
     for (let i = 0; i < days; i++) {
