@@ -179,12 +179,10 @@ const filterMatches = (matchlist) => {
           const commentatorObj = channelsAndCommentators[i + 1];
 
           if (channelObj?.Channel && commentatorObj?.Commentator) {
-            if (channelObj.Channel != "Referee") {
-              merged.push({
-                Channel: channelObj.Channel,
-                Commentator: commentatorObj.Commentator,
-              });
-            }
+            merged.push({
+              Channel: channelObj.Channel,
+              Commentator: commentatorObj.Commentator,
+            });
           }
         }
         return merged.slice(0, 2);
@@ -192,6 +190,10 @@ const filterMatches = (matchlist) => {
       channelsAndCommentators = mergeChannelsAndCommentators(
         channelsAndCommentators
       );
+      channelsAndCommentators =
+        channelsAndCommentators.Channel == "Referee"
+          ? []
+          : channelsAndCommentators;
       // const timeplusOneh = addOneHour(matchTime);
       // Return the filtered match structure
       return {
