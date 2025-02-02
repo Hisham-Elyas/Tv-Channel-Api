@@ -346,7 +346,7 @@ exports.scrapeTodayMatches = async (dayes) => {
           // page.click(".next-date.date-next-prev.date_c"),
           // await delay(10000);
           // await page.click(".next-date.date-next-prev.date_c");
-          await delay(5000); // Additional safety delay
+          await delay(10000); // Additional safety delay
           const elementExists = await page.$(
             ".next-date.date-next-prev.date_c"
           );
