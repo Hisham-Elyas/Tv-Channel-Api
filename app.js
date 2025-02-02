@@ -46,10 +46,7 @@ app.get("/api/run-script", (req, res) => {
 });
 app.get("/api/run-script-parse", (req, res) => {
   parseM3UtoJSONtoDB.parseM3UtoJSONtoDB();
-  res.json(
-    "Script to parse M3U to JSON to DB executed successfully! Next day to scrape: " +
-      nextDaytoScrape
-  );
+  res.json("Script to parse M3U to JSON to DB executed successfully! ");
 });
 // app.get("/api/run-script/log", (req, res) => {
 //   const filePath = path.join(__dirname, "./api/Logs/log.txt");

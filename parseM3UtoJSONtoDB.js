@@ -1,5 +1,5 @@
 const fs = require("fs");
-// const { pool } = require("./api/config/db");
+const { pool } = require("./api/config/db");
 const mysql = require("mysql2/promise");
 
 exports.parseM3UtoJSONtoDB = async function () {
@@ -106,19 +106,19 @@ function filterARGroups(inputFile, outputFile) {
 // Initialize database connection pool
 
 // Create a MySQL connection pool (ensure it's outside of the function)
-const pool = mysql.createPool({
-  host: "MYSQL1001.site4now.net", // Make sure this is correct (localhost or IP address)
-  user: "db_ab2571_ftv2003", // Replace with your MySQL username
-  password: "Faisal@15557", // Replace with your MySQL password
-  database: "ab2571_ftv2003", // Replace with your database name
-  connectionLimit: 100,
-  port: 3306, // Ensure it's the correct port
-  waitForConnections: true,
-  queueLimit: 0,
-  ssl: {
-    rejectUnauthorized: false, // Enable SSL for secure connection
-  },
-});
+// const pool = mysql.createPool({
+//   host: "MYSQL1001.site4now.net", // Make sure this is correct (localhost or IP address)
+//   user: "db_ab2571_ftv2003", // Replace with your MySQL username
+//   password: "Faisal@15557", // Replace with your MySQL password
+//   database: "ab2571_ftv2003", // Replace with your database name
+//   connectionLimit: 100,
+//   port: 3306, // Ensure it's the correct port
+//   waitForConnections: true,
+//   queueLimit: 0,
+//   ssl: {
+//     rejectUnauthorized: false, // Enable SSL for secure connection
+//   },
+// });
 
 // Initialize the database
 async function initializeDatabase() {
