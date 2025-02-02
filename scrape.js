@@ -331,13 +331,15 @@ exports.scrapeTodayMatches = async (dayes) => {
             visible: true,
             timeout: 15000,
           });
-          await Promise.all([
-            page.waitForNavigation({
-              waitUntil: "networkidle2",
-              timeout: 30000,
-            }),
-            page.click(".next-date.date-next-prev.date_c"),
-          ]);
+          await page.evaluate(() => {
+            const button = document.querySelector(
+              ".next-date.date-next-prev.date_c"
+            );
+            if (button) {
+              button.click();
+            }
+          });
+          // page.click(".next-date.date-next-prev.date_c"),
           // await delay(10000);
           // await page.click(".next-date.date-next-prev.date_c");
           await delay(3000); // Additional safety delay
