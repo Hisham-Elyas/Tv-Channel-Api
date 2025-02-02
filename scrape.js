@@ -238,8 +238,13 @@ exports.scrapeTodayMatches = async (dayes) => {
   log("Script executed successfully!");
   const startTime = new Date();
   const browser = await puppeteer.launch({
-    args: ["--no-sandbox", "--disable-setuid-sandbox"],
-    headless: true,
+    args: [
+      "--no-sandbox",
+      "--disable-setuid-sandbox",
+      "--disable-dev-shm-usage", // Add this for better memory management
+      "--disable-gpu",
+    ],
+    headless: "new",
   });
   console.log(`Browser launched at: ${startTime.toISOString()}`);
   const page = await browser.newPage();
@@ -324,10 +329,18 @@ exports.scrapeTodayMatches = async (dayes) => {
           // });
           await page.waitForSelector(".next-date.date-next-prev.date_c", {
             visible: true,
+            timeout: 15000,
           });
+          await Promise.all([
+            page.waitForNavigation({
+              waitUntil: "networkidle2",
+              timeout: 30000,
+            }),
+            page.click(".next-date.date-next-prev.date_c"),
+          ]);
           // await delay(10000);
-          await page.click(".next-date.date-next-prev.date_c");
-
+          // await page.click(".next-date.date-next-prev.date_c");
+          await delay(3000); // Additional safety delay
           const elementExists = await page.$(
             ".next-date.date-next-prev.date_c"
           );
