@@ -8,7 +8,7 @@ exports.get_all_matches = async (req, res) => {
     const [matches] = await pool.execute("SELECT * FROM matches");
 
     // Fetch channels for all matches
-    const [channels] = await pool.execute("SELECT * FROM channels_commentator");
+    const [channels] = await pool.execute("SELECT * FROM filteredLeaguesList");
 
     // Map channels to their respective matches
     const matchesWithChannels = matches.map((match) => {
