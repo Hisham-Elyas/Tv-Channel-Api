@@ -8,6 +8,7 @@ const today_matchesRoutes = require("./api/routes/today_matches");
 const groupRoutes = require("./api/routes/groupRoutes");
 const channelRoutes = require("./api/routes/channelRoutes");
 const scrapeTodayMatches = require("./scrape");
+const parseM3UtoJSONtoDB = require("./parseM3UtoJSONtoDB");
 const cron = require("node-cron");
 const helmet = require("helmet");
 const app = express();
@@ -41,6 +42,13 @@ app.get("/api/run-script", (req, res) => {
   scrapeTodayMatches.scrapeTodayMatches(nextDaytoScrape);
   res.json(
     "Script executed successfully! Next day to scrape: " + nextDaytoScrape
+  );
+});
+app.get("/api/run-script-parse", (req, res) => {
+  parseM3UtoJSONtoDB.parseM3UtoJSONtoDB();
+  res.json(
+    "Script to parse M3U to JSON to DB executed successfully! Next day to scrape: " +
+      nextDaytoScrape
   );
 });
 // app.get("/api/run-script/log", (req, res) => {

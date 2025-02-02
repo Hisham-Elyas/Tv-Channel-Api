@@ -2,7 +2,7 @@ const fs = require("fs");
 // const { pool } = require("./api/config/db");
 const mysql = require("mysql2/promise");
 
-async function parseM3UtoJSON() {
+exports.parseM3UtoJSONtoDB = async function () {
   const m3uPath = "playlist.m3u";
   const jsonPath = "IP_TV_Playlist.json";
   const groupsPath = "ip-tv-channel-group.js";
@@ -79,7 +79,7 @@ async function parseM3UtoJSON() {
     Total channels: ${totalChannels}
     Total groups: ${groupNames.length}
     `);
-}
+};
 
 function filterARGroups(inputFile, outputFile) {
   // Read the groups file
@@ -122,15 +122,18 @@ const pool = mysql.createPool({
 
 // Initialize the database
 async function initializeDatabase() {
+  let connection;
   try {
+    connection = await pool.getConnection();
+    await connection.beginTransaction(); // Start transaction on the same connection
     // Check if 'groups' table exists
-    const [tables] = await pool.query("SHOW TABLES LIKE 'groups'");
+    const [tables] = await connection.query("SHOW TABLES LIKE 'groups'");
 
     if (tables.length === 0) {
       console.log("'groups' table does not exist. Creating it...");
 
       // Create 'groups' table
-      await pool.query(`
+      await connection.query(`
         CREATE TABLE IF NOT EXISTS \`groups\` (
           \`id\` INT AUTO_INCREMENT PRIMARY KEY,
           \`group_title\` VARCHAR(255) NOT NULL,
@@ -140,7 +143,7 @@ async function initializeDatabase() {
       console.log("Table 'groups' created or already exists!");
 
       // Create 'channels' table
-      await pool.query(`
+      await connection.query(`
         CREATE TABLE IF NOT EXISTS \`channels\` (
           \`id\` INT AUTO_INCREMENT PRIMARY KEY,
           \`group_id\` INT NOT NULL,
@@ -167,20 +170,22 @@ async function insertChannelsAndGroups(data) {
 
   try {
     //Step 1: Check if there is any existing data in the 'groups' table
-    const [rows] = await pool.query("SELECT COUNT(*) AS count FROM `groups`");
+    const [rows] = await connection.query(
+      "SELECT COUNT(*) AS count FROM `groups`"
+    );
 
     if (rows[0].count > 0) {
       console.log("Old data found. Deleting...");
       // Step 2: Delete all data from both tables if data exists
-      await pool.query("DELETE FROM `channels`");
-      await pool.query("DELETE FROM `groups`");
+      await connection.query("DELETE FROM `channels`");
+      await connection.query("DELETE FROM `groups`");
     }
 
     // Step 3: Insert new data
     for (const [index, group] of data.entries()) {
       // Insert Group Title and get its ID
       const groupNamber = index;
-      const [groupResult] = await pool.query(
+      const [groupResult] = await connection.query(
         "INSERT INTO `groups` (group_title) VALUES (?)",
         [group["group-title"]]
       );
@@ -191,7 +196,7 @@ async function insertChannelsAndGroups(data) {
 
       // Insert Channels for the Group
       for (const [index, channel] of group.channels.entries()) {
-        await pool.query(
+        await connection.query(
           "INSERT INTO `channels` (group_id, tvg_id, tvg_name, tvg_logo, name, url) VALUES (?, ?, ?, ?, ?, ?)",
           [
             groupId,
@@ -209,7 +214,7 @@ async function insertChannelsAndGroups(data) {
         );
       }
     }
-
+    await connection.commit();
     console.log("✅ Data inserted successfully!");
   } catch (error) {
     console.error("❌ Error during data insertion:", error);
@@ -250,4 +255,4 @@ async function insertChannelsAndGroups(data) {
 // ];
 
 // Usage
-parseM3UtoJSON();
+// parseM3UtoJSONtoDB();
