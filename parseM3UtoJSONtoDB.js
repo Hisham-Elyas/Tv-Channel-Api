@@ -64,7 +64,7 @@ exports.parseM3UtoJSONtoDB = async function () {
   // fs.writeFileSync(jsonPath, JSON.stringify(result, null, 4));
 
   // Save group names to JS file
-  // const groupNames = Object.keys(groups);
+  const groupNames = Object.keys(groups);
   // const groupsFileContent = `// Auto-generated channel groups list\nconst channelGroups = ${JSON.stringify(
   //   groupNames,
   //   null,
@@ -121,8 +121,8 @@ function filterARGroups(inputFile, outputFile) {
 // });
 
 // Initialize the database
+let connection;
 async function initializeDatabase() {
-  let connection;
   try {
     connection = await pool.getConnection();
     await connection.beginTransaction(); // Start transaction on the same connection
