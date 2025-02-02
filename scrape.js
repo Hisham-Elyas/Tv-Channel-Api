@@ -343,20 +343,13 @@ exports.scrapeTodayMatches = async (dayes) => {
             el.click()
           );
 
-          // page.click(".next-date.date-next-prev.date_c"),
-          // await delay(10000);
-          // await page.click(".next-date.date-next-prev.date_c");
-          await delay(10000); // Additional safety delay
-          const elementExists = await page.$(
-            ".next-date.date-next-prev.date_c"
-          );
-          console.log("Element exists:", !!elementExists); // Debug output
+          await delay(5000); // Additional safety delay
+
           await page.waitForSelector(".matches-wrapper", { timeout: 60000 });
           // await page.screenshot({
           //   path: `${Date.now()}_${i + 1}days.png`,
           //   fullPage: true,
           // });
-          // await page.waitForTimeout(3000); // Wait for new data to load
         } catch (error) {
           console.error("Error clicking next date button:", error);
           // log(`Error clicking next date button: ${error}`);
