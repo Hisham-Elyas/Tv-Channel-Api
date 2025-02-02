@@ -331,18 +331,22 @@ exports.scrapeTodayMatches = async (dayes) => {
             visible: true,
             timeout: 15000,
           });
-          await page.evaluate(() => {
-            const button = document.querySelector(
-              ".next-date.date-next-prev.date_c"
-            );
-            if (button) {
-              button.click();
-            }
-          });
+          // await page.evaluate(() => {
+          //   const button = document.querySelector(
+          //     ".next-date.date-next-prev.date_c"
+          //   );
+          //   if (button) {
+          //     button.click();
+          //   }
+          // });
+          await page.$eval(".next-date.date-next-prev.date_c", (el) =>
+            el.click()
+          );
+
           // page.click(".next-date.date-next-prev.date_c"),
           // await delay(10000);
           // await page.click(".next-date.date-next-prev.date_c");
-          await delay(3000); // Additional safety delay
+          await delay(5000); // Additional safety delay
           const elementExists = await page.$(
             ".next-date.date-next-prev.date_c"
           );
