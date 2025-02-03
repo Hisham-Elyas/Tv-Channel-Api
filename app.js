@@ -142,15 +142,21 @@ const db = require("./api/config/db");
 db.initializeDatabase();
 // scrapeTodayMatches();
 
-cron.schedule("0 0 * * *", async () => {
-  try {
-    console.log(`Script schedule running at: ${new Date().toISOString()}`);
-    await scrapeTodayMatches.scrapeTodayMatches(1);
-    console.log("Scraping completed successfully.");
-  } catch (error) {
-    console.error("Error occurred in scheduled task:", error);
+cron.schedule(
+  "2 21 * * *", // Runs at 21:00 UTC (which is 00:20 in Riyadh)
+  async () => {
+    try {
+      console.log(`Script schedule running at: ${new Date().toISOString()}`);
+      await scrapeTodayMatches.scrapeTodayMatches(1);
+      console.log("Scraping completed successfully.");
+    } catch (error) {
+      console.error("Error occurred in scheduled task:", error);
+    }
+  },
+  {
+    timezone: "Asia/Riyadh",
   }
-});
+);
 // setInterval(() => {
 //   scrapeTodayMatches.scrapeTodayMatches();
 // }, 43200000); // Scrape every 12 hours

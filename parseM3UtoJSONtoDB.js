@@ -298,7 +298,7 @@ async function insertChannelsAndGroups(data) {
           console.log(
             `   Processing channel ${channelIndex + 1} of ${
               group.channels.length
-            } for group ${globalGroupIndex + 1}`
+            } for group ${globalGroupIndex + 1} /${data.length} `
           );
           await batchConnection.query(
             "INSERT INTO `channels` (group_id, tvg_id, tvg_name, tvg_logo, name, url) VALUES (?, ?, ?, ?, ?, ?)",
