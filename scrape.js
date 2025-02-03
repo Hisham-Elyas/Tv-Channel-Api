@@ -1,12 +1,84 @@
 const puppeteer = require("puppeteer-extra");
 const StealthPlugin = require("puppeteer-extra-plugin-stealth");
-const fs = require("fs");
 const { pool } = require("./api/config/db");
+
+// async function insertMatches(matches) {
+//   let connection;
+//   try {
+//     connection = await pool.getConnection();
+//     await connection.beginTransaction(); // Start transaction on the same connection
+
+//     // Check if there is existing data
+//     const [rows] = await connection.query(
+//       "SELECT COUNT(*) as count FROM matches"
+//     );
+//     if (rows[0].count > 0) {
+//       console.log("Old data found. Deleting...");
+
+//       // Delete old matches and related channels
+//       await connection.query("DELETE FROM channels_of_matches"); // Channels depend on matches, so delete them first
+//       await connection.query("DELETE FROM matches");
+
+//       console.log("Old data deleted successfully!");
+//     } else {
+//       console.log("No old data found. Proceeding with insertion...");
+//     }
+
+//     // Insert new matches
+//     for (const [index, match] of matches.entries()) {
+//       console.log(
+//         `Inserting match ${index + 1} of ${matches.length}: ${
+//           match.homeTeam
+//         } vs ${match.awayTeam}`
+//       );
+//       // Insert match data into `matches` table
+//       const [matchResult] = await connection.query(
+//         `INSERT INTO \`matches\` (league, leagueLogo, homeTeam, awayTeam, homeTeamLogo, awayTeamLogo, time, matchTime, matchDate)
+//                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+//         [
+//           match.league,
+//           match.leagueLogo,
+//           match.homeTeam,
+//           match.awayTeam,
+//           match.homeTeamLogo,
+//           match.awayTeamLogo,
+//           match.time,
+//           match.matchTime,
+//           match.matchDate,
+//         ]
+//       );
+
+//       const matchId = matchResult.insertId; // Get the inserted match ID
+
+//       // Insert channels if they exist
+//       for (const channel of match.channelsAndCommentators) {
+//         await connection.query(
+//           `INSERT INTO \`channels_of_matches\` (match_id, channel, commentator) VALUES (?, ?, ?)`,
+//           [matchId, channel.Channel, channel.Commentator]
+//         );
+//       }
+//     }
+//     await connection.commit();
+//     console.log("✅ Matchs Data inserted successfully!");
+//   } catch (error) {
+//     console.error("❌ Error inserting data:", error);
+//   }
+// }
+// Utility to split an array into chunks
+function chunkArray(array, chunkSize) {
+  const chunks = [];
+  for (let i = 0; i < array.length; i += chunkSize) {
+    chunks.push(array.slice(i, i + chunkSize));
+  }
+  return chunks;
+}
+
 async function insertMatches(matches) {
+  // First, delete any old data.
   let connection;
   try {
     connection = await pool.getConnection();
-    await connection.beginTransaction(); // Start transaction on the same connection
+    await connection.beginTransaction();
 
     // Check if there is existing data
     const [rows] = await connection.query(
@@ -15,8 +87,8 @@ async function insertMatches(matches) {
     if (rows[0].count > 0) {
       console.log("Old data found. Deleting...");
 
-      // Delete old matches and related channels
-      await connection.query("DELETE FROM channels_of_matches"); // Channels depend on matches, so delete them first
+      // Delete dependent channels first, then matches
+      await connection.query("DELETE FROM channels_of_matches");
       await connection.query("DELETE FROM matches");
 
       console.log("Old data deleted successfully!");
@@ -24,46 +96,84 @@ async function insertMatches(matches) {
       console.log("No old data found. Proceeding with insertion...");
     }
 
-    // Insert new matches
-    for (const [index, match] of matches.entries()) {
-      console.log(
-        `Inserting match ${index + 1} of ${matches.length}: ${
-          match.homeTeam
-        } vs ${match.awayTeam}`
-      );
-      // Insert match data into `matches` table
-      const [matchResult] = await connection.query(
-        `INSERT INTO \`matches\` (league, leagueLogo, homeTeam, awayTeam, homeTeamLogo, awayTeamLogo, time, matchTime, matchDate)
-               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-        [
-          match.league,
-          match.leagueLogo,
-          match.homeTeam,
-          match.awayTeam,
-          match.homeTeamLogo,
-          match.awayTeamLogo,
-          match.time,
-          match.matchTime,
-          match.matchDate,
-        ]
-      );
-
-      const matchId = matchResult.insertId; // Get the inserted match ID
-
-      // Insert channels if they exist
-      for (const channel of match.channelsAndCommentators) {
-        await connection.query(
-          `INSERT INTO \`channels_of_matches\` (match_id, channel, commentator) VALUES (?, ?, ?)`,
-          [matchId, channel.Channel, channel.Commentator]
-        );
-      }
-    }
     await connection.commit();
-    console.log("✅ Matchs Data inserted successfully!");
   } catch (error) {
-    console.error("❌ Error inserting data:", error);
+    console.error("Error during deletion of old data:", error);
+    if (connection) await connection.rollback();
+  } finally {
+    if (connection) connection.release();
   }
+
+  // Process the matches array in batches of 100
+  const batchSize = 100;
+  const batches = chunkArray(matches, batchSize);
+
+  for (let batchIndex = 0; batchIndex < batches.length; batchIndex++) {
+    const batch = batches[batchIndex];
+    let batchConnection;
+    try {
+      batchConnection = await pool.getConnection();
+      await batchConnection.beginTransaction();
+
+      for (const [index, match] of batch.entries()) {
+        // Calculate the overall match index if needed
+        const globalIndex = batchIndex * batchSize + index;
+        console.log(
+          `Inserting match ${globalIndex + 1} of ${matches.length}: ${
+            match.homeTeam
+          } vs ${match.awayTeam}`
+        );
+
+        // Insert match data into `matches` table
+        const [matchResult] = await batchConnection.query(
+          `INSERT INTO \`matches\` 
+           (league, leagueLogo, homeTeam, awayTeam, homeTeamLogo, awayTeamLogo, time, matchTime, matchDate)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+          [
+            match.league,
+            match.leagueLogo,
+            match.homeTeam,
+            match.awayTeam,
+            match.homeTeamLogo,
+            match.awayTeamLogo,
+            match.time,
+            match.matchTime,
+            match.matchDate,
+          ]
+        );
+
+        const matchId = matchResult.insertId; // Get the inserted match ID
+
+        // Insert any related channels for this match
+        for (const channel of match.channelsAndCommentators) {
+          await batchConnection.query(
+            `INSERT INTO \`channels_of_matches\` (match_id, channel, commentator)
+             VALUES (?, ?, ?)`,
+            [matchId, channel.Channel, channel.Commentator]
+          );
+        }
+      }
+
+      // Commit the batch transaction
+      await batchConnection.commit();
+      console.log(
+        `✅ Batch ${batchIndex + 1}/${
+          batches.length
+        } inserted successfully (matches ${batchIndex * batchSize + 1} to ${
+          batchIndex * batchSize + batch.length
+        }).`
+      );
+    } catch (error) {
+      console.error(`❌ Error inserting batch ${batchIndex + 1}:`, error);
+      if (batchConnection) await batchConnection.rollback();
+    } finally {
+      if (batchConnection) batchConnection.release();
+    }
+  }
+
+  console.log("✅ All matches inserted successfully!");
 }
+
 function delay(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
@@ -138,6 +248,8 @@ const filterMatches = (matchlist) => {
     const matches = matchlist;
 
     // Filter matches
+
+    const printedDates = new Set();
     const filteredMatches = matches.map((match) => {
       // Extract Match Info details
       const matchTime = addHour(
@@ -150,6 +262,10 @@ const filterMatches = (matchlist) => {
       const matchDate =
         match.details?.matchInfo.find((info) => info.title === "Match Date")
           ?.content || "N/A";
+      if (!printedDates.has(matchDate)) {
+        console.log(matchDate);
+        printedDates.add(matchDate);
+      }
 
       // Filter and map channels and commentators
       let channelsAndCommentators = [];
@@ -327,10 +443,10 @@ exports.scrapeTodayMatches = async (dayes) => {
           //   path: `${Date.now()}_${i}days.png`,
           //   fullPage: true,
           // });
-          await page.waitForSelector(".next-date.date-next-prev.date_c", {
-            visible: true,
-            timeout: 15000,
-          });
+          // await page.waitForSelector(".next-date.date-next-prev.date_c", {
+          //   visible: true,
+          //   timeout: 15000,
+          // });
           // await page.evaluate(() => {
           //   const button = document.querySelector(
           //     ".next-date.date-next-prev.date_c"
@@ -339,13 +455,14 @@ exports.scrapeTodayMatches = async (dayes) => {
           //     button.click();
           //   }
           // });
+          await delay(10000); // Additional safety delay
           await page.$eval(".next-date.date-next-prev.date_c", (el) =>
             el.click()
           );
 
-          await delay(5000); // Additional safety delay
+          await delay(10000); // Additional safety delay
 
-          await page.waitForSelector(".matches-wrapper", { timeout: 60000 });
+          // await page.waitForSelector(".matches-wrapper", { timeout: 60000 });
           // await page.screenshot({
           //   path: `${Date.now()}_${i + 1}days.png`,
           //   fullPage: true,

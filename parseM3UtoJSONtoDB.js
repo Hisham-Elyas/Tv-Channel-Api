@@ -165,63 +165,173 @@ async function initializeDatabase() {
   }
 }
 
+// async function insertChannelsAndGroups(data) {
+//   await initializeDatabase();
+
+//   try {
+//     //Step 1: Check if there is any existing data in the 'groups' table
+//     const [rows] = await connection.query(
+//       "SELECT COUNT(*) AS count FROM `groups`"
+//     );
+
+//     if (rows[0].count > 0) {
+//       console.log("Old data found. Deleting...");
+//       // Step 2: Delete all data from both tables if data exists
+//       await connection.query("DELETE FROM `channels`");
+//       await connection.query("DELETE FROM `groups`");
+//     }
+
+//     // Step 3: Insert new data
+//     for (const [index, group] of data.entries()) {
+//       // Insert Group Title and get its ID
+//       const groupNamber = index;
+//       const [groupResult] = await connection.query(
+//         "INSERT INTO `groups` (group_title) VALUES (?)",
+//         [group["group-title"]]
+//       );
+//       console.log(
+//         `Processing groups    =======>    ${index + 1}/${data.length}`
+//       );
+//       const groupId = groupResult.insertId;
+
+//       // Insert Channels for the Group
+//       for (const [index, channel] of group.channels.entries()) {
+//         await connection.query(
+//           "INSERT INTO `channels` (group_id, tvg_id, tvg_name, tvg_logo, name, url) VALUES (?, ?, ?, ?, ?, ?)",
+//           [
+//             groupId,
+//             channel["tvg-id"],
+//             channel["tvg-name"],
+//             channel["tvg-logo"],
+//             channel["name"],
+//             channel["url"],
+//           ]
+//         );
+//         console.log(
+//           `Processing channel ${index + 1}/${group.channels.length} for group ${
+//             groupNamber + 1
+//           }/${data.length}`
+//         );
+//       }
+//     }
+//     await connection.commit();
+//     console.log("✅ Data inserted successfully!");
+//   } catch (error) {
+//     console.error("❌ Error during data insertion:", error);
+//   } finally {
+//     // Close the connection pool
+//     await pool.end();
+//   }
+// }
+
+// Helper function to split an array into chunks of a given size.
+function chunkArray(array, chunkSize) {
+  const chunks = [];
+  for (let i = 0; i < array.length; i += chunkSize) {
+    chunks.push(array.slice(i, i + chunkSize));
+  }
+  return chunks;
+}
+
 async function insertChannelsAndGroups(data) {
+  // Ensure your database/connection is initialized.
   await initializeDatabase();
 
+  // --- Step 1: Clear Existing Data ---
+  let connection;
   try {
-    //Step 1: Check if there is any existing data in the 'groups' table
+    connection = await pool.getConnection();
+    await connection.beginTransaction();
+
+    // Check for existing data in the 'groups' table
     const [rows] = await connection.query(
       "SELECT COUNT(*) AS count FROM `groups`"
     );
 
     if (rows[0].count > 0) {
       console.log("Old data found. Deleting...");
-      // Step 2: Delete all data from both tables if data exists
+
+      // Delete from the dependent table first, then the parent table
       await connection.query("DELETE FROM `channels`");
       await connection.query("DELETE FROM `groups`");
+      console.log("Old data deleted successfully!");
+    } else {
+      console.log("No old data found. Proceeding with insertion...");
     }
 
-    // Step 3: Insert new data
-    for (const [index, group] of data.entries()) {
-      // Insert Group Title and get its ID
-      const groupNamber = index;
-      const [groupResult] = await connection.query(
-        "INSERT INTO `groups` (group_title) VALUES (?)",
-        [group["group-title"]]
-      );
-      console.log(
-        `Processing groups    =======>    ${index + 1}/${data.length}`
-      );
-      const groupId = groupResult.insertId;
-
-      // Insert Channels for the Group
-      for (const [index, channel] of group.channels.entries()) {
-        await connection.query(
-          "INSERT INTO `channels` (group_id, tvg_id, tvg_name, tvg_logo, name, url) VALUES (?, ?, ?, ?, ?, ?)",
-          [
-            groupId,
-            channel["tvg-id"],
-            channel["tvg-name"],
-            channel["tvg-logo"],
-            channel["name"],
-            channel["url"],
-          ]
-        );
-        console.log(
-          `Processing channel ${index + 1}/${group.channels.length} for group ${
-            groupNamber + 1
-          }/${data.length}`
-        );
-      }
-    }
     await connection.commit();
-    console.log("✅ Data inserted successfully!");
   } catch (error) {
-    console.error("❌ Error during data insertion:", error);
+    console.error("❌ Error during deletion of old data:", error);
+    if (connection) await connection.rollback();
   } finally {
-    // Close the connection pool
-    await pool.end();
+    if (connection) connection.release();
   }
+
+  // --- Step 2: Insert New Data in Batches ---
+  // For example, process 100 groups per batch.
+  const batchSize = 100;
+  const groupBatches = chunkArray(data, batchSize);
+
+  for (let batchIndex = 0; batchIndex < groupBatches.length; batchIndex++) {
+    const groupBatch = groupBatches[batchIndex];
+    let batchConnection;
+    try {
+      batchConnection = await pool.getConnection();
+      await batchConnection.beginTransaction();
+
+      for (const [groupIndex, group] of groupBatch.entries()) {
+        // Calculate overall group number for logging
+        const globalGroupIndex = batchIndex * batchSize + groupIndex;
+        console.log(
+          `Processing group ${globalGroupIndex + 1} of ${data.length}`
+        );
+
+        // Insert the group record and get its generated ID.
+        const [groupResult] = await batchConnection.query(
+          "INSERT INTO `groups` (group_title) VALUES (?)",
+          [group["group-title"]]
+        );
+        const groupId = groupResult.insertId;
+
+        // Insert each channel for this group.
+        for (const [channelIndex, channel] of group.channels.entries()) {
+          console.log(
+            `   Processing channel ${channelIndex + 1} of ${
+              group.channels.length
+            } for group ${globalGroupIndex + 1}`
+          );
+          await batchConnection.query(
+            "INSERT INTO `channels` (group_id, tvg_id, tvg_name, tvg_logo, name, url) VALUES (?, ?, ?, ?, ?, ?)",
+            [
+              groupId,
+              channel["tvg-id"],
+              channel["tvg-name"],
+              channel["tvg-logo"],
+              channel["name"],
+              channel["url"],
+            ]
+          );
+        }
+      }
+
+      // Commit the batch transaction
+      await batchConnection.commit();
+      console.log(
+        `✅ Batch ${batchIndex + 1} of ${
+          groupBatches.length
+        } inserted successfully.`
+      );
+    } catch (error) {
+      console.error(`❌ Error inserting batch ${batchIndex + 1}:`, error);
+      if (batchConnection) await batchConnection.rollback();
+    } finally {
+      if (batchConnection) batchConnection.release();
+    }
+  }
+
+  console.log("✅ All channels and groups data inserted successfully!");
+
+  // Optionally, if this is the final operation, you may close the pool.
 }
 
 // // Usage example with your data
