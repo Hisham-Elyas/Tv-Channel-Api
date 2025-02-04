@@ -162,7 +162,6 @@ cron.schedule(
     timezone: "Asia/Riyadh",
   }
 );
-const cron = require("node-cron");
 
 cron.schedule(
   "0 0 * * *", // Runs every day at 00:00 UTC
