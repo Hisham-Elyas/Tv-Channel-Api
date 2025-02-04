@@ -116,19 +116,15 @@ app.get("/", (req, res) => {
 });
 // Return documentation with 404 status
 app.use((req, res) => {
-  if (req.accepts("html")) {
-    res.redirect("/");
-  } else {
-    res.status(404).json({
-      error: "Endpoint not found",
+  res.status(404).json({
+    error: "Endpoint not found",
 
-      availableEndpoints: [
-        "/api/users/signup",
-        "/api/users/login",
-        "/api/today_matches",
-      ],
-    });
-  }
+    availableEndpoints: [
+      "/api/users/signup",
+      "/api/users/login",
+      "/api/today_matches",
+    ],
+  });
 });
 app.use((error, req, res, next) => {
   res.status(error.status || 500);
