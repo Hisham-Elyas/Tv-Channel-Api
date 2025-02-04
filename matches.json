@@ -1,93 +1,666 @@
 [
   {
-    "matchLink": "https://www.ysscores.com/en/match/4662784/National-Bank-vs-Petrojet",
-    "league": "Egyptian League",
-    "leagueLogo": "https://imgs.ysscores.com/championship/48/1711702335497.png",
-    "homeTeam": "National Bank",
-    "awayTeam": "Petrojet",
-    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/5911730303226.png",
-    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/7591694081941.png",
-    "time": "04:00 pm",
+    "matchLink": "https://www.ysscores.com/en/match/4506970/Leganes-vs-Rayo-Vallecano",
+    "league": "LaLiga",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/8641690196626.png",
+    "homeTeam": "Leganes",
+    "awayTeam": "Vallecano",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/1511690196745.png",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/8211690370509.png",
+    "time": "10:00 pm",
     "details": {
       "matchInfo": [
         {
           "title": "Channel",
-          "content": "OnTime Sports 1"
+          "content": "Bein Sport 3"
         },
         {
           "title": "Commentator",
-          "content": "Amir Mahrous"
+          "content": "Noffal Bachi"
         },
         {
           "title": "Championship",
-          "content": "Egyptian League"
+          "content": "LaLiga"
         },
         {
           "title": "Round",
-          "content": "Round 10"
+          "content": "Round 22"
+        },
+        {
+          "title": "First Leg",
+          "content": "Vallecano 1\n                                                    -1 Leganes"
         },
         {
           "title": "Match Stadium",
-          "content": "Cairo International Stadium"
+          "content": "Estadio Butarque"
         },
         {
           "title": "Channel",
-          "content": "OnTime Sports 1"
+          "content": "Bein Sport 3"
         },
         {
           "title": "Commentator",
-          "content": "Amir Mahrous"
+          "content": "Noffal Bachi"
         },
         {
           "title": "Match Time",
-          "content": "04:00 pm"
+          "content": "10:00 pm"
         },
         {
           "title": "Match Date",
-          "content": "Tuesday 28-01-2025"
+          "content": "Friday 31-01-2025"
+        },
+        {
+          "title": "Referee",
+          "content": "Alejandro Quintero"
+        },
+        {
+          "title": "Assistant referee",
+          "content": "Alvaro Granel"
+        },
+        {
+          "title": "Assistant referee",
+          "content": "Abraham Perez"
+        },
+        {
+          "title": "Assistant referee",
+          "content": "Alfonso De Ena"
+        },
+        {
+          "title": "Var referee",
+          "content": "Javier Iglesias"
+        },
+        {
+          "title": "Var referee",
+          "content": "Adrian Diaz"
         }
       ],
-      "channelsAndCommentators": []
+      "channelsAndCommentators": [
+        {
+          "channel": "Referee",
+          "commentator": "Alejandro Quintero"
+        },
+        {
+          "channel": "Assistant referee",
+          "commentator": "Alvaro Granel"
+        },
+        {
+          "channel": "Assistant referee",
+          "commentator": "Abraham Perez"
+        },
+        {
+          "channel": "Assistant referee",
+          "commentator": "Alfonso De Ena"
+        },
+        {
+          "channel": "Var referee",
+          "commentator": "Javier Iglesias"
+        },
+        {
+          "channel": "Var referee",
+          "commentator": "Adrian Diaz"
+        }
+      ]
     }
   },
   {
-    "matchLink": "https://www.ysscores.com/en/match/4662773/Smouha-SC-vs-ZED-FC",
-    "league": "Egyptian League",
-    "leagueLogo": "https://imgs.ysscores.com/championship/48/1711702335497.png",
-    "homeTeam": "Smouha SC",
-    "awayTeam": "ZED FC",
-    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/8411694619351.png",
-    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/481694082088.png",
+    "matchLink": "https://www.ysscores.com/en/match/4535347/Parma-Calcio-1913-vs-Lecce",
+    "league": "Serie A",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/6281692568873.png",
+    "homeTeam": "Parma",
+    "awayTeam": "Lecce",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/9031690283003.png",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/4061690823331.png",
+    "time": "09:45 pm",
+    "details": {
+      "matchInfo": [
+        {
+          "title": "AD Sports Premium 1",
+          "content": "Ahmed kher"
+        },
+        {
+          "title": "STC TV App",
+          "content": "Ahmed kher"
+        },
+        {
+          "title": "Championship",
+          "content": "Serie A"
+        },
+        {
+          "title": "Round",
+          "content": "Round 23"
+        },
+        {
+          "title": "First Leg",
+          "content": "Lecce 2\n                                                    -2 Parma"
+        },
+        {
+          "title": "Match Stadium",
+          "content": "Stadio Ennio Tardini"
+        },
+        {
+          "title": "Match Time",
+          "content": "09:45 pm"
+        },
+        {
+          "title": "Match Date",
+          "content": "Friday 31-01-2025"
+        },
+        {
+          "title": "AD Sports Premium 1",
+          "content": "Ahmed kher"
+        },
+        {
+          "title": "STC TV App",
+          "content": "Ahmed kher"
+        },
+        {
+          "title": "Referee",
+          "content": "Simone Sozza"
+        },
+        {
+          "title": "Assistant referee",
+          "content": "Matteo Passeri"
+        },
+        {
+          "title": "Assistant referee",
+          "content": "Luigi Rossi"
+        },
+        {
+          "title": "Assistant referee",
+          "content": "Alberto Arena"
+        },
+        {
+          "title": "Var referee",
+          "content": "Davide Ghersini"
+        },
+        {
+          "title": "Var referee",
+          "content": "Marco Guida"
+        }
+      ],
+      "channelsAndCommentators": [
+        {
+          "channel": "AD Sports Premium 1",
+          "commentator": "Ahmed kher"
+        },
+        {
+          "channel": "STC TV App",
+          "commentator": "Ahmed kher"
+        },
+        {
+          "channel": "AD Sports Premium 1",
+          "commentator": "Ahmed kher"
+        },
+        {
+          "channel": "STC TV App",
+          "commentator": "Ahmed kher"
+        },
+        {
+          "channel": "Referee",
+          "commentator": "Simone Sozza"
+        },
+        {
+          "channel": "Assistant referee",
+          "commentator": "Matteo Passeri"
+        },
+        {
+          "channel": "Assistant referee",
+          "commentator": "Luigi Rossi"
+        },
+        {
+          "channel": "Assistant referee",
+          "commentator": "Alberto Arena"
+        },
+        {
+          "channel": "Var referee",
+          "commentator": "Davide Ghersini"
+        },
+        {
+          "channel": "Var referee",
+          "commentator": "Marco Guida"
+        }
+      ]
+    }
+  },
+  {
+    "matchLink": "https://www.ysscores.com/en/match/4534716/Werder-Bremen-vs-Mainz-05",
+    "league": "Bundesliga",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/6171690288722.png",
+    "homeTeam": "Bremen",
+    "awayTeam": "Mainz 05",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/8131690288819.png",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/9771690288817.png",
+    "time": "09:30 pm",
+    "details": {
+      "matchInfo": [
+        {
+          "title": "Channel",
+          "content": "Bein Sport 5"
+        },
+        {
+          "title": "Commentator",
+          "content": "Jawad Badda"
+        },
+        {
+          "title": "Championship",
+          "content": "Bundesliga"
+        },
+        {
+          "title": "Round",
+          "content": "Round 20"
+        },
+        {
+          "title": "First Leg",
+          "content": "Mainz 05 1\n                                                    -2 Bremen"
+        },
+        {
+          "title": "Match Stadium",
+          "content": "Wohninvest WESERSTADION"
+        },
+        {
+          "title": "Channel",
+          "content": "Bein Sport 5"
+        },
+        {
+          "title": "Commentator",
+          "content": "Jawad Badda"
+        },
+        {
+          "title": "Match Time",
+          "content": "09:30 pm"
+        },
+        {
+          "title": "Match Date",
+          "content": "Friday 31-01-2025"
+        },
+        {
+          "title": "Referee",
+          "content": "Martin Petersen"
+        },
+        {
+          "title": "Assistant referee",
+          "content": "Alexander Sather"
+        },
+        {
+          "title": "Assistant referee",
+          "content": "Robert Wessel"
+        },
+        {
+          "title": "Assistant referee",
+          "content": "Bastian Dankert"
+        },
+        {
+          "title": "Var referee",
+          "content": "Sascha Stegemann"
+        },
+        {
+          "title": "Var referee",
+          "content": "Frederick Assmuth"
+        }
+      ],
+      "channelsAndCommentators": [
+        {
+          "channel": "Referee",
+          "commentator": "Martin Petersen"
+        },
+        {
+          "channel": "Assistant referee",
+          "commentator": "Alexander Sather"
+        },
+        {
+          "channel": "Assistant referee",
+          "commentator": "Robert Wessel"
+        },
+        {
+          "channel": "Assistant referee",
+          "commentator": "Bastian Dankert"
+        },
+        {
+          "channel": "Var referee",
+          "commentator": "Sascha Stegemann"
+        },
+        {
+          "channel": "Var referee",
+          "commentator": "Frederick Assmuth"
+        }
+      ]
+    }
+  },
+  {
+    "matchLink": "https://www.ysscores.com/en/match/4513850/Montpellier-vs-Lens",
+    "league": "Ligue 1",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/9551719862665.png",
+    "homeTeam": "Montpellier",
+    "awayTeam": "Lens",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/1281690287063.png",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/691720799295.png",
+    "time": "09:45 pm",
+    "details": {
+      "matchInfo": [
+        {
+          "title": "Channel",
+          "content": "Bein Sport 4"
+        },
+        {
+          "title": "Commentator",
+          "content": "Mohamed Barakat"
+        },
+        {
+          "title": "Championship",
+          "content": "Ligue 1"
+        },
+        {
+          "title": "Round",
+          "content": "Round 20"
+        },
+        {
+          "title": "First Leg",
+          "content": "Lens 2\n                                                    -0 Montpellier"
+        },
+        {
+          "title": "Match Stadium",
+          "content": "Stade de la Mosson"
+        },
+        {
+          "title": "Channel",
+          "content": "Bein Sport 4"
+        },
+        {
+          "title": "Commentator",
+          "content": "Mohamed Barakat"
+        },
+        {
+          "title": "Match Time",
+          "content": "09:45 pm"
+        },
+        {
+          "title": "Match Date",
+          "content": "Friday 31-01-2025"
+        },
+        {
+          "title": "Referee",
+          "content": "Bastien Dechepy"
+        },
+        {
+          "title": "Assistant referee",
+          "content": "Brice Le Tellier"
+        },
+        {
+          "title": "Assistant referee",
+          "content": "Julien Haulbert"
+        },
+        {
+          "title": "Assistant referee",
+          "content": "Ahmed Taleb"
+        },
+        {
+          "title": "Var referee",
+          "content": "Mathieu Vernice"
+        },
+        {
+          "title": "Var referee",
+          "content": "Cedric Dos Santos"
+        }
+      ],
+      "channelsAndCommentators": [
+        {
+          "channel": "Referee",
+          "commentator": "Bastien Dechepy"
+        },
+        {
+          "channel": "Assistant referee",
+          "commentator": "Brice Le Tellier"
+        },
+        {
+          "channel": "Assistant referee",
+          "commentator": "Julien Haulbert"
+        },
+        {
+          "channel": "Assistant referee",
+          "commentator": "Ahmed Taleb"
+        },
+        {
+          "channel": "Var referee",
+          "commentator": "Mathieu Vernice"
+        },
+        {
+          "channel": "Var referee",
+          "commentator": "Cedric Dos Santos"
+        }
+      ]
+    }
+  },
+  {
+    "matchLink": "https://www.ysscores.com/en/match/4564072/Al-Feiha-vs-Al-Taawoun",
+    "league": "Saudi League",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/3421703719071.png",
+    "homeTeam": "Al Feiha",
+    "awayTeam": "Al-Taawoun",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/9971724321815.png",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/9981690292497.png",
+    "time": "03:45 pm",
+    "details": {
+      "matchInfo": [
+        {
+          "title": "SSC Extra 1 HD",
+          "content": "Saad Yahya"
+        },
+        {
+          "title": "SSC Extra 1 SD",
+          "content": "Abdulaziz Al-Saber"
+        },
+        {
+          "title": "Shahid VIP | Sports",
+          "content": "Saad Yahya"
+        },
+        {
+          "title": "Championship",
+          "content": "Saudi League"
+        },
+        {
+          "title": "Round",
+          "content": "Round 18"
+        },
+        {
+          "title": "First Leg",
+          "content": "Al-Taawoun 1\n                                                    -0 Al Feiha"
+        },
+        {
+          "title": "Match Stadium",
+          "content": "Majmaah Sports City"
+        },
+        {
+          "title": "Match Time",
+          "content": "03:45 pm"
+        },
+        {
+          "title": "Match Date",
+          "content": "Friday 31-01-2025"
+        },
+        {
+          "title": "SSC Extra 1 HD",
+          "content": "Saad Yahya"
+        },
+        {
+          "title": "SSC Extra 1 SD",
+          "content": "Abdulaziz Al-Saber"
+        },
+        {
+          "title": "Shahid VIP | Sports",
+          "content": "Saad Yahya"
+        }
+      ],
+      "channelsAndCommentators": [
+        {
+          "channel": "SSC Extra 1 HD",
+          "commentator": "Saad Yahya"
+        },
+        {
+          "channel": "SSC Extra 1 SD",
+          "commentator": "Abdulaziz Al-Saber"
+        },
+        {
+          "channel": "Shahid VIP | Sports",
+          "commentator": "Saad Yahya"
+        },
+        {
+          "channel": "SSC Extra 1 HD",
+          "commentator": "Saad Yahya"
+        },
+        {
+          "channel": "SSC Extra 1 SD",
+          "commentator": "Abdulaziz Al-Saber"
+        },
+        {
+          "channel": "Shahid VIP | Sports",
+          "commentator": "Saad Yahya"
+        }
+      ]
+    }
+  },
+  {
+    "matchLink": "https://www.ysscores.com/en/match/4564064/Al-Hilal-vs-Al-Okhdood-Club",
+    "league": "Saudi League",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/3421703719071.png",
+    "homeTeam": "Al Hilal",
+    "awayTeam": "Al-Okhdood",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/3611724280948.png",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/8761690298716.png",
+    "time": "05:15 pm",
+    "details": {
+      "matchInfo": [
+        {
+          "title": "SSC 1 HD",
+          "content": "Abdullah Al-Harbi"
+        },
+        {
+          "title": "SSC 5 HD",
+          "content": "Khaled Al-Mudayfer"
+        },
+        {
+          "title": "SSC 1 SD",
+          "content": "Abdul Ilah Al-Omari"
+        },
+        {
+          "title": "Shahid VIP | Sports",
+          "content": "Khaled Al-Mudayfer"
+        },
+        {
+          "title": "Championship",
+          "content": "Saudi League"
+        },
+        {
+          "title": "Round",
+          "content": "Round 18"
+        },
+        {
+          "title": "First Leg",
+          "content": "Al-Okhdood 0\n                                                    -3 Al Hilal"
+        },
+        {
+          "title": "Match Stadium",
+          "content": "Kingdom Arena"
+        },
+        {
+          "title": "Match Time",
+          "content": "05:15 pm"
+        },
+        {
+          "title": "Match Date",
+          "content": "Friday 31-01-2025"
+        },
+        {
+          "title": "SSC 1 HD",
+          "content": "Abdullah Al-Harbi"
+        },
+        {
+          "title": "SSC 5 HD",
+          "content": "Khaled Al-Mudayfer"
+        },
+        {
+          "title": "SSC 1 SD",
+          "content": "Abdul Ilah Al-Omari"
+        },
+        {
+          "title": "Shahid VIP | Sports",
+          "content": "Khaled Al-Mudayfer"
+        }
+      ],
+      "channelsAndCommentators": [
+        {
+          "channel": "SSC 1 HD",
+          "commentator": "Abdullah Al-Harbi"
+        },
+        {
+          "channel": "SSC 5 HD",
+          "commentator": "Khaled Al-Mudayfer"
+        },
+        {
+          "channel": "SSC 1 SD",
+          "commentator": "Abdul Ilah Al-Omari"
+        },
+        {
+          "channel": "Shahid VIP | Sports",
+          "commentator": "Khaled Al-Mudayfer"
+        },
+        {
+          "channel": "SSC 1 HD",
+          "commentator": "Abdullah Al-Harbi"
+        },
+        {
+          "channel": "SSC 5 HD",
+          "commentator": "Khaled Al-Mudayfer"
+        },
+        {
+          "channel": "SSC 1 SD",
+          "commentator": "Abdul Ilah Al-Omari"
+        },
+        {
+          "channel": "Shahid VIP | Sports",
+          "commentator": "Khaled Al-Mudayfer"
+        }
+      ]
+    }
+  },
+  {
+    "matchLink": "https://www.ysscores.com/en/match/4564069/Al-Ettifaq-vs-Al-Shabab",
+    "league": "Saudi League",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/3421703719071.png",
+    "homeTeam": "Al-Ettifaq",
+    "awayTeam": "Al Shabab",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/4261690298871.png",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/1151690298845.png",
     "time": "07:00 pm",
     "details": {
       "matchInfo": [
         {
-          "title": "Channel",
-          "content": "OnTime Sports 1"
+          "title": "SSC Extra 1 HD",
+          "content": "Hammad Al-Anzi"
         },
         {
-          "title": "Commentator",
-          "content": "Mohammed Al-Shazly"
+          "title": "SSC Extra 1 SD",
+          "content": "Issa ِlzadjalii"
+        },
+        {
+          "title": "Shahid VIP | Sports",
+          "content": "Hammad Al-Anzi"
         },
         {
           "title": "Championship",
-          "content": "Egyptian League"
+          "content": "Saudi League"
         },
         {
           "title": "Round",
-          "content": "Round 10"
+          "content": "Round 18"
+        },
+        {
+          "title": "First Leg",
+          "content": "Al Shabab 0\n                                                    -1 Al-Ettifaq"
         },
         {
           "title": "Match Stadium",
-          "content": "Borg El Arab Stadium"
-        },
-        {
-          "title": "Channel",
-          "content": "OnTime Sports 1"
-        },
-        {
-          "title": "Commentator",
-          "content": "Mohammed Al-Shazly"
+          "content": "EGO Stadium"
         },
         {
           "title": "Match Time",
@@ -95,109 +668,87 @@
         },
         {
           "title": "Match Date",
-          "content": "Tuesday 28-01-2025"
+          "content": "Friday 31-01-2025"
+        },
+        {
+          "title": "SSC Extra 1 HD",
+          "content": "Hammad Al-Anzi"
+        },
+        {
+          "title": "SSC Extra 1 SD",
+          "content": "Issa ِlzadjalii"
+        },
+        {
+          "title": "Shahid VIP | Sports",
+          "content": "Hammad Al-Anzi"
         }
       ],
-      "channelsAndCommentators": []
+      "channelsAndCommentators": [
+        {
+          "channel": "SSC Extra 1 HD",
+          "commentator": "Hammad Al-Anzi"
+        },
+        {
+          "channel": "SSC Extra 1 SD",
+          "commentator": "Issa ِlzadjalii"
+        },
+        {
+          "channel": "Shahid VIP | Sports",
+          "commentator": "Hammad Al-Anzi"
+        },
+        {
+          "channel": "SSC Extra 1 HD",
+          "commentator": "Hammad Al-Anzi"
+        },
+        {
+          "channel": "SSC Extra 1 SD",
+          "commentator": "Issa ِlzadjalii"
+        },
+        {
+          "channel": "Shahid VIP | Sports",
+          "commentator": "Hammad Al-Anzi"
+        }
+      ]
     }
   },
   {
-    "matchLink": "https://www.ysscores.com/en/match/89532562/Al-Naft-vs-Erbil",
-    "league": "Iraq Stars League",
-    "leagueLogo": "https://imgs.ysscores.com/championship/48/9731702381714.png",
-    "homeTeam": "Al Naft",
-    "awayTeam": "Erbil",
-    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/2581695657262.png",
-    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/7661722514776.png",
-    "time": "Time not available",
-    "details": {
-      "matchInfo": [
-        {
-          "title": "Channel",
-          "content": "Iraqia Sport"
-        },
-        {
-          "title": "Commentator",
-          "content": "Ameer Ali"
-        },
-        {
-          "title": "N/A",
-          "content": "N/A"
-        },
-        {
-          "title": "Championship",
-          "content": "Iraq Stars League"
-        },
-        {
-          "title": "Round",
-          "content": "Round 17"
-        },
-        {
-          "title": "Match Stadium",
-          "content": "Al-Saher Ahmed Radhi"
-        },
-        {
-          "title": "Channel",
-          "content": "Iraqia Sport"
-        },
-        {
-          "title": "Commentator",
-          "content": "Ameer Ali"
-        },
-        {
-          "title": "Match Time",
-          "content": "01:30 pm"
-        },
-        {
-          "title": "Match Date",
-          "content": "Tuesday 28-01-2025"
-        },
-        {
-          "title": "N/A",
-          "content": "N/A"
-        }
-      ],
-      "channelsAndCommentators": []
-    }
-  },
-  {
-    "matchLink": "https://www.ysscores.com/en/match/37685948/Al-Zawraa-vs-Naft-Maysan",
-    "league": "Iraq Stars League",
-    "leagueLogo": "https://imgs.ysscores.com/championship/48/9731702381714.png",
-    "homeTeam": "Al Zawraa",
-    "awayTeam": "Naft Maysan",
-    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/711695656259.png",
-    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/2961729878835.png",
+    "matchLink": "https://www.ysscores.com/en/match/4662780/Ismaily-SC-vs-El-Geish",
+    "league": "Egyptian League",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/1711702335497.png",
+    "homeTeam": "Ismaily SC",
+    "awayTeam": "El Geish",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/5871731000840.png",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/6781694082759.png",
     "time": "04:00 pm",
     "details": {
       "matchInfo": [
         {
           "title": "Channel",
-          "content": "Iraqia Sport"
+          "content": "OnTime Sports 2"
         },
         {
           "title": "Commentator",
-          "content": "Jamal Darraji"
+          "content": "Moamen Hassan"
         },
         {
           "title": "Championship",
-          "content": "Iraq Stars League"
+          "content": "Egyptian League"
         },
         {
           "title": "Round",
-          "content": "Round 17"
+          "content": "Round 11"
         },
         {
           "title": "Match Stadium",
-          "content": "Al Zawra Stadium"
+          "content": "Ismailia Stadium"
         },
         {
           "title": "Channel",
-          "content": "Iraqia Sport"
+          "content": "OnTime Sports 2"
         },
         {
           "title": "Commentator",
-          "content": "Jamal Darraji"
+          "content": "Moamen Hassan"
         },
         {
           "title": "Match Time",
@@ -205,21 +756,140 @@
         },
         {
           "title": "Match Date",
-          "content": "Tuesday 28-01-2025"
+          "content": "Friday 31-01-2025"
         }
       ],
       "channelsAndCommentators": []
     }
   },
   {
-    "matchLink": "https://www.ysscores.com/en/match/4688885/Vejle-Boldklub-vs-Dinamo-Batumi",
+    "matchLink": "https://www.ysscores.com/en/match/4662781/El-Gounah-vs-Haras-El-Hodoud",
+    "league": "Egyptian League",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/1711702335497.png",
+    "homeTeam": "El Gounah",
+    "awayTeam": "El Hodoud",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/4381694082139.png",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/3751731169729.png",
+    "time": "04:00 pm",
+    "details": {
+      "matchInfo": [
+        {
+          "title": "Channel",
+          "content": "OnTime Sports 1"
+        },
+        {
+          "title": "Commentator",
+          "content": "Tareq Hasan"
+        },
+        {
+          "title": "Championship",
+          "content": "Egyptian League"
+        },
+        {
+          "title": "Round",
+          "content": "Round 11"
+        },
+        {
+          "title": "Match Stadium",
+          "content": "Khaled Bichara Stadium"
+        },
+        {
+          "title": "Channel",
+          "content": "OnTime Sports 1"
+        },
+        {
+          "title": "Commentator",
+          "content": "Tareq Hasan"
+        },
+        {
+          "title": "Match Time",
+          "content": "04:00 pm"
+        },
+        {
+          "title": "Match Date",
+          "content": "Friday 31-01-2025"
+        }
+      ],
+      "channelsAndCommentators": []
+    }
+  },
+  {
+    "matchLink": "https://www.ysscores.com/en/match/4662782/Pyramids-FC-vs-Zamalek-SC",
+    "league": "Egyptian League",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/1711702335497.png",
+    "homeTeam": "Pyramids FC",
+    "awayTeam": "Zamalek SC",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/7971694082496.png",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/5771692283569.png",
+    "time": "07:00 pm",
+    "details": {
+      "matchInfo": [
+        {
+          "title": "OnTime Sports 1",
+          "content": "Tariq Al-Adwar"
+        },
+        {
+          "title": "OnTime Sports 1",
+          "content": "Mohamed El bouchi"
+        },
+        {
+          "title": "Championship",
+          "content": "Egyptian League"
+        },
+        {
+          "title": "Round",
+          "content": "Round 11"
+        },
+        {
+          "title": "Match Stadium",
+          "content": "Air Defense Stadium"
+        },
+        {
+          "title": "Match Time",
+          "content": "07:00 pm"
+        },
+        {
+          "title": "Match Date",
+          "content": "Friday 31-01-2025"
+        },
+        {
+          "title": "OnTime Sports 1",
+          "content": "Tariq Al-Adwar"
+        },
+        {
+          "title": "OnTime Sports 1",
+          "content": "Mohamed El bouchi"
+        }
+      ],
+      "channelsAndCommentators": [
+        {
+          "channel": "OnTime Sports 1",
+          "commentator": "Tariq Al-Adwar"
+        },
+        {
+          "channel": "OnTime Sports 1",
+          "commentator": "Mohamed El bouchi"
+        },
+        {
+          "channel": "OnTime Sports 1",
+          "commentator": "Tariq Al-Adwar"
+        },
+        {
+          "channel": "OnTime Sports 1",
+          "commentator": "Mohamed El bouchi"
+        }
+      ]
+    }
+  },
+  {
+    "matchLink": "https://www.ysscores.com/en/match/4688886/Vejle-Boldklub-vs-SV-Ried",
     "league": "Club Friendlies",
     "leagueLogo": "https://imgs.ysscores.com/championship/48/331690370434.png",
     "homeTeam": "Vejle Boldklub",
-    "awayTeam": "Dinamo Batumi",
-    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/1381690370500.png",
+    "awayTeam": "SV Ried",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/9141690370552.png",
     "homeTeamLogo": "https://imgs.ysscores.com/teams/64/3091691095893.png",
-    "time": "03:00 pm",
+    "time": "01:30 pm",
     "details": {
       "matchInfo": [
         {
@@ -228,259 +898,627 @@
         },
         {
           "title": "Match Time",
-          "content": "03:00 pm"
+          "content": "01:30 pm"
         },
         {
           "title": "Match Date",
-          "content": "Tuesday 28-01-2025"
+          "content": "Friday 31-01-2025"
         }
       ],
       "channelsAndCommentators": []
     }
   },
   {
-    "matchLink": "https://www.ysscores.com/en/match/4631031/USM-Alger-vs-Paradou-AC",
-    "league": "Algerian Professional League 1",
-    "leagueLogo": "https://imgs.ysscores.com/championship/48/8131693416988.png",
-    "homeTeam": "USM Alger",
-    "awayTeam": "Paradou AC",
-    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/3511693418113.png",
-    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/9611695834503.png",
-    "time": "08:00 pm",
+    "matchLink": "https://www.ysscores.com/en/match/4684066/Kalmar-FF-vs-Kryvbas",
+    "league": "Club Friendlies",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/331690370434.png",
+    "homeTeam": "Kalmar FF",
+    "awayTeam": "Kryvbas",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/5761723108661.png",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/9891690370545.png",
+    "time": "06:00 pm",
     "details": {
       "matchInfo": [
         {
           "title": "Championship",
-          "content": "Algerian Professional League 1"
-        },
-        {
-          "title": "Round",
-          "content": "Round 11"
-        },
-        {
-          "title": "Match Stadium",
-          "content": "Stade 5 Juillet 1962"
+          "content": "Club Friendlies"
         },
         {
           "title": "Match Time",
-          "content": "08:00 pm"
+          "content": "06:00 pm"
         },
         {
           "title": "Match Date",
-          "content": "Tuesday 28-01-2025"
+          "content": "Friday 31-01-2025"
         }
       ],
       "channelsAndCommentators": []
     }
   },
   {
-    "matchLink": "https://www.ysscores.com/en/match/63748278/Al-Jabalain-vs-Ohod",
-    "league": "FDL KSA",
-    "leagueLogo": "https://imgs.ysscores.com/championship/48/4661694112676.png",
-    "homeTeam": "Al Jabalain",
-    "awayTeam": "Ohod",
-    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/6811691930378.png",
-    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/7651691930547.png",
-    "time": "02:55 pm",
+    "matchLink": "https://www.ysscores.com/en/match/4549841/Eyupspor-vs-Sivasspor",
+    "league": "Süper Lig",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/7571723239230.png",
+    "homeTeam": "Eyupspor",
+    "awayTeam": "Sivasspor",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/4201690127564.png",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/891700669405.png",
+    "time": "07:00 pm",
     "details": {
       "matchInfo": [
         {
-          "title": "Channel",
-          "content": "KSA Sports 3"
+          "title": "beIN Sports Xtra 1",
+          "content": "Ahmed Al Balushi"
         },
         {
-          "title": "Commentator",
-          "content": "Meshaal Alshamry"
+          "title": "beIN Sports HD 1 TR",
+          "content": "Unknown"
         },
         {
           "title": "Championship",
-          "content": "FDL KSA"
+          "content": "Süper Lig"
         },
         {
           "title": "Round",
-          "content": "Round 19"
+          "content": "Round 22"
         },
         {
           "title": "First Leg",
-          "content": "Ohod 2\n                                                    -0 Al Jabalain"
+          "content": "Sivasspor 0\n                                                    -1 Eyupspor"
         },
         {
           "title": "Match Stadium",
-          "content": "Pr. A. A. bin Masaad bin Jalawi"
-        },
-        {
-          "title": "Channel",
-          "content": "KSA Sports 3"
-        },
-        {
-          "title": "Commentator",
-          "content": "Meshaal Alshamry"
+          "content": "Recep Tayyip Erdogan Stadi"
         },
         {
           "title": "Match Time",
-          "content": "02:55 pm"
+          "content": "07:00 pm"
         },
         {
           "title": "Match Date",
-          "content": "Tuesday 28-01-2025"
+          "content": "Friday 31-01-2025"
+        },
+        {
+          "title": "beIN Sports Xtra 1",
+          "content": "Ahmed Al Balushi"
+        },
+        {
+          "title": "beIN Sports HD 1 TR",
+          "content": "Unknown"
         }
       ],
-      "channelsAndCommentators": []
+      "channelsAndCommentators": [
+        {
+          "channel": "beIN Sports Xtra 1",
+          "commentator": "Ahmed Al Balushi"
+        },
+        {
+          "channel": "beIN Sports HD 1 TR",
+          "commentator": "Unknown"
+        },
+        {
+          "channel": "beIN Sports Xtra 1",
+          "commentator": "Ahmed Al Balushi"
+        },
+        {
+          "channel": "beIN Sports HD 1 TR",
+          "commentator": "Unknown"
+        }
+      ]
     }
   },
   {
-    "matchLink": "https://www.ysscores.com/en/match/82019663/Abha-vs-Al-Arabi",
-    "league": "FDL KSA",
-    "leagueLogo": "https://imgs.ysscores.com/championship/48/4661694112676.png",
-    "homeTeam": "Abha",
-    "awayTeam": "Al Arabi",
-    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/7351691930572.png",
-    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/9091690299913.png",
-    "time": "02:55 pm",
+    "matchLink": "https://www.ysscores.com/en/match/4549849/Konyaspor-vs-Bodrumspor",
+    "league": "Süper Lig",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/7571723239230.png",
+    "homeTeam": "Konyaspor",
+    "awayTeam": "Bodrumspor",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/2311700667812.png",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/8771690127634.png",
+    "time": "07:00 pm",
     "details": {
       "matchInfo": [
         {
           "title": "Channel",
-          "content": "KSA Sport 1"
+          "content": "beIN Sports HD 2 TR"
         },
         {
           "title": "Commentator",
-          "content": "Haitham Tahtouh"
+          "content": "Unknown"
         },
         {
           "title": "Championship",
-          "content": "FDL KSA"
+          "content": "Süper Lig"
         },
         {
           "title": "Round",
-          "content": "Round 19"
+          "content": "Round 22"
         },
         {
           "title": "First Leg",
-          "content": "Al Arabi 1\n                                                    -2 Abha"
+          "content": "Bodrumspor 3\n                                                    -1 Konyaspor"
         },
         {
           "title": "Match Stadium",
-          "content": "Prince Sultan bin Abdul Aziz Stadium"
+          "content": "Konya Buyuksehir Stadyumu"
         },
         {
           "title": "Channel",
-          "content": "KSA Sport 1"
-        },
-        {
-          "title": "Commentator",
-          "content": "Haitham Tahtouh"
+          "content": "beIN Sports HD 2 TR"
         },
         {
           "title": "Match Time",
-          "content": "02:55 pm"
+          "content": "07:00 pm"
         },
         {
           "title": "Match Date",
-          "content": "Tuesday 28-01-2025"
+          "content": "Friday 31-01-2025"
         }
       ],
       "channelsAndCommentators": []
     }
   },
   {
-    "matchLink": "https://www.ysscores.com/en/match/31216630/Al-Adalah-vs-Al-Faisaly",
-    "league": "FDL KSA",
-    "leagueLogo": "https://imgs.ysscores.com/championship/48/4661694112676.png",
-    "homeTeam": "Al-Adalah",
-    "awayTeam": "Al-Faisaly",
-    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/5731692998559.png",
-    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/7331691930420.png",
-    "time": "05:00 pm",
+    "matchLink": "https://www.ysscores.com/en/match/4539174/Boavista-vs-Famalicao",
+    "league": "Liga Portugal",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/7301690383928.png",
+    "homeTeam": "Boavista",
+    "awayTeam": "Famalicao",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/6141690373090.png",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/2831690385274.png",
+    "time": "10:15 pm",
+    "details": {
+      "matchInfo": [
+        {
+          "title": "Championship",
+          "content": "Liga Portugal"
+        },
+        {
+          "title": "Round",
+          "content": "Round 20"
+        },
+        {
+          "title": "First Leg",
+          "content": "Famalicao 1\n                                                    -0 Boavista"
+        },
+        {
+          "title": "Match Stadium",
+          "content": "Estadio do Bessa XXI"
+        },
+        {
+          "title": "Match Time",
+          "content": "10:15 pm"
+        },
+        {
+          "title": "Match Date",
+          "content": "Friday 31-01-2025"
+        },
+        {
+          "title": "Referee",
+          "content": "David Silva"
+        },
+        {
+          "title": "Assistant referee",
+          "content": "Carlos Campos"
+        },
+        {
+          "title": "Assistant referee",
+          "content": "Nelson Cunha"
+        },
+        {
+          "title": "Assistant referee",
+          "content": "Marcio Torres"
+        },
+        {
+          "title": "Var referee",
+          "content": "Manuel Mota"
+        },
+        {
+          "title": "Var referee",
+          "content": "Fabio Silva"
+        }
+      ],
+      "channelsAndCommentators": [
+        {
+          "channel": "Referee",
+          "commentator": "David Silva"
+        },
+        {
+          "channel": "Assistant referee",
+          "commentator": "Carlos Campos"
+        },
+        {
+          "channel": "Assistant referee",
+          "commentator": "Nelson Cunha"
+        },
+        {
+          "channel": "Assistant referee",
+          "commentator": "Marcio Torres"
+        },
+        {
+          "channel": "Var referee",
+          "commentator": "Manuel Mota"
+        },
+        {
+          "channel": "Var referee",
+          "commentator": "Fabio Silva"
+        }
+      ]
+    }
+  },
+  {
+    "matchLink": "https://www.ysscores.com/en/match/4678889/Ajman-vs-Al-Wahda",
+    "league": "UAE Pro League",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/6401690296766.png",
+    "homeTeam": "Ajman",
+    "awayTeam": "Al-Wahda",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/8811690300661.png",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/6021690300867.png",
+    "time": "Time not available",
     "details": {
       "matchInfo": [
         {
           "title": "Channel",
-          "content": "KSA Sport 1"
+          "content": "AD Sports 2"
         },
         {
           "title": "Commentator",
-          "content": "Muhammad Al-Bakhitan"
+          "content": "Faisal Alhendi"
         },
         {
           "title": "Championship",
-          "content": "FDL KSA"
+          "content": "UAE Pro League"
         },
         {
           "title": "Round",
-          "content": "Round 19"
+          "content": "Round 14"
         },
         {
           "title": "First Leg",
-          "content": "Al-Faisaly 3\n                                                    -0 Al-Adalah"
-        },
-        {
-          "title": "Match Stadium",
-          "content": "Prince Abdullah Bin Jalawi Sport City Stadium"
+          "content": "Al-Wahda 1\n                                                    -0 Ajman"
         },
         {
           "title": "Channel",
-          "content": "KSA Sport 1"
+          "content": "AD Sports 2"
         },
         {
           "title": "Commentator",
-          "content": "Muhammad Al-Bakhitan"
+          "content": "Faisal Alhendi"
         },
         {
           "title": "Match Time",
-          "content": "05:00 pm"
+          "content": "03:15 pm"
         },
         {
           "title": "Match Date",
-          "content": "Tuesday 28-01-2025"
+          "content": "Friday 31-01-2025"
         }
       ],
       "channelsAndCommentators": []
     }
   },
   {
-    "matchLink": "https://www.ysscores.com/en/match/4519687/Portsmouth-FC-vs-Millwall",
+    "matchLink": "https://www.ysscores.com/en/match/4678890/Sharjah-FC-vs-Dibba-Al-Hisn",
+    "league": "UAE Pro League",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/6401690296766.png",
+    "homeTeam": "Sharjah FC",
+    "awayTeam": "Dibba Al-Hisn",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/6581723850666.png",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/1811690300800.png",
+    "time": "Time not available",
+    "details": {
+      "matchInfo": [
+        {
+          "title": "AD Sports 1",
+          "content": "Hazem Abdul Salam"
+        },
+        {
+          "title": "Sharjah Sports",
+          "content": "Abdul Hamid Al Jasmi"
+        },
+        {
+          "title": "Championship",
+          "content": "UAE Pro League"
+        },
+        {
+          "title": "Round",
+          "content": "Round 14"
+        },
+        {
+          "title": "First Leg",
+          "content": "Dibba Al-Hisn 1\n                                                    -4 Sharjah FC"
+        },
+        {
+          "title": "Match Time",
+          "content": "03:15 pm"
+        },
+        {
+          "title": "Match Date",
+          "content": "Friday 31-01-2025"
+        },
+        {
+          "title": "AD Sports 1",
+          "content": "Hazem Abdul Salam"
+        },
+        {
+          "title": "Sharjah Sports",
+          "content": "Abdul Hamid Al Jasmi"
+        }
+      ],
+      "channelsAndCommentators": [
+        {
+          "channel": "AD Sports 1",
+          "commentator": "Hazem Abdul Salam"
+        },
+        {
+          "channel": "Sharjah Sports",
+          "commentator": "Abdul Hamid Al Jasmi"
+        },
+        {
+          "channel": "AD Sports 1",
+          "commentator": "Hazem Abdul Salam"
+        },
+        {
+          "channel": "Sharjah Sports",
+          "commentator": "Abdul Hamid Al Jasmi"
+        }
+      ]
+    }
+  },
+  {
+    "matchLink": "https://www.ysscores.com/en/match/4678891/Al-Jazira-vs-Baniyas",
+    "league": "UAE Pro League",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/6401690296766.png",
+    "homeTeam": "Al-Jazira",
+    "awayTeam": "Baniyas",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/211690300900.png",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/4171716154082.png",
+    "time": "06:00 pm",
+    "details": {
+      "matchInfo": [
+        {
+          "title": "Channel",
+          "content": "AD Sports 1"
+        },
+        {
+          "title": "Commentator",
+          "content": "Bilal Allam"
+        },
+        {
+          "title": "Championship",
+          "content": "UAE Pro League"
+        },
+        {
+          "title": "Round",
+          "content": "Round 14"
+        },
+        {
+          "title": "First Leg",
+          "content": "Baniyas 2\n                                                    -0 Al-Jazira"
+        },
+        {
+          "title": "Channel",
+          "content": "AD Sports 1"
+        },
+        {
+          "title": "Commentator",
+          "content": "Bilal Allam"
+        },
+        {
+          "title": "Match Time",
+          "content": "06:00 pm"
+        },
+        {
+          "title": "Match Date",
+          "content": "Friday 31-01-2025"
+        }
+      ],
+      "channelsAndCommentators": []
+    }
+  },
+  {
+    "matchLink": "https://www.ysscores.com/en/match/4678892/Al-Nasr-SC-vs-Al-Orooba",
+    "league": "UAE Pro League",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/6401690296766.png",
+    "homeTeam": "Al-Nasr SC",
+    "awayTeam": "Al-Orooba",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/9041724367577.png",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/9861690300733.png",
+    "time": "06:00 pm",
+    "details": {
+      "matchInfo": [
+        {
+          "title": "AD Sports 2",
+          "content": "Fahd Abdulrahman"
+        },
+        {
+          "title": "Dubai Sports 1",
+          "content": "Abdullah Al-Saadi"
+        },
+        {
+          "title": "Championship",
+          "content": "UAE Pro League"
+        },
+        {
+          "title": "Round",
+          "content": "Round 14"
+        },
+        {
+          "title": "First Leg",
+          "content": "Al-Orooba 1\n                                                    -5 Al-Nasr SC"
+        },
+        {
+          "title": "Match Time",
+          "content": "06:00 pm"
+        },
+        {
+          "title": "Match Date",
+          "content": "Friday 31-01-2025"
+        },
+        {
+          "title": "AD Sports 2",
+          "content": "Fahd Abdulrahman"
+        },
+        {
+          "title": "Dubai Sports 1",
+          "content": "Abdullah Al-Saadi"
+        }
+      ],
+      "channelsAndCommentators": [
+        {
+          "channel": "AD Sports 2",
+          "commentator": "Fahd Abdulrahman"
+        },
+        {
+          "channel": "Dubai Sports 1",
+          "commentator": "Abdullah Al-Saadi"
+        },
+        {
+          "channel": "AD Sports 2",
+          "commentator": "Fahd Abdulrahman"
+        },
+        {
+          "channel": "Dubai Sports 1",
+          "commentator": "Abdullah Al-Saadi"
+        }
+      ]
+    }
+  },
+  {
+    "matchLink": "https://www.ysscores.com/en/match/4706785/Al-Yarmouk-SC-vs-Khaitan-SC",
+    "league": "Kuwait Premier League",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/6261723224041.png",
+    "homeTeam": "Al-Yarmouk",
+    "awayTeam": "Khaitan",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/7941723156052.png",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/9691723220151.png",
+    "time": "04:55 pm",
+    "details": {
+      "matchInfo": [
+        {
+          "title": "atv",
+          "content": "Mohammed Al-Riyami"
+        },
+        {
+          "title": "Shasha",
+          "content": "Mohammed Al-Riyami"
+        },
+        {
+          "title": "Championship",
+          "content": "Kuwait Premier League"
+        },
+        {
+          "title": "Round",
+          "content": "Round 13"
+        },
+        {
+          "title": "First Leg",
+          "content": "Khaitan 1\n                                                    -1 Al-Yarmouk"
+        },
+        {
+          "title": "Match Stadium",
+          "content": "Abdullah Alkhalifa Alsabah Satduim"
+        },
+        {
+          "title": "Match Time",
+          "content": "04:55 pm"
+        },
+        {
+          "title": "Match Date",
+          "content": "Friday 31-01-2025"
+        },
+        {
+          "title": "atv",
+          "content": "Mohammed Al-Riyami"
+        },
+        {
+          "title": "Shasha",
+          "content": "Mohammed Al-Riyami"
+        }
+      ],
+      "channelsAndCommentators": [
+        {
+          "channel": "atv",
+          "commentator": "Mohammed Al-Riyami"
+        },
+        {
+          "channel": "Shasha",
+          "commentator": "Mohammed Al-Riyami"
+        },
+        {
+          "channel": "atv",
+          "commentator": "Mohammed Al-Riyami"
+        },
+        {
+          "channel": "Shasha",
+          "commentator": "Mohammed Al-Riyami"
+        }
+      ]
+    }
+  },
+  {
+    "matchLink": "https://www.ysscores.com/en/match/4520411/Blackburn-Rovers-vs-Preston-North-End",
     "league": "EFL Championship",
     "leagueLogo": "https://imgs.ysscores.com/championship/48/4861690937574.png",
-    "homeTeam": "Portsmouth",
-    "awayTeam": "Millwall",
-    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/2181690370550.png",
-    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/5401690370525.png",
-    "time": "09:45 pm",
+    "homeTeam": "Blackburn",
+    "awayTeam": "Preston",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/4581690370523.png",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/781690370534.png",
+    "time": "10:00 pm",
     "details": {
       "matchInfo": [
+        {
+          "title": "Channel",
+          "content": "Bein Sport 2"
+        },
+        {
+          "title": "Commentator",
+          "content": "Ahmed Fouad"
+        },
         {
           "title": "Championship",
           "content": "EFL Championship"
         },
         {
           "title": "Round",
-          "content": "Round 17"
+          "content": "Round 30"
+        },
+        {
+          "title": "First Leg",
+          "content": "Preston 0\n                                                    -0 Blackburn"
         },
         {
           "title": "Match Stadium",
-          "content": "Fratton Park"
+          "content": "Ewood Park"
+        },
+        {
+          "title": "Channel",
+          "content": "Bein Sport 2"
+        },
+        {
+          "title": "Commentator",
+          "content": "Ahmed Fouad"
         },
         {
           "title": "Match Time",
-          "content": "09:45 pm"
+          "content": "10:00 pm"
         },
         {
           "title": "Match Date",
-          "content": "Tuesday 28-01-2025"
+          "content": "Friday 31-01-2025"
         }
       ],
       "channelsAndCommentators": []
     }
   },
   {
-    "matchLink": "https://www.ysscores.com/en/match/4508631/Heracles-vs-FC-Groningen",
+    "matchLink": "https://www.ysscores.com/en/match/4508896/NAC-Breda-vs-Heracles",
     "league": "Eredivisie",
     "leagueLogo": "https://imgs.ysscores.com/championship/48/4431690992915.png",
-    "homeTeam": "Heracles",
-    "awayTeam": "FC Groningen",
-    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/10001690370535.png",
-    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/2091690996504.png",
+    "homeTeam": "NAC Breda",
+    "awayTeam": "Heracles",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/2091690996504.png",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/6521690370538.png",
     "time": "09:00 pm",
     "details": {
       "matchInfo": [
@@ -490,11 +1528,15 @@
         },
         {
           "title": "Round",
-          "content": "Round 17"
+          "content": "Round 21"
+        },
+        {
+          "title": "First Leg",
+          "content": "Heracles 2\n                                                    -0 NAC Breda"
         },
         {
           "title": "Match Stadium",
-          "content": "Asito Stadion"
+          "content": "Rat Verlegh Stadion"
         },
         {
           "title": "Match Time",
@@ -502,102 +1544,349 @@
         },
         {
           "title": "Match Date",
-          "content": "Tuesday 28-01-2025"
+          "content": "Friday 31-01-2025"
         },
         {
           "title": "Referee",
-          "content": "Rob Dieperink"
+          "content": "Martin van den Kerkhof"
         },
         {
           "title": "Assistant referee",
-          "content": "Mark Janssen"
+          "content": "Maarten Ketting"
         },
         {
           "title": "Assistant referee",
-          "content": "Thomas Krijt"
+          "content": "Rob van de Ven"
         },
         {
           "title": "Assistant referee",
-          "content": "Thomas Hardeman"
+          "content": "Kevin Puts"
         },
         {
           "title": "Var referee",
-          "content": "Sander van der Eijk"
-        },
-        {
-          "title": "Var referee",
-          "content": "Roan van Marrewijk"
-        },
-        {
-          "title": "Assistant referee",
-          "content": "Marco Ribbink"
-        },
-        {
-          "title": "Assistant referee",
           "content": "Luuk Timmer"
         },
         {
           "title": "Var referee",
-          "content": "Alex Bos"
-        },
-        {
-          "title": "Var referee",
-          "content": "Nils van Kampen"
+          "content": "Mark Janssen"
         }
       ],
       "channelsAndCommentators": [
         {
           "channel": "Referee",
-          "commentator": "Rob Dieperink"
+          "commentator": "Martin van den Kerkhof"
         },
         {
           "channel": "Assistant referee",
-          "commentator": "Mark Janssen"
+          "commentator": "Maarten Ketting"
         },
         {
           "channel": "Assistant referee",
-          "commentator": "Thomas Krijt"
+          "commentator": "Rob van de Ven"
         },
         {
           "channel": "Assistant referee",
-          "commentator": "Thomas Hardeman"
+          "commentator": "Kevin Puts"
         },
         {
           "channel": "Var referee",
-          "commentator": "Sander van der Eijk"
-        },
-        {
-          "channel": "Var referee",
-          "commentator": "Roan van Marrewijk"
-        },
-        {
-          "channel": "Assistant referee",
-          "commentator": "Marco Ribbink"
-        },
-        {
-          "channel": "Assistant referee",
           "commentator": "Luuk Timmer"
         },
         {
           "channel": "Var referee",
-          "commentator": "Alex Bos"
-        },
-        {
-          "channel": "Var referee",
-          "commentator": "Nils van Kampen"
+          "commentator": "Mark Janssen"
         }
       ]
     }
   },
   {
-    "matchLink": "https://www.ysscores.com/en/match/4697868/CA-Banfield-vs-Newell's-Old-Boys",
+    "matchLink": "https://www.ysscores.com/en/match/4499819/Oud-Heverlee-Leuven-vs-KV-Mechelen",
+    "league": "Belgian Pro League",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/9251692797287.png",
+    "homeTeam": "OH Leuven",
+    "awayTeam": "KV Mechelen",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/3721690370516.png",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/8831690370492.png",
+    "time": "09:45 pm",
+    "details": {
+      "matchInfo": [
+        {
+          "title": "Championship",
+          "content": "Belgian Pro League"
+        },
+        {
+          "title": "Round",
+          "content": "Round 24"
+        },
+        {
+          "title": "First Leg",
+          "content": "KV Mechelen 5\n                                                    -0 OH Leuven"
+        },
+        {
+          "title": "Match Stadium",
+          "content": "King Power at Den Dreef"
+        },
+        {
+          "title": "Match Time",
+          "content": "09:45 pm"
+        },
+        {
+          "title": "Match Date",
+          "content": "Friday 31-01-2025"
+        }
+      ],
+      "channelsAndCommentators": []
+    }
+  },
+  {
+    "matchLink": "https://www.ysscores.com/en/match/4693657/Foolad-FC-vs-Persepolis",
+    "league": "Persian Gulf Pro League",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/6451704023555.png",
+    "homeTeam": "Foolad FC",
+    "awayTeam": "Persepolis",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/3721693170249.png",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/5441718098128.png",
+    "time": "Time not available",
+    "details": {
+      "matchInfo": [
+        {
+          "title": "Championship",
+          "content": "Persian Gulf Pro League"
+        },
+        {
+          "title": "Round",
+          "content": "Round 18"
+        },
+        {
+          "title": "Match Stadium",
+          "content": "Shohadaye Foolad Khoozestan"
+        },
+        {
+          "title": "Match Time",
+          "content": "02:30 pm"
+        },
+        {
+          "title": "Match Date",
+          "content": "Friday 31-01-2025"
+        }
+      ],
+      "channelsAndCommentators": []
+    }
+  },
+  {
+    "matchLink": "https://www.ysscores.com/en/match/4543679/Umm-Salal-SC-vs-Al-Duhail-SC",
+    "league": "Qatar Stars League",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/2141723214226.png",
+    "homeTeam": "Umm Salal",
+    "awayTeam": "Al-Duhail SC",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/3211693170386.png",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/6131722879538.png",
+    "time": "Time not available",
+    "details": {
+      "matchInfo": [
+        {
+          "title": "Alkass 1",
+          "content": "Samir Al-Mairefi"
+        },
+        {
+          "title": "Bein Sport HD",
+          "content": "Abdallah Alghamedi"
+        },
+        {
+          "title": "Championship",
+          "content": "Qatar Stars League"
+        },
+        {
+          "title": "Round",
+          "content": "Round 14"
+        },
+        {
+          "title": "First Leg",
+          "content": "Al-Duhail SC 1\n                                                    -0 Umm Salal"
+        },
+        {
+          "title": "Match Stadium",
+          "content": "The Grand Hamad Stadium"
+        },
+        {
+          "title": "Match Time",
+          "content": "03:30 pm"
+        },
+        {
+          "title": "Match Date",
+          "content": "Friday 31-01-2025"
+        },
+        {
+          "title": "Alkass 1",
+          "content": "Samir Al-Mairefi"
+        },
+        {
+          "title": "Bein Sport HD",
+          "content": "Abdallah Alghamedi"
+        }
+      ],
+      "channelsAndCommentators": [
+        {
+          "channel": "Alkass 1",
+          "commentator": "Samir Al-Mairefi"
+        },
+        {
+          "channel": "Bein Sport HD",
+          "commentator": "Abdallah Alghamedi"
+        },
+        {
+          "channel": "Alkass 1",
+          "commentator": "Samir Al-Mairefi"
+        },
+        {
+          "channel": "Bein Sport HD",
+          "commentator": "Abdallah Alghamedi"
+        }
+      ]
+    }
+  },
+  {
+    "matchLink": "https://www.ysscores.com/en/match/4543703/Al-Wakrah-vs-Al-Shahania-SC",
+    "league": "Qatar Stars League",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/2141723214226.png",
+    "homeTeam": "Al-Wakrah",
+    "awayTeam": "Al-Shahania",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/9711722879334.png",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/2361723214425.png",
+    "time": "05:45 pm",
+    "details": {
+      "matchInfo": [
+        {
+          "title": "Channel",
+          "content": "Alkass 1"
+        },
+        {
+          "title": "Commentator",
+          "content": "Samir Al-Yaqoubi"
+        },
+        {
+          "title": "Championship",
+          "content": "Qatar Stars League"
+        },
+        {
+          "title": "Round",
+          "content": "Round 14"
+        },
+        {
+          "title": "First Leg",
+          "content": "Al-Shahania 0\n                                                    -1 Al-Wakrah"
+        },
+        {
+          "title": "Match Stadium",
+          "content": "Al Janoub Stadium"
+        },
+        {
+          "title": "Channel",
+          "content": "Alkass 1"
+        },
+        {
+          "title": "Commentator",
+          "content": "Samir Al-Yaqoubi"
+        },
+        {
+          "title": "Match Time",
+          "content": "05:45 pm"
+        },
+        {
+          "title": "Match Date",
+          "content": "Friday 31-01-2025"
+        }
+      ],
+      "channelsAndCommentators": []
+    }
+  },
+  {
+    "matchLink": "https://www.ysscores.com/en/match/4654962/Wadi-Degla-FC-vs-Tanta",
+    "league": "Egyptian Second Division",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/7581728754011.png",
+    "homeTeam": "Wadi Degla FC",
+    "awayTeam": "Tanta",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/8591728755099.png",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/2161728755640.png",
+    "time": "Time not available",
+    "details": {
+      "matchInfo": [
+        {
+          "title": "Championship",
+          "content": "Egyptian Second Division"
+        },
+        {
+          "title": "Round",
+          "content": "Round 20"
+        },
+        {
+          "title": "First Leg",
+          "content": "Tanta 0\n                                                    -1 Wadi Degla FC"
+        },
+        {
+          "title": "Match Stadium",
+          "content": "Al Salam Stadium"
+        },
+        {
+          "title": "Match Time",
+          "content": "02:30 pm"
+        },
+        {
+          "title": "Match Date",
+          "content": "Friday 31-01-2025"
+        }
+      ],
+      "channelsAndCommentators": []
+    }
+  },
+  {
+    "matchLink": "https://www.ysscores.com/en/match/4654971/El-Mansura-vs-Abo-Qir-Semad",
+    "league": "Egyptian Second Division",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/7581728754011.png",
+    "homeTeam": "El Mansura",
+    "awayTeam": "Abo Qir Semad",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/8611715098753.png",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/8231728755782.png",
+    "time": "Time not available",
+    "details": {
+      "matchInfo": [
+        {
+          "title": "Championship",
+          "content": "Egyptian Second Division"
+        },
+        {
+          "title": "Round",
+          "content": "Round 20"
+        },
+        {
+          "title": "First Leg",
+          "content": "Abo Qir Semad 3\n                                                    -0 El Mansura"
+        },
+        {
+          "title": "Match Stadium",
+          "content": "Nabrouh Stadium"
+        },
+        {
+          "title": "Match Time",
+          "content": "02:30 pm"
+        },
+        {
+          "title": "Match Date",
+          "content": "Friday 31-01-2025"
+        }
+      ],
+      "channelsAndCommentators": []
+    }
+  },
+  {
+    "matchLink": "https://www.ysscores.com/en/match/4697843/Racing-Club-vs-Belgrano",
     "league": "Argentine Primera División",
     "leagueLogo": "https://imgs.ysscores.com/championship/48/1201694222910.png",
-    "homeTeam": "Banfield",
-    "awayTeam": "Newell's",
-    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/5511706892334.png",
-    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/3521717933590.png",
-    "time": "3\n                                                                -\n                                                                0",
+    "homeTeam": "Racing",
+    "awayTeam": "Belgrano",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/6861705166944.png",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/2551715593780.png",
+    "time": "4\n                                                                -\n                                                                0",
     "details": {
       "matchInfo": [
         {
@@ -610,29 +1899,29 @@
         },
         {
           "title": "Match Stadium",
-          "content": "Estadio Florencio Sola"
+          "content": "Estadio Presidente Juan Domingo Perón"
         },
         {
           "title": "Match Time",
-          "content": "01:00 am"
+          "content": "12:15 am"
         },
         {
           "title": "Match Date",
-          "content": "Tuesday 28-01-2025"
+          "content": "Friday 31-01-2025"
         }
       ],
       "channelsAndCommentators": []
     }
   },
   {
-    "matchLink": "https://www.ysscores.com/en/match/4697838/Deportivo-Riestra-vs-San-Martín-de-San-Juan",
+    "matchLink": "https://www.ysscores.com/en/match/4697837/Argentinos-Juniors-vs-CA-Tigre",
     "league": "Argentine Primera División",
     "leagueLogo": "https://imgs.ysscores.com/championship/48/1201694222910.png",
-    "homeTeam": "Riestra",
-    "awayTeam": "CA San Martín",
-    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/4891735322718.png",
-    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/1081718579454.png",
-    "time": "10:00 pm",
+    "homeTeam": "Argentinos",
+    "awayTeam": "CA Tigre",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/6041717935703.png",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/4771695765901.png",
+    "time": "1\n                                                                -\n                                                                0",
     "details": {
       "matchInfo": [
         {
@@ -645,66 +1934,50 @@
         },
         {
           "title": "Match Stadium",
-          "content": "Estadio Guillermo Laza"
+          "content": "Estadio Diego Armando Maradona (Argentina)"
         },
         {
           "title": "Match Time",
-          "content": "10:00 pm"
+          "content": "02:30 am"
         },
         {
           "title": "Match Date",
-          "content": "Tuesday 28-01-2025"
+          "content": "Friday 31-01-2025"
         }
       ],
       "channelsAndCommentators": []
     }
   },
   {
-    "matchLink": "https://www.ysscores.com/en/match/58470900/Kuwait-SC-vs-Qadsia-SC",
-    "league": "Kuwait Super Cup",
-    "leagueLogo": "https://imgs.ysscores.com/championship/48/9611737551572.png",
-    "homeTeam": "Kuwait SC",
-    "awayTeam": "Qadsia",
-    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/451723127217.png",
-    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/7471694354180.png",
-    "time": "06:00 pm",
+    "matchLink": "https://www.ysscores.com/en/match/4697845/CA-Central-Córdoba-(SdE)-vs-Club-Atlético-Tucumán",
+    "league": "Argentine Primera División",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/1201694222910.png",
+    "homeTeam": "Córdoba",
+    "awayTeam": "Tucumán",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/3641717935741.png",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/6201717935912.png",
+    "time": "2\n                                                                -\n                                                                0",
     "details": {
       "matchInfo": [
         {
-          "title": "Channel",
-          "content": "KTV Sport"
-        },
-        {
-          "title": "Commentator",
-          "content": "Khaled Al-Hadi"
-        },
-        {
           "title": "Championship",
-          "content": "Kuwait Super Cup"
+          "content": "Argentine Primera División"
         },
         {
           "title": "Round",
-          "content": "Final"
+          "content": "Round 2"
         },
         {
           "title": "Match Stadium",
-          "content": "Jaber Al-Ahmad International Stadium"
-        },
-        {
-          "title": "Channel",
-          "content": "KTV Sport"
-        },
-        {
-          "title": "Commentator",
-          "content": "Khaled Al-Hadi"
+          "content": "Estadio Alfredo Terrera"
         },
         {
           "title": "Match Time",
-          "content": "06:00 pm"
+          "content": "02:30 am"
         },
         {
           "title": "Match Date",
-          "content": "Tuesday 28-01-2025"
+          "content": "Friday 31-01-2025"
         }
       ],
       "channelsAndCommentators": []

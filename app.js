@@ -7,6 +7,7 @@ const authRoutes = require("./api/routes/authRoutes");
 const today_matchesRoutes = require("./api/routes/today_matches");
 const groupRoutes = require("./api/routes/groupRoutes");
 const channelRoutes = require("./api/routes/channelRoutes");
+const streamRoutes = require("./api/routes/streamRoutes");
 const scrapeTodayMatches = require("./scrape");
 const parseM3UtoJSONtoDB = require("./parseM3UtoJSONtoDB");
 const cron = require("node-cron");
@@ -36,6 +37,7 @@ app.use("/api/groups", groupRoutes);
 app.use("/api/channels", channelRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/today_matches", today_matchesRoutes);
+app.use("/api/stream", streamRoutes);
 
 app.get("/api/run-script", (req, res) => {
   const { nextDaytoScrape = 1 } = req.body;
@@ -146,6 +148,9 @@ cron.schedule(
   "2 21 * * *", // Runs at 21:00 UTC (which is 00:20 in Riyadh)
   async () => {
     try {
+      console.log(
+        `Runs at 21:00 UTC (which is 00:20 in Riyadh timezone: Asia/Riyadh`
+      );
       console.log(`Script schedule running at: ${new Date().toISOString()}`);
       await scrapeTodayMatches.scrapeTodayMatches(1);
       console.log("Scraping completed successfully.");
@@ -157,6 +162,25 @@ cron.schedule(
     timezone: "Asia/Riyadh",
   }
 );
+const cron = require("node-cron");
+
+cron.schedule(
+  "0 0 * * *", // Runs every day at 00:00 UTC
+  async () => {
+    try {
+      console.log(`Runs every day at 00:00 UTC     timezone: -Etc/UTC`);
+      console.log(`Script schedule running at: ${new Date().toISOString()}`);
+      await scrapeTodayMatches.scrapeTodayMatches(1);
+      console.log("Scraping completed successfully.");
+    } catch (error) {
+      console.error("Error occurred in scheduled task:", error);
+    }
+  },
+  {
+    timezone: "Etc/UTC", // ✅ Ensure it's running in UTC
+  }
+);
+
 // setInterval(() => {
 //   scrapeTodayMatches.scrapeTodayMatches();
 // }, 43200000); // Scrape every 12 hours

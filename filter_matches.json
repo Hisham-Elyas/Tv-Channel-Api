@@ -1,251 +1,1007 @@
 [
   {
-    "league": "Egyptian League",
-    "leagueLogo": "https://imgs.ysscores.com/championship/48/1711702335497.png",
-    "homeTeam": "National Bank",
-    "awayTeam": "Petrojet",
-    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/7591694081941.png",
-    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/5911730303226.png",
+    "league": "Premier League",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/3411694791422.png",
+    "homeTeam": "Brentford",
+    "awayTeam": "Tottenham",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/4791690118957.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/2501692467226.png",
     "time": "04:00 pm",
     "matchTime": "5:00 PM",
-    "matchDate": "Tuesday 28-01-2025",
+    "matchDate": "Sunday 02-02-2025",
     "channelsAndCommentators": [
       {
-        "Channel": "OnTime Sports 1",
-        "Commentator": "Amir Mahrous"
+        "Channel": "Bein Sport 2",
+        "Commentator": "Hassan Aidaroos"
       },
       {
-        "Channel": "OnTime Sports 1",
-        "Commentator": "Amir Mahrous"
+        "Channel": "Bein Sport 2",
+        "Commentator": "Hassan Aidaroos"
       }
     ]
   },
   {
-    "league": "Egyptian League",
-    "leagueLogo": "https://imgs.ysscores.com/championship/48/1711702335497.png",
-    "homeTeam": "Smouha SC",
-    "awayTeam": "ZED FC",
-    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/481694082088.png",
-    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/8411694619351.png",
-    "time": "07:00 pm",
-    "matchTime": "8:00 PM",
-    "matchDate": "Tuesday 28-01-2025",
-    "channelsAndCommentators": [
-      {
-        "Channel": "OnTime Sports 1",
-        "Commentator": "Mohammed Al-Shazly"
-      },
-      {
-        "Channel": "OnTime Sports 1",
-        "Commentator": "Mohammed Al-Shazly"
-      }
-    ]
-  },
-  {
-    "league": "Iraq Stars League",
-    "leagueLogo": "https://imgs.ysscores.com/championship/48/9731702381714.png",
-    "homeTeam": "Al Naft",
-    "awayTeam": "Erbil",
-    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/7661722514776.png",
-    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/2581695657262.png",
-    "time": "Time not available",
-    "matchTime": "2:30 PM",
-    "matchDate": "Tuesday 28-01-2025",
-    "channelsAndCommentators": [
-      {
-        "Channel": "Iraqia Sport",
-        "Commentator": "Ameer Ali"
-      },
-      {
-        "Channel": "Iraqia Sport",
-        "Commentator": "Ameer Ali"
-      }
-    ]
-  },
-  {
-    "league": "Iraq Stars League",
-    "leagueLogo": "https://imgs.ysscores.com/championship/48/9731702381714.png",
-    "homeTeam": "Al Zawraa",
-    "awayTeam": "Naft Maysan",
-    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/2961729878835.png",
-    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/711695656259.png",
+    "league": "Premier League",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/3411694791422.png",
+    "homeTeam": "Man United",
+    "awayTeam": "Crystal Palace",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/4871690119302.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/6121690118883.png",
     "time": "04:00 pm",
     "matchTime": "5:00 PM",
-    "matchDate": "Tuesday 28-01-2025",
+    "matchDate": "Sunday 02-02-2025",
     "channelsAndCommentators": [
       {
-        "Channel": "Iraqia Sport",
-        "Commentator": "Jamal Darraji"
+        "Channel": "beIN Sport 1",
+        "Commentator": "Khalil Al Balushi"
       },
       {
-        "Channel": "Iraqia Sport",
-        "Commentator": "Jamal Darraji"
+        "Channel": "beIN Sport 1",
+        "Commentator": "Khalil Al Balushi"
       }
     ]
   },
   {
-    "league": "Club Friendlies",
-    "leagueLogo": "https://imgs.ysscores.com/championship/48/331690370434.png",
-    "homeTeam": "Vejle Boldklub",
-    "awayTeam": "Dinamo Batumi",
-    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/3091691095893.png",
-    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/1381690370500.png",
+    "league": "Premier League",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/3411694791422.png",
+    "homeTeam": "Arsenal",
+    "awayTeam": "Man City",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/1701690118820.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/4481690118308.png",
+    "time": "06:30 pm",
+    "matchTime": "7:30 PM",
+    "matchDate": "Sunday 02-02-2025",
+    "channelsAndCommentators": [
+      {
+        "Channel": "beIN Sport 1",
+        "Commentator": "Issam Chaouali"
+      },
+      {
+        "Channel": "beIN Sport 1",
+        "Commentator": "Issam Chaouali"
+      }
+    ]
+  },
+  {
+    "league": "LaLiga",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/8641690196626.png",
+    "homeTeam": "Barcelona",
+    "awayTeam": "Alaves",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/9541690196746.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/2381690196746.png",
     "time": "03:00 pm",
     "matchTime": "4:00 PM",
-    "matchDate": "Tuesday 28-01-2025",
+    "matchDate": "Sunday 02-02-2025",
+    "channelsAndCommentators": [
+      {
+        "Channel": "Bein Sport 3",
+        "Commentator": "Ali Muhammad Ali"
+      },
+      {
+        "Channel": "Bein Sport 3",
+        "Commentator": "Ali Muhammad Ali"
+      }
+    ]
+  },
+  {
+    "league": "LaLiga",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/8641690196626.png",
+    "homeTeam": "Valencia",
+    "awayTeam": "Celta Vigo",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/7881690196747.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/9611690196747.png",
+    "time": "05:15 pm",
+    "matchTime": "6:15 PM",
+    "matchDate": "Sunday 02-02-2025",
+    "channelsAndCommentators": [
+      {
+        "Channel": "Bein Sport 6",
+        "Commentator": "Abdallah Alghamedi"
+      },
+      {
+        "Channel": "Bein Sport 6",
+        "Commentator": "Abdallah Alghamedi"
+      }
+    ]
+  },
+  {
+    "league": "LaLiga",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/8641690196626.png",
+    "homeTeam": "Osasuna",
+    "awayTeam": "Sociedad",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/7961690196745.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/9441690196745.png",
+    "time": "07:30 pm",
+    "matchTime": "8:30 PM",
+    "matchDate": "Sunday 02-02-2025",
+    "channelsAndCommentators": [
+      {
+        "Channel": "Bein Sport 3",
+        "Commentator": "Basem Al-Zeer"
+      },
+      {
+        "Channel": "Bein Sport 3",
+        "Commentator": "Basem Al-Zeer"
+      }
+    ]
+  },
+  {
+    "league": "LaLiga",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/8641690196626.png",
+    "homeTeam": "Real Betis",
+    "awayTeam": "A.Bilbao",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/9221690196745.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/1061690197944.png",
+    "time": "10:00 pm",
+    "matchTime": "11:00 PM",
+    "matchDate": "Sunday 02-02-2025",
+    "channelsAndCommentators": [
+      {
+        "Channel": "Bein Sport 3",
+        "Commentator": "Muhammad Al-Mabrouki"
+      },
+      {
+        "Channel": "Bein Sport 3",
+        "Commentator": "Muhammad Al-Mabrouki"
+      }
+    ]
+  },
+  {
+    "league": "Serie A",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/6281692568873.png",
+    "homeTeam": "Juventus",
+    "awayTeam": "Empoli",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/9331690283003.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/4281690283002.png",
+    "time": "01:30 pm",
+    "matchTime": "2:30 PM",
+    "matchDate": "Sunday 02-02-2025",
+    "channelsAndCommentators": [
+      {
+        "Channel": "AD Sports Premium 1",
+        "Commentator": "Mohammed Al Shamsi"
+      },
+      {
+        "Channel": "STC TV App",
+        "Commentator": "Mohammed Al Shamsi"
+      }
+    ]
+  },
+  {
+    "league": "Serie A",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/6281692568873.png",
+    "homeTeam": "Fiorentina",
+    "awayTeam": "Genoa",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/1231690283002.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/1891690283004.png",
+    "time": "04:00 pm",
+    "matchTime": "5:00 PM",
+    "matchDate": "Sunday 02-02-2025",
+    "channelsAndCommentators": [
+      {
+        "Channel": "AD Sports Premium 1",
+        "Commentator": "Ahmed kher"
+      },
+      {
+        "Channel": "STC TV App",
+        "Commentator": "Ahmed kher"
+      }
+    ]
+  },
+  {
+    "league": "Serie A",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/6281692568873.png",
+    "homeTeam": "AC Milan",
+    "awayTeam": "Inter",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/3181690283002.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/3101690283003.png",
+    "time": "07:00 pm",
+    "matchTime": "8:00 PM",
+    "matchDate": "Sunday 02-02-2025",
+    "channelsAndCommentators": [
+      {
+        "Channel": "AD Sports Premium 1",
+        "Commentator": "Fares Awad"
+      },
+      {
+        "Channel": "AD Sports Premium 2",
+        "Commentator": "Hazem Abdul Salam"
+      }
+    ]
+  },
+  {
+    "league": "Serie A",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/6281692568873.png",
+    "homeTeam": "Roma",
+    "awayTeam": "SSC Napoli",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/1271705512779.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/9521720636634.png",
+    "time": "09:45 pm",
+    "matchTime": "10:45 PM",
+    "matchDate": "Sunday 02-02-2025",
+    "channelsAndCommentators": [
+      {
+        "Channel": "AD Sports Premium 1",
+        "Commentator": "Amer Abdullah"
+      },
+      {
+        "Channel": "STC TV App",
+        "Commentator": "Amer Abdullah"
+      }
+    ]
+  },
+  {
+    "league": "Bundesliga",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/6171690288722.png",
+    "homeTeam": "Frankfurt",
+    "awayTeam": "Wolfsburg",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/231690288818.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/6941690288817.png",
+    "time": "04:30 pm",
+    "matchTime": "5:30 PM",
+    "matchDate": "Sunday 02-02-2025",
+    "channelsAndCommentators": [
+      {
+        "Channel": "Bein Sport 5",
+        "Commentator": "Noffal Bachi"
+      },
+      {
+        "Channel": "Bein Sport 5",
+        "Commentator": "Noffal Bachi"
+      }
+    ]
+  },
+  {
+    "league": "Bundesliga",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/6171690288722.png",
+    "homeTeam": "Leverkusen",
+    "awayTeam": "Hoffenheim",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/7151690288816.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/5141690288816.png",
+    "time": "06:30 pm",
+    "matchTime": "7:30 PM",
+    "matchDate": "Sunday 02-02-2025",
+    "channelsAndCommentators": [
+      {
+        "Channel": "Bein Sport 2",
+        "Commentator": "Ahmed Al Balushi"
+      },
+      {
+        "Channel": "Bein Sport 2",
+        "Commentator": "Ahmed Al Balushi"
+      }
+    ]
+  },
+  {
+    "league": "Ligue 1",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/9551719862665.png",
+    "homeTeam": "Toulouse",
+    "awayTeam": "Nice",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/5161690287967.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/7361690287672.png",
+    "time": "04:00 pm",
+    "matchTime": "5:00 PM",
+    "matchDate": "Sunday 02-02-2025",
+    "channelsAndCommentators": [
+      {
+        "Channel": "Bein Sport 4",
+        "Commentator": "Ahmed Fouad"
+      },
+      {
+        "Channel": "Bein Sport 4",
+        "Commentator": "Ahmed Fouad"
+      }
+    ]
+  },
+  {
+    "league": "Ligue 1",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/9551719862665.png",
+    "homeTeam": "Reims",
+    "awayTeam": "Nantes",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/8361690287842.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/6071690287626.png",
+    "time": "06:15 pm",
+    "matchTime": "7:15 PM",
+    "matchDate": "Sunday 02-02-2025",
+    "channelsAndCommentators": [
+      {
+        "Channel": "beIN Sports Xtra 1",
+        "Commentator": "Jawad Badda"
+      },
+      {
+        "Channel": "beIN Sports Xtra 1",
+        "Commentator": "Jawad Badda"
+      }
+    ]
+  },
+  {
+    "league": "Ligue 1",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/9551719862665.png",
+    "homeTeam": "Angers",
+    "awayTeam": "Le Havre",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/1121690370513.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/6941691927287.png",
+    "time": "06:15 pm",
+    "matchTime": "7:15 PM",
+    "matchDate": "Sunday 02-02-2025",
+    "channelsAndCommentators": [
+      {
+        "Channel": "beIN Sports Xtra 2",
+        "Commentator": "Ahmed Abdou"
+      },
+      {
+        "Channel": "beIN Sports Xtra 2",
+        "Commentator": "Ahmed Abdou"
+      }
+    ]
+  },
+  {
+    "league": "Ligue 1",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/9551719862665.png",
+    "homeTeam": "Rennais",
+    "awayTeam": "Strasbourg",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/5061690287944.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/8951690287872.png",
+    "time": "06:15 pm",
+    "matchTime": "7:15 PM",
+    "matchDate": "Sunday 02-02-2025",
+    "channelsAndCommentators": [
+      {
+        "Channel": "Bein Sport 4",
+        "Commentator": "Amer Al-Khudhiri"
+      },
+      {
+        "Channel": "Bein Sport 4",
+        "Commentator": "Amer Al-Khudhiri"
+      }
+    ]
+  },
+  {
+    "league": "Ligue 1",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/9551719862665.png",
+    "homeTeam": "Marseille",
+    "awayTeam": "Lyon",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/6031690287269.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/4081690287528.png",
+    "time": "09:45 pm",
+    "matchTime": "10:45 PM",
+    "matchDate": "Sunday 02-02-2025",
+    "channelsAndCommentators": [
+      {
+        "Channel": "Bein Sport 4",
+        "Commentator": "Mohamed Barakat"
+      },
+      {
+        "Channel": "Bein Sport 4",
+        "Commentator": "Mohamed Barakat"
+      }
+    ]
+  },
+  {
+    "league": "Scottish Premiership",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/8331722958055.png",
+    "homeTeam": "Motherwell",
+    "awayTeam": "Celtic",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/9511690370547.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/9291690387713.png",
+    "time": "05:00 pm",
+    "matchTime": "6:00 PM",
+    "matchDate": "Sunday 02-02-2025",
     "channelsAndCommentators": []
+  },
+  {
+    "league": "Scottish Premiership",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/8331722958055.png",
+    "homeTeam": "Rangers",
+    "awayTeam": "Ross County",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/6131690370529.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/3331690370534.png",
+    "time": "05:00 pm",
+    "matchTime": "6:00 PM",
+    "matchDate": "Sunday 02-02-2025",
+    "channelsAndCommentators": []
+  },
+  {
+    "league": "Egyptian League",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/1711702335497.png",
+    "homeTeam": "Ceramica",
+    "awayTeam": "Smouha SC",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/631694081965.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/481694082088.png",
+    "time": "04:00 pm",
+    "matchTime": "5:00 PM",
+    "matchDate": "Sunday 02-02-2025",
+    "channelsAndCommentators": [
+      {
+        "Channel": "OnTime Sports 1",
+        "Commentator": "Mohamed El bouchi"
+      },
+      {
+        "Channel": "OnTime Sports 1",
+        "Commentator": "Mohamed El bouchi"
+      }
+    ]
+  },
+  {
+    "league": "Egyptian League",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/1711702335497.png",
+    "homeTeam": "Modern",
+    "awayTeam": "Al Ahly SC",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/5391724147326.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/9591694714907.png",
+    "time": "07:00 pm",
+    "matchTime": "8:00 PM",
+    "matchDate": "Sunday 02-02-2025",
+    "channelsAndCommentators": [
+      {
+        "Channel": "OnTime Sports 1",
+        "Commentator": "Mohamed Alkawaleny"
+      },
+      {
+        "Channel": "OnTime Sports 1",
+        "Commentator": "Mohamed Alkawaleny"
+      }
+    ]
+  },
+  {
+    "league": "Süper Lig",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/7571723239230.png",
+    "homeTeam": "Demirspor",
+    "awayTeam": "Kasimpasa",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/2061690126996.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/8131690127512.png",
+    "time": "12:30 pm",
+    "matchTime": "1:30 PM",
+    "matchDate": "Sunday 02-02-2025",
+    "channelsAndCommentators": [
+      {
+        "Channel": "beIN Sports HD 1 TR",
+        "Commentator": "Unknown"
+      }
+    ]
+  },
+  {
+    "league": "Süper Lig",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/7571723239230.png",
+    "homeTeam": "Goztepe",
+    "awayTeam": "Alanyaspor",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/8741690370493.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/9541690127467.png",
+    "time": "03:00 pm",
+    "matchTime": "4:00 PM",
+    "matchDate": "Sunday 02-02-2025",
+    "channelsAndCommentators": [
+      {
+        "Channel": "beIN Sports HD 1 TR",
+        "Commentator": "Unknown"
+      }
+    ]
+  },
+  {
+    "league": "Süper Lig",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/7571723239230.png",
+    "homeTeam": "Fenerbahce",
+    "awayTeam": "Rizespor",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/681690127723.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/5931690127362.png",
+    "time": "06:00 pm",
+    "matchTime": "7:00 PM",
+    "matchDate": "Sunday 02-02-2025",
+    "channelsAndCommentators": [
+      {
+        "Channel": "beIN Sports HD 1 TR",
+        "Commentator": "Unknown"
+      }
+    ]
+  },
+  {
+    "league": "Liga Portugal",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/7301690383928.png",
+    "homeTeam": "Sporting CP",
+    "awayTeam": "Farense",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/9791690386587.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/9131690384873.png",
+    "time": "08:00 pm",
+    "matchTime": "9:00 PM",
+    "matchDate": "Sunday 02-02-2025",
+    "channelsAndCommentators": [
+      {
+        "Channel": "SSC 1 HD",
+        "Commentator": "Abdullah Al-Shehri"
+      },
+      {
+        "Channel": "SSC 5 HD",
+        "Commentator": "Abdullah Al-Shehri"
+      }
+    ]
+  },
+  {
+    "league": "Liga Portugal",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/7301690383928.png",
+    "homeTeam": "Estrela",
+    "awayTeam": "Benfica",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/3151690385137.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/4491690386690.png",
+    "time": "10:30 pm",
+    "matchTime": "11:30 PM",
+    "matchDate": "Sunday 02-02-2025",
+    "channelsAndCommentators": [
+      {
+        "Channel": "SSC 1 HD",
+        "Commentator": "Aayid Aleasimi"
+      },
+      {
+        "Channel": "SSC 5 HD",
+        "Commentator": "Aayid Aleasimi"
+      }
+    ]
   },
   {
     "league": "Algerian Professional League 1",
     "leagueLogo": "https://imgs.ysscores.com/championship/48/8131693416988.png",
-    "homeTeam": "USM Alger",
-    "awayTeam": "Paradou AC",
-    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/9611695834503.png",
-    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/3511693418113.png",
-    "time": "08:00 pm",
-    "matchTime": "9:00 PM",
-    "matchDate": "Tuesday 28-01-2025",
-    "channelsAndCommentators": []
-  },
-  {
-    "league": "FDL KSA",
-    "leagueLogo": "https://imgs.ysscores.com/championship/48/4661694112676.png",
-    "homeTeam": "Al Jabalain",
-    "awayTeam": "Ohod",
-    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/7651691930547.png",
-    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/6811691930378.png",
-    "time": "02:55 pm",
-    "matchTime": "3:55 PM",
-    "matchDate": "Tuesday 28-01-2025",
-    "channelsAndCommentators": [
-      {
-        "Channel": "KSA Sports 3",
-        "Commentator": "Meshaal Alshamry"
-      },
-      {
-        "Channel": "KSA Sports 3",
-        "Commentator": "Meshaal Alshamry"
-      }
-    ]
-  },
-  {
-    "league": "FDL KSA",
-    "leagueLogo": "https://imgs.ysscores.com/championship/48/4661694112676.png",
-    "homeTeam": "Abha",
-    "awayTeam": "Al Arabi",
-    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/9091690299913.png",
-    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/7351691930572.png",
-    "time": "02:55 pm",
-    "matchTime": "3:55 PM",
-    "matchDate": "Tuesday 28-01-2025",
-    "channelsAndCommentators": [
-      {
-        "Channel": "KSA Sport 1",
-        "Commentator": "Haitham Tahtouh"
-      },
-      {
-        "Channel": "KSA Sport 1",
-        "Commentator": "Haitham Tahtouh"
-      }
-    ]
-  },
-  {
-    "league": "FDL KSA",
-    "leagueLogo": "https://imgs.ysscores.com/championship/48/4661694112676.png",
-    "homeTeam": "Al-Adalah",
-    "awayTeam": "Al-Faisaly",
-    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/7331691930420.png",
-    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/5731692998559.png",
+    "homeTeam": "Mostaganem",
+    "awayTeam": "MC Alger",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/8081721202117.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/7391693665631.png",
     "time": "05:00 pm",
     "matchTime": "6:00 PM",
-    "matchDate": "Tuesday 28-01-2025",
+    "matchDate": "Sunday 02-02-2025",
     "channelsAndCommentators": [
       {
-        "Channel": "KSA Sport 1",
-        "Commentator": "Muhammad Al-Bakhitan"
+        "Channel": "Algerian 2",
+        "Commentator": "Unknown"
       },
       {
-        "Channel": "KSA Sport 1",
-        "Commentator": "Muhammad Al-Bakhitan"
+        "Channel": "Algeria 1",
+        "Commentator": "Unknown"
       }
     ]
   },
   {
-    "league": "EFL Championship",
-    "leagueLogo": "https://imgs.ysscores.com/championship/48/4861690937574.png",
-    "homeTeam": "Portsmouth",
-    "awayTeam": "Millwall",
-    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/5401690370525.png",
-    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/2181690370550.png",
-    "time": "09:45 pm",
-    "matchTime": "10:45 PM",
-    "matchDate": "Tuesday 28-01-2025",
+    "league": "Tunisian Professional League 1",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/5641693174914.png",
+    "homeTeam": "CA Bizertin",
+    "awayTeam": "US Tataouine",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/2171692796264.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/5001692796349.png",
+    "time": "03:00 pm",
+    "matchTime": "4:00 PM",
+    "matchDate": "Sunday 02-02-2025",
     "channelsAndCommentators": []
+  },
+  {
+    "league": "Tunisian Professional League 1",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/5641693174914.png",
+    "homeTeam": "Esperance",
+    "awayTeam": "AS Soliman",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/9451695299186.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/701692796153.png",
+    "time": "03:00 pm",
+    "matchTime": "4:00 PM",
+    "matchDate": "Sunday 02-02-2025",
+    "channelsAndCommentators": []
+  },
+  {
+    "league": "Tunisian Professional League 1",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/5641693174914.png",
+    "homeTeam": "AS Gabes",
+    "awayTeam": "Beja",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/7431718813697.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/821692795939.png",
+    "time": "03:00 pm",
+    "matchTime": "4:00 PM",
+    "matchDate": "Sunday 02-02-2025",
+    "channelsAndCommentators": []
+  },
+  {
+    "league": "Tunisian Professional League 1",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/5641693174914.png",
+    "homeTeam": "Etoile du Sahel",
+    "awayTeam": "US Monastir",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/1161692205578.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/9111692796285.png",
+    "time": "03:00 pm",
+    "matchTime": "4:00 PM",
+    "matchDate": "Sunday 02-02-2025",
+    "channelsAndCommentators": [
+      {
+        "Channel": "Alkass 1",
+        "Commentator": "Heikal Al Sagheer"
+      },
+      {
+        "Channel": "Alkass 1",
+        "Commentator": "Heikal Al Sagheer"
+      }
+    ]
+  },
+  {
+    "league": "Tunisian Professional League 1",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/5641693174914.png",
+    "homeTeam": "Ben Guerdane",
+    "awayTeam": "CS Sfaxien",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/4451692796073.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/6131692796238.png",
+    "time": "03:00 pm",
+    "matchTime": "4:00 PM",
+    "matchDate": "Sunday 02-02-2025",
+    "channelsAndCommentators": []
+  },
+  {
+    "league": "Kuwait Premier League",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/6261723224041.png",
+    "homeTeam": "Kuwait SC",
+    "awayTeam": "Al-Nasr",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/7471694354180.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/9001723156578.png",
+    "time": "04:55 pm",
+    "matchTime": "5:55 PM",
+    "matchDate": "Sunday 02-02-2025",
+    "channelsAndCommentators": [
+      {
+        "Channel": "atv",
+        "Commentator": "Hani Alshehri"
+      },
+      {
+        "Channel": "Shasha",
+        "Commentator": "Hani Alshehri"
+      }
+    ]
+  },
+  {
+    "league": "Kuwait Premier League",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/6261723224041.png",
+    "homeTeam": "Al-Fahaheel",
+    "awayTeam": "Al-Arabi",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/301723156154.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/131723157127.png",
+    "time": "07:10 pm",
+    "matchTime": "8:10 PM",
+    "matchDate": "Sunday 02-02-2025",
+    "channelsAndCommentators": [
+      {
+        "Channel": "atv",
+        "Commentator": "Ali Darraj"
+      },
+      {
+        "Channel": "Shasha",
+        "Commentator": "Ali Darraj"
+      }
+    ]
+  },
+  {
+    "league": "Oman Professional League",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/2201691928047.png",
+    "homeTeam": "Sohar",
+    "awayTeam": "Al-Nasr Salalah",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/3001691931931.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/5661691930849.png",
+    "time": "03:15 pm",
+    "matchTime": "4:15 PM",
+    "matchDate": "Sunday 02-02-2025",
+    "channelsAndCommentators": [
+      {
+        "Channel": "Oman TV Sport",
+        "Commentator": "Ahmed Al-Agamy"
+      },
+      {
+        "Channel": "Oman TV Sport",
+        "Commentator": "Ahmed Al-Agamy"
+      }
+    ]
+  },
+  {
+    "league": "Oman Professional League",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/2201691928047.png",
+    "homeTeam": "Bahla",
+    "awayTeam": "Saham",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/3291691931416.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/1541722176368.png",
+    "time": "04:30 pm",
+    "matchTime": "5:30 PM",
+    "matchDate": "Sunday 02-02-2025",
+    "channelsAndCommentators": []
+  },
+  {
+    "league": "Oman Professional League",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/2201691928047.png",
+    "homeTeam": "Al-Nahda",
+    "awayTeam": "Ibri",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/4141691930732.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/801691932066.png",
+    "time": "04:30 pm",
+    "matchTime": "5:30 PM",
+    "matchDate": "Sunday 02-02-2025",
+    "channelsAndCommentators": []
+  },
+  {
+    "league": "Oman Professional League",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/2201691928047.png",
+    "homeTeam": "Al-Seeb",
+    "awayTeam": "Al Shabab",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/5401691931087.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/8431691931857.png",
+    "time": "05:30 pm",
+    "matchTime": "6:30 PM",
+    "matchDate": "Sunday 02-02-2025",
+    "channelsAndCommentators": [
+      {
+        "Channel": "Oman TV Sport",
+        "Commentator": "Ahmed Al Kaabi"
+      },
+      {
+        "Channel": "Oman TV Sport",
+        "Commentator": "Ahmed Al Kaabi"
+      }
+    ]
   },
   {
     "league": "Eredivisie",
     "leagueLogo": "https://imgs.ysscores.com/championship/48/4431690992915.png",
-    "homeTeam": "Heracles",
-    "awayTeam": "FC Groningen",
-    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/2091690996504.png",
-    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/10001690370535.png",
-    "time": "09:00 pm",
-    "matchTime": "10:00 PM",
-    "matchDate": "Tuesday 28-01-2025",
+    "homeTeam": "Almere City FC",
+    "awayTeam": "RKC Waalwijk",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/2241690996249.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/6061690457395.png",
+    "time": "01:15 pm",
+    "matchTime": "2:15 PM",
+    "matchDate": "Sunday 02-02-2025",
     "channelsAndCommentators": [
       {
         "Channel": "Referee",
-        "Commentator": "Rob Dieperink"
+        "Commentator": "Allard Lindhout"
       },
       {
         "Channel": "Assistant referee",
-        "Commentator": "Mark Janssen"
+        "Commentator": "Roy de Nas"
       }
     ]
   },
   {
-    "league": "Argentine Primera División",
-    "leagueLogo": "https://imgs.ysscores.com/championship/48/1201694222910.png",
-    "homeTeam": "Banfield",
-    "awayTeam": "Newell's",
-    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/3521717933590.png",
-    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/5511706892334.png",
-    "time": "3\n                                                                -\n                                                                0",
-    "matchTime": "2:00 AM",
-    "matchDate": "Tuesday 28-01-2025",
-    "channelsAndCommentators": []
-  },
-  {
-    "league": "Argentine Primera División",
-    "leagueLogo": "https://imgs.ysscores.com/championship/48/1201694222910.png",
-    "homeTeam": "Riestra",
-    "awayTeam": "CA San Martín",
-    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/1081718579454.png",
-    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/4891735322718.png",
-    "time": "10:00 pm",
-    "matchTime": "11:00 PM",
-    "matchDate": "Tuesday 28-01-2025",
-    "channelsAndCommentators": []
-  },
-  {
-    "league": "Kuwait Super Cup",
-    "leagueLogo": "https://imgs.ysscores.com/championship/48/9611737551572.png",
-    "homeTeam": "Kuwait SC",
-    "awayTeam": "Qadsia",
-    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/7471694354180.png",
-    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/451723127217.png",
-    "time": "06:00 pm",
-    "matchTime": "7:00 PM",
-    "matchDate": "Tuesday 28-01-2025",
+    "league": "Eredivisie",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/4431690992915.png",
+    "homeTeam": "Ajax",
+    "awayTeam": "Feyenoord",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/5141690476054.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/9951690455713.png",
+    "time": "03:30 pm",
+    "matchTime": "4:30 PM",
+    "matchDate": "Sunday 02-02-2025",
     "channelsAndCommentators": [
       {
-        "Channel": "KTV Sport",
-        "Commentator": "Khaled Al-Hadi"
-      },
-      {
-        "Channel": "KTV Sport",
-        "Commentator": "Khaled Al-Hadi"
+        "Channel": "StarzPlay",
+        "Commentator": "Unknown"
       }
     ]
+  },
+  {
+    "league": "Eredivisie",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/4431690992915.png",
+    "homeTeam": "Go Ahead Eagles",
+    "awayTeam": "FC Twente",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/3951690996987.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/7451690996868.png",
+    "time": "03:30 pm",
+    "matchTime": "4:30 PM",
+    "matchDate": "Sunday 02-02-2025",
+    "channelsAndCommentators": [
+      {
+        "Channel": "StarzPlay",
+        "Commentator": "Unknown"
+      }
+    ]
+  },
+  {
+    "league": "Eredivisie",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/4431690992915.png",
+    "homeTeam": "Sparta Rotterdam",
+    "awayTeam": "FC Groningen",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/111690824096.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/10001690370535.png",
+    "time": "05:45 pm",
+    "matchTime": "6:45 PM",
+    "matchDate": "Sunday 02-02-2025",
+    "channelsAndCommentators": [
+      {
+        "Channel": "Referee",
+        "Commentator": "Alex Bos"
+      },
+      {
+        "Channel": "Assistant referee",
+        "Commentator": "Joris Westhof"
+      }
+    ]
+  },
+  {
+    "league": "Eredivisie",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/4431690992915.png",
+    "homeTeam": "Willem II",
+    "awayTeam": "AZ Alkmaar",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/5411690370528.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/7771690996316.png",
+    "time": "09:00 pm",
+    "matchTime": "10:00 PM",
+    "matchDate": "Sunday 02-02-2025",
+    "channelsAndCommentators": [
+      {
+        "Channel": "StarzPlay",
+        "Commentator": "Unknown"
+      }
+    ]
+  },
+  {
+    "league": "Belgian Pro League",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/9251692797287.png",
+    "homeTeam": "Royal Antwerp",
+    "awayTeam": "Club Brugge",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/1151690370549.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/121690370520.png",
+    "time": "02:30 pm",
+    "matchTime": "3:30 PM",
+    "matchDate": "Sunday 02-02-2025",
+    "channelsAndCommentators": []
+  },
+  {
+    "league": "Belgian Pro League",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/9251692797287.png",
+    "homeTeam": "St.Gilloise",
+    "awayTeam": "St.Truiden",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/3651690370510.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/6271690370550.png",
+    "time": "05:00 pm",
+    "matchTime": "6:00 PM",
+    "matchDate": "Sunday 02-02-2025",
+    "channelsAndCommentators": []
+  },
+  {
+    "league": "Belgian Pro League",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/9251692797287.png",
+    "homeTeam": "Gent",
+    "awayTeam": "Anderlecht",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/1061690370549.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/1651733919643.png",
+    "time": "07:30 pm",
+    "matchTime": "8:30 PM",
+    "matchDate": "Sunday 02-02-2025",
+    "channelsAndCommentators": []
+  },
+  {
+    "league": "Belgian Pro League",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/9251692797287.png",
+    "homeTeam": "Kortrijk",
+    "awayTeam": "Westerlo",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/5911694963389.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/131690370550.png",
+    "time": "08:15 pm",
+    "matchTime": "9:15 PM",
+    "matchDate": "Sunday 02-02-2025",
+    "channelsAndCommentators": []
+  },
+  {
+    "league": "Persian Gulf Pro League",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/6451704023555.png",
+    "homeTeam": "Aluminium Arak",
+    "awayTeam": "Rafsanjan",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/3331723738110.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/6251723738623.png",
+    "time": "02:30 pm",
+    "matchTime": "3:30 PM",
+    "matchDate": "Sunday 02-02-2025",
+    "channelsAndCommentators": []
+  },
+  {
+    "league": "Egyptian Second Division",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/7581728754011.png",
+    "homeTeam": "El Qanah FC",
+    "awayTeam": "Montakhab Suez",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/5821715097236.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/3691696033928.png",
+    "time": "03:00 pm",
+    "matchTime": "4:00 PM",
+    "matchDate": "Sunday 02-02-2025",
+    "channelsAndCommentators": []
+  },
+  {
+    "league": "Supercopa do Brasil‏",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/8591734533148.png",
+    "homeTeam": "Botafogo RJ",
+    "awayTeam": "Flamengo",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/2731691418709.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/6861691418710.png",
+    "time": "09:00 pm",
+    "matchTime": "10:00 PM",
+    "matchDate": "Sunday 02-02-2025",
+    "channelsAndCommentators": []
+  },
+  {
+    "league": "Argentine Primera División",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/1201694222910.png",
+    "homeTeam": "CA San Martín",
+    "awayTeam": "Rosario",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/4891735322718.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/7811711809111.png",
+    "time": "Time not available",
+    "matchTime": "1:00 AM",
+    "matchDate": "Sunday 02-02-2025",
+    "channelsAndCommentators": []
+  },
+  {
+    "league": "Argentine Primera División",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/1201694222910.png",
+    "homeTeam": "Lanus",
+    "awayTeam": "Sarmiento",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/6881711750373.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/2911717935810.png",
+    "time": "02:00 am",
+    "matchTime": "3:00 AM",
+    "matchDate": "Sunday 02-02-2025",
+    "channelsAndCommentators": []
+  },
+  {
+    "league": "Argentine Primera División",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/1201694222910.png",
+    "homeTeam": "San Lorenzo",
+    "awayTeam": "River Plate",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/8421711808886.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/7481694223524.png",
+    "time": "10:00 pm",
+    "matchTime": "11:00 PM",
+    "matchDate": "Sunday 02-02-2025",
+    "channelsAndCommentators": []
+  },
+  {
+    "league": "Jordan Super Cup",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/4331737034393.png",
+    "homeTeam": "Al-Wehdat",
+    "awayTeam": "Al-Hussein",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/5171690936731.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/9771690937060.png",
+    "time": "06:00 pm",
+    "matchTime": "7:00 PM",
+    "matchDate": "Sunday 02-02-2025",
+    "channelsAndCommentators": [
+      {
+        "Channel": "Jordan Sport",
+        "Commentator": "Badr Shadad"
+      },
+      {
+        "Channel": "Jordan Sport",
+        "Commentator": "Badr Shadad"
+      }
+    ]
+  },
+  {
+    "league": "Excellence Cup",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/8651725315427.png",
+    "homeTeam": "Raja Beni Mellal",
+    "awayTeam": "RSB Berkane",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/1451725648266.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/1121692794477.png",
+    "time": "04:00 pm",
+    "matchTime": "5:00 PM",
+    "matchDate": "Sunday 02-02-2025",
+    "channelsAndCommentators": []
+  },
+  {
+    "league": "Excellence Cup",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/8651725315427.png",
+    "homeTeam": "Olympique Dcheira",
+    "awayTeam": "FAR Rabat",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/5811715253246.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/4171692205946.png",
+    "time": "04:00 pm",
+    "matchTime": "5:00 PM",
+    "matchDate": "Sunday 02-02-2025",
+    "channelsAndCommentators": []
+  },
+  {
+    "league": "Excellence Cup",
+    "leagueLogo": "https://imgs.ysscores.com/championship/48/8651725315427.png",
+    "homeTeam": "Raja Club",
+    "awayTeam": "Khouribga",
+    "homeTeamLogo": "https://imgs.ysscores.com/teams/64/6421692794445.png",
+    "awayTeamLogo": "https://imgs.ysscores.com/teams/64/4701711924901.png",
+    "time": "06:00 pm",
+    "matchTime": "7:00 PM",
+    "matchDate": "Sunday 02-02-2025",
+    "channelsAndCommentators": []
   }
 ]
