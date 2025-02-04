@@ -1,7 +1,6 @@
 const express = require("express");
-const streamController = require("../controller/streamController");
-
 const router = express.Router();
+const streamController = require("../controller/streamController");
 
 router.post("/start", streamController.startStreamHandler);
 router.post("/stop/:streamId", streamController.stopStreamHandler);

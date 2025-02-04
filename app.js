@@ -32,12 +32,12 @@ app.use((req, res, next) => {
   }
   next();
 });
+app.use("/api/stream", streamRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/groups", groupRoutes);
 app.use("/api/channels", channelRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/today_matches", today_matchesRoutes);
-app.use("/api/stream", streamRoutes);
 
 app.get("/api/run-script", (req, res) => {
   const { nextDaytoScrape = 1 } = req.body;

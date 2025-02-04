@@ -1,15 +1,10 @@
-const {
-  startStream,
-  stopStream,
-  stopAllStreams,
-} = require("../services/streamService");
-
+const streamService = require("../services/streamService");
 const startStreamHandler = (req, res) => {
   try {
     const { sourceUrl, preset = "low-cpu" } = req.body;
     if (!sourceUrl) throw new Error("Missing sourceUrl");
 
-    const streamData = startStream(sourceUrl, preset);
+    const streamData = streamService.startStream(sourceUrl, preset);
     res.json(streamData);
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -18,7 +13,7 @@ const startStreamHandler = (req, res) => {
 
 const stopStreamHandler = (req, res) => {
   const streamId = req.params.streamId;
-  const stoppedStream = stopStream(streamId);
+  const stoppedStream = streamService.stopStream(streamId);
 
   if (!stoppedStream)
     return res.status(404).json({ error: "Stream not found" });
@@ -27,7 +22,7 @@ const stopStreamHandler = (req, res) => {
 };
 
 const stopAllStreamsHandler = (req, res) => {
-  const stoppedStreams = stopAllStreams();
+  const stoppedStreams = streamService.stopAllStreams();
   res.json({
     message: `Stopped ${stoppedStreams.length} streams`,
     stoppedStreams,
