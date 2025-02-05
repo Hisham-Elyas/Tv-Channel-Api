@@ -225,7 +225,7 @@ function addHour(timeStr) {
 
   // Add 1 hour
   const date = new Date(1970, 0, 1, hours24, minutesInt);
-  date.setHours(date.getHours() + 1);
+  date.setHours(date.getHours() + 2);
 
   // Convert back to 12-hour format
   const newHours24 = date.getHours();
