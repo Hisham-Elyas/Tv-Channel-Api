@@ -8,6 +8,7 @@ const today_matchesRoutes = require("./api/routes/today_matches");
 const groupRoutes = require("./api/routes/groupRoutes");
 const channelRoutes = require("./api/routes/channelRoutes");
 const streamRoutes = require("./api/routes/streamRoutes");
+const categoryRoutes = require("./api/routes/categoryRoutes");
 const scrapeTodayMatches = require("./scrape");
 const parseM3UtoJSONtoDB = require("./parseM3UtoJSONtoDB");
 const cron = require("node-cron");
@@ -36,6 +37,7 @@ app.use("/api/stream", streamRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/groups", groupRoutes);
 app.use("/api/channels", channelRoutes);
+app.use("/api/categories", categoryRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/today_matches", today_matchesRoutes);
 
