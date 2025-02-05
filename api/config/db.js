@@ -91,23 +91,20 @@ const initializeDatabase = async () => {
     `);
     //-- Create the categories table
     await pool.query(`
-    
-CREATE TABLE IF NOT EXISTS \`categories\` (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(255) NOT NULL UNIQUE,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-)
+     CREATE TABLE IF NOT EXISTS \`categories\` (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(255) NOT NULL UNIQUE,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+     )
     `);
     // -- Create the category_channels table (join table)
     await pool.query(`
-    
-CREATE TABLE IF NOT EXISTS \`category_channels\` (
-  category_id INT NOT NULL,
-  channel_id INT NOT NULL,
-  PRIMARY KEY (category_id, channel_id),
-  FOREIGN KEY (category_id) REFERENCES \`categories\`(id) ON DELETE CASCADE,
-  FOREIGN KEY (channel_id) REFERENCES \`channels\`(id) ON DELETE CASCADE
-
+     CREATE TABLE IF NOT EXISTS \`category_channels\` (
+        category_id INT NOT NULL,
+        channel_id INT NOT NULL,
+        PRIMARY KEY (category_id, channel_id),
+        FOREIGN KEY (category_id) REFERENCES \`categories\`(id) ON DELETE CASCADE,
+        FOREIGN KEY (channel_id) REFERENCES \`channels\`(id) ON DELETE CASCADE  )
     `);
 
     await pool.query("COMMIT");
