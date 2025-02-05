@@ -41,10 +41,7 @@ const ChannelController = {
       const { groupId } = req.params;
       const channels = await Channel.getChannelsByGroupId(groupId);
       if (channels.length > 0) {
-        res.status(200).json({
-          count: channels.length,
-          channels: channels,
-        });
+        res.status(200).json(channels);
       } else {
         res.status(404).json({ message: "No channels found for this group" });
       }
