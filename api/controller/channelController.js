@@ -40,11 +40,11 @@ const ChannelController = {
     try {
       const { groupId } = req.params;
       const channels = await Channel.getChannelsByGroupId(groupId);
-      if (channels.length > 0) {
-        res.status(200).json(channels);
-      } else {
-        res.status(404).json({ message: "No channels found for this group" });
+      if (!channels) {
+        return res.status(404).json({ message: "Group not found" });
       }
+
+      res.status(200).json(channels);
     } catch (err) {
       res.status(500).json({ error: err.message });
     }

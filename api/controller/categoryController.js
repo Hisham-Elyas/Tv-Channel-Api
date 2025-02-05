@@ -40,10 +40,17 @@ const categoryController = {
         return res.status(400).json({ error: "channel_id is required." });
       }
       // Optionally, check if the category and channel exist here.
-      await CategoryChannel.addChannelToCategory(category_id, channel_id);
-      res
-        .status(201)
-        .json({ message: "Channel added to category successfully." });
+
+      const result = await CategoryChannel.addChannelToCategory(
+        category_id,
+        channel_id
+      );
+
+      if (result.message === "Channel is already assigned to this category") {
+        return res.status(409).json({ message: result.message }); // 409 Conflict
+      }
+
+      res.status(201).json(result);
     } catch (error) {
       console.error(error);
       res
@@ -56,16 +63,54 @@ const categoryController = {
   async getCategoryChannels(req, res) {
     try {
       const category_id = req.params.id;
-      const channels = await CategoryChannel.getChannelsByCategory(category_id);
-      res.status(200).json({
-        count: channels.length,
-        channels: channels,
-      });
+
+      const data = await CategoryChannel.getChannelsByCategory(category_id);
+
+      if (!data) {
+        return res.status(404).json({ message: "Category not found" });
+      }
+
+      res.status(200).json(data);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Server error while fetching channels." });
+    }
+  },
+  removeChannelFromCategory: async (req, res) => {
+    try {
+      const { categoryId, channelId } = req.params;
+
+      const result = await CategoryChannel.removeChannelFromCategory(
+        categoryId,
+        channelId
+      );
+
+      if (!result.deleted) {
+        return res.status(404).json({ message: result.message });
+      }
+
+      res.status(200).json(result);
     } catch (error) {
       console.error(error);
       res
         .status(500)
-        .json({ error: "Server error while fetching channels for category." });
+        .json({ error: "Server error while removing channel from category." });
+    }
+  },
+  deleteCategory: async (req, res) => {
+    try {
+      const { categoryId } = req.params;
+
+      const result = await CategoryChannel.deleteCategory(categoryId);
+
+      if (!result.deleted) {
+        return res.status(404).json({ message: result.message });
+      }
+
+      res.status(200).json(result);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Server error while deleting category." });
     }
   },
 };
