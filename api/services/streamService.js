@@ -4,21 +4,16 @@ const { cleanupHlsFiles } = require("../utils/fileUtils");
 const config = require("../config/config");
 
 const activeStreams = new Map();
-
-const startStream = (sourceUrl, preset) => {
+const startStream = (sourceUrl, preset = "480p") => {
   const streamId = uuid.v4();
-  const hlsUrls = {
-    "1080p": `${config.baseUrl}/${streamId}_1080p.m3u8`,
-    "720p": `${config.baseUrl}/${streamId}_720p.m3u8`,
-    "480p": `${config.baseUrl}/${streamId}_480p.m3u8`,
-  };
+  const hlsUrls = { "480p": `${config.baseUrl}/${streamId}_480p.m3u8` };
 
-  const ffmpegProcess = startFFmpegProcess(
-    sourceUrl,
-    streamId,
-    preset,
-    config.rtmpServer
-  );
+  if (preset === "720p-1080p") {
+    hlsUrls["720p"] = `${config.baseUrl}/${streamId}_720p.m3u8`;
+    hlsUrls["1080p"] = `${config.baseUrl}/${streamId}_1080p.m3u8`;
+  }
+
+  const ffmpegProcess = startFFmpegProcess(sourceUrl, streamId, preset);
 
   ffmpegProcess.stderr.on("data", (data) => {
     console.error(`[${streamId}] FFmpeg Error: ${data}`);

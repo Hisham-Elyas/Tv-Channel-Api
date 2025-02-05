@@ -1,10 +1,12 @@
 const streamService = require("../services/streamService");
 const startStreamHandler = (req, res) => {
   try {
-    const { sourceUrl, preset = "low-cpu" } = req.body;
+    const { sourceUrl, quality = "480p" } = req.body;
     if (!sourceUrl) throw new Error("Missing sourceUrl");
 
+    const preset = quality === "720p-1080p" ? "720p-1080p" : "480p";
     const streamData = streamService.startStream(sourceUrl, preset);
+
     res.json(streamData);
   } catch (error) {
     res.status(400).json({ error: error.message });
