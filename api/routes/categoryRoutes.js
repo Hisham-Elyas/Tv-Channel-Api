@@ -19,6 +19,8 @@ router.delete(
   "/:categoryId/channels/:channelId",
   categoryController.removeChannelFromCategory
 );
+router.put("/:categoryId", categoryController.updateCategory);
+
 // Delete a category
 router.delete("/:categoryId", categoryController.deleteCategory);
 

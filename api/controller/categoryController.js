@@ -41,7 +41,7 @@ const categoryController = {
           .json({ message: "New category name is required." });
       }
 
-      const result = await Category.updateCategory(categoryId, name);
+      const result = await CategoryChannel.updateCategory(categoryId, name);
 
       if (!result.updated) {
         return res.status(404).json({ message: result.message });
