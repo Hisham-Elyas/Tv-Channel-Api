@@ -80,27 +80,48 @@ const CategoryChannel = {
       throw new Error(err);
     }
   },
-  removeChannelFromCategory: async (req, res) => {
+  // Update category name
+  updateCategory: async (categoryId, newName) => {
     try {
-      const { categoryId, channelId } = req.params;
-
-      const result = await CategoryChannel.removeChannelFromCategory(
-        categoryId,
-        channelId
+      const [result] = await pool.query(
+        "UPDATE categories SET name = ? WHERE id = ?",
+        [newName, categoryId]
       );
 
-      if (!result.deleted) {
-        return res.status(404).json({ message: result.message });
+      if (result.affectedRows === 0) {
+        return { message: "Category not found", updated: false };
       }
 
-      res.status(200).json(result);
-    } catch (error) {
-      console.error(error);
-      res
-        .status(500)
-        .json({ error: "Server error while removing channel from category." });
+      return { message: "Category updated successfully", updated: true };
+    } catch (err) {
+      throw new Error(err);
     }
   },
+
+  // Remove a channel from a category
+  removeChannelFromCategory: async (categoryId, channelId) => {
+    try {
+      const [result] = await pool.query(
+        "DELETE FROM category_channels WHERE category_id = ? AND channel_id = ?",
+        [categoryId, channelId]
+      );
+
+      if (result.affectedRows === 0) {
+        return {
+          message: "Channel not found in this category",
+          deleted: false,
+        };
+      }
+
+      return {
+        message: "Channel removed from category successfully",
+        deleted: true,
+      };
+    } catch (err) {
+      throw new Error(err);
+    }
+  },
+
   deleteCategory: async (categoryId) => {
     try {
       // First, delete category-channel relationships

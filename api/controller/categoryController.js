@@ -30,6 +30,29 @@ const categoryController = {
         .json({ error: "Server error while fetching categories." });
     }
   },
+  updateCategory: async (req, res) => {
+    try {
+      const { categoryId } = req.params;
+      const { name } = req.body;
+
+      if (!name) {
+        return res
+          .status(400)
+          .json({ message: "New category name is required." });
+      }
+
+      const result = await Category.updateCategory(categoryId, name);
+
+      if (!result.updated) {
+        return res.status(404).json({ message: result.message });
+      }
+
+      res.status(200).json(result);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Server error while updating category." });
+    }
+  },
 
   // Add a channel to a category
   async addChannelToCategory(req, res) {
