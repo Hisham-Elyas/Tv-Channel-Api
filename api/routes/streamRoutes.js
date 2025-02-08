@@ -2,8 +2,7 @@ const express = require("express");
 const router = express.Router();
 const streamController = require("../controller/streamController");
 
-router.post("/start", streamController.startStreamHandler);
-router.post("/stop/:streamId", streamController.stopStreamHandler);
-router.post("/stop-all", streamController.stopAllStreamsHandler);
+router.post("/", streamController.startStream);
+router.post("/stop", streamController.stopStreams);
 
 module.exports = router;

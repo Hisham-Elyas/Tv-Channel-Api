@@ -1,38 +1,37 @@
 const streamService = require("../services/streamService");
-const startStreamHandler = (req, res) => {
+
+exports.startStream = async (req, res) => {
   try {
-    const { sourceUrl, quality = "480p" } = req.body;
-    if (!sourceUrl) throw new Error("Missing sourceUrl");
+    const { url, id, name, resolution } = req.body;
 
-    const preset = quality === "720p-1080p" ? "720p-1080p" : "480p";
-    const streamData = streamService.startStream(sourceUrl, preset);
+    if (!url || !id || !name || !resolution) {
+      return res.status(400).json({
+        error: "URL, stream ID, name, and resolution settings are required",
+      });
+    }
 
-    res.json(streamData);
+    const streams = streamService.processStream(url, id, name, resolution);
+
+    return res.status(200).json({
+      message: "Streams are being processed...",
+      streams,
+    });
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    return res
+      .status(500)
+      .json({ error: "Error processing video", details: error.message });
   }
 };
 
-const stopStreamHandler = (req, res) => {
-  const streamId = req.params.streamId;
-  const stoppedStream = streamService.stopStream(streamId);
-
-  if (!stoppedStream)
-    return res.status(404).json({ error: "Stream not found" });
-
-  res.json({ message: `Stopped stream ${streamId}` });
-};
-
-const stopAllStreamsHandler = (req, res) => {
-  const stoppedStreams = streamService.stopAllStreams();
-  res.json({
-    message: `Stopped ${stoppedStreams.length} streams`,
-    stoppedStreams,
-  });
-};
-
-module.exports = {
-  startStreamHandler,
-  stopStreamHandler,
-  stopAllStreamsHandler,
+exports.stopStreams = (req, res) => {
+  try {
+    streamService.stopAllStreams();
+    return res
+      .status(200)
+      .json({ message: "All streams stopped successfully." });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ error: "Error stopping streams", details: error.message });
+  }
 };

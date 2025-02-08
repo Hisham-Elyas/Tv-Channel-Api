@@ -1,57 +1,66 @@
-const uuid = require("uuid");
-const { startFFmpegProcess } = require("./ffmpegService");
-const { cleanupHlsFiles } = require("../utils/fileUtils");
+const fluentFFmpeg = require("fluent-ffmpeg");
+
 const config = require("../config/config");
+let currentStreamProcesses = []; // Track active FFmpeg processes
 
-const activeStreams = new Map();
-const startStream = (sourceUrl, preset = "480p") => {
-  const streamId = uuid.v4();
-  const hlsUrls = { "480p": `${config.baseUrl}/${streamId}_480p.m3u8` };
+const RESOLUTIONS = {
+  "1080p": "-s 1920x1080",
+  "720p": "-s 1280x720",
+  "480p": "-s 854x480",
+};
 
-  if (preset === "720p-1080p") {
-    hlsUrls["720p"] = `${config.baseUrl}/${streamId}_720p.m3u8`;
-    hlsUrls["1080p"] = `${config.baseUrl}/${streamId}_1080p.m3u8`;
+exports.processStream = (url, id, name, resolution) => {
+  let activeResolutions = Object.keys(resolution).filter(
+    (key) => resolution[key]
+  );
+
+  if (activeResolutions.length === 0) {
+    activeResolutions.push("720p"); // Default to 720p if no resolution is provided
   }
 
-  const ffmpegProcess = startFFmpegProcess(sourceUrl, streamId, preset);
+  let streamLinks = [];
 
-  ffmpegProcess.stderr.on("data", (data) => {
-    console.error(`[${streamId}] FFmpeg Error: ${data}`);
+  activeResolutions.forEach((res) => {
+    const resolutionOption = RESOLUTIONS[res] || RESOLUTIONS["720p"];
+
+    const outputFileName = `../../output/${id}_${name}_${res}_stream.m3u8`;
+
+    const ffmpegProcess = fluentFFmpeg(url)
+      .outputOptions([
+        "-f hls",
+        "-hls_time 10",
+        "-hls_list_size 0",
+        `-hls_segment_filename ../../output/${id}_${name}_${res}_segment%03d.ts`,
+        resolutionOption,
+      ])
+      .output(outputFileName)
+      .on("start", (commandLine) =>
+        console.log(`FFmpeg started: ${commandLine}`)
+      )
+      .on("end", () => {
+        console.log(`${res} processing finished`);
+        currentStreamProcesses = currentStreamProcesses.filter(
+          (p) => p !== ffmpegProcess
+        );
+      })
+      .on("error", (err) => console.error("FFmpeg Error:", err));
+
+    ffmpegProcess.run();
+    currentStreamProcesses.push(ffmpegProcess);
+
+    streamLinks.push(
+      `${config.baseUrl}:${config.port}/output/${id}_${name}_${res}_stream.m3u8`
+    );
   });
 
-  ffmpegProcess.on("exit", () => {
-    console.log(`[${streamId}] Stream stopped`);
-    activeStreams.delete(streamId);
-    cleanupHlsFiles(streamId);
-  });
-
-  activeStreams.set(streamId, ffmpegProcess);
-
-  return { streamId, hlsUrls, preset };
+  return streamLinks;
 };
 
-const stopStream = (streamId) => {
-  const process = activeStreams.get(streamId);
-  if (!process) return null;
+exports.stopAllStreams = () => {
+  if (currentStreamProcesses.length === 0) {
+    throw new Error("No active streams.");
+  }
 
-  process.kill("SIGINT");
-  activeStreams.delete(streamId);
-  cleanupHlsFiles(streamId);
-
-  return streamId;
+  currentStreamProcesses.forEach((process) => process.kill());
+  currentStreamProcesses = [];
 };
-
-const stopAllStreams = () => {
-  const stoppedStreams = [];
-
-  activeStreams.forEach((process, streamId) => {
-    process.kill("SIGINT");
-    activeStreams.delete(streamId);
-    cleanupHlsFiles(streamId);
-    stoppedStreams.push(streamId);
-  });
-
-  return stoppedStreams;
-};
-
-module.exports = { startStream, stopStream, stopAllStreams };

@@ -33,13 +33,18 @@ app.use((req, res, next) => {
   }
   next();
 });
-app.use("/api/stream", streamRoutes);
+// app.use("/api/stream", streamRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/groups", groupRoutes);
 app.use("/api/channels", channelRoutes);
 app.use("/api/categories", categoryRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/today_matches", today_matchesRoutes);
+// Routes
+app.use("/api/stream", streamRoutes);
+
+// Serve HLS output files
+app.use("/output", express.static("output"));
 
 app.get("/api/run-script", (req, res) => {
   const { nextDaytoScrape = 1 } = req.body;
