@@ -40,24 +40,27 @@ exports.processStream = (url, id, name, resolution) => {
     );
 
     const ffmpegProcess = fluentFFmpeg(url)
-      .inputOptions(["-re"]) // Ensures smooth re-streaming by reading input in real-time
+      .inputOptions([
+        "-reconnect 1", // Enable reconnection
+        "-reconnect_streamed 1", // Reconnect if live stream drops
+        "-reconnect_delay_max 5", // Max reconnection delay
+        "-user_agent 'Mozilla/5.0'", // Pretend to be a browser
+      ])
       .videoCodec("libx264")
       .audioCodec("aac")
       .audioBitrate("128k")
       .outputOptions([
         "-f hls",
-        "-hls_time 6", // Reduce segment time for lower latency
-        "-hls_list_size 10", // Keep only last 10 segments to avoid excessive memory usage
-        `-hls_segment_filename ${segmentFilePattern}`,
+        "-hls_time 5", // Reduce segment duration (faster switching)
+        "-hls_list_size 6", // Store last 6 segments for live streaming
+        "-hls_flags delete_segments", // Delete old segments (saves disk space)
         resolutionOption,
-        "-preset veryfast", // Faster encoding
-        "-g 48", // Keyframe interval for better stream quality
-        "-keyint_min 48",
-        "-sc_threshold 0",
-        "-hls_flags delete_segments+append_list", // Remove old segments, keep new ones
-        "-fflags +genpts", // Fix timestamp issues when re-streaming live video
+        "-preset veryfast", // Lower CPU usage
+        "-g 50", // Keyframe interval
+        "-sc_threshold 0", // Scene change threshold
       ])
       .output(outputFileName)
+
       .on("start", (commandLine) => {
         console.log(`FFmpeg started: ${commandLine}`);
       })
@@ -67,6 +70,9 @@ exports.processStream = (url, id, name, resolution) => {
         if (processes.length === 0) delete activeStreams[id];
       })
       .on("error", (err, stdout, stderr) => {
+        console.error("❌ FFmpeg Error:", err.message);
+        console.error("🔹 FFmpeg stdout:", stdout);
+        console.error("🔹 FFmpeg stderr:", stderr);
         console.error(`FFmpeg Error for ${id} (${res}):`, err);
         processes = processes.filter((p) => p !== ffmpegProcess);
         if (processes.length === 0) delete activeStreams[id];
