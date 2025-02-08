@@ -12,6 +12,8 @@ const categoryRoutes = require("./api/routes/categoryRoutes");
 const scrapeTodayMatches = require("./scrape");
 const parseM3UtoJSONtoDB = require("./parseM3UtoJSONtoDB");
 const cron = require("node-cron");
+const path = require("path");
+
 const helmet = require("helmet");
 const app = express();
 
