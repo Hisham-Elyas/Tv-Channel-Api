@@ -21,7 +21,7 @@ app.use(cors());
 app.use(express.json());
 app.use(morgan("dev"));
 // Serve HLS output files
-app.use("./output", express.static("output"));
+app.use("/output", express.static(path.join(__dirname, "output")));
 // Routes
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
