@@ -20,6 +20,8 @@ app.use(helmet());
 app.use(cors());
 app.use(express.json());
 app.use(morgan("dev"));
+// Serve HLS output files
+app.use("./output", express.static("output"));
 // Routes
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
@@ -42,9 +44,6 @@ app.use("/api/users", userRoutes);
 app.use("/api/today_matches", today_matchesRoutes);
 // Routes
 app.use("/api/stream", streamRoutes);
-
-// Serve HLS output files
-app.use("/output", express.static("output"));
 
 app.get("/api/run-script", (req, res) => {
   const { nextDaytoScrape = 1 } = req.body;
