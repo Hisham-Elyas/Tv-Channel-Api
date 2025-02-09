@@ -178,24 +178,24 @@ exports.processStream = (url, id, name) => {
 //   return streamLinks;
 // };
 
-// exports.stopStream = (id) => {
-//   if (!activeStreams[id]) {
-//     console.log(`No active stream found for ID: ${id}`);
-//     return;
-//   }
+exports.stopStream = (id) => {
+  if (!activeStreams[id]) {
+    console.log(`No active stream found for ID: ${id}`);
+    return;
+  }
 
-//   activeStreams[id].processes.forEach((process) => {
-//     process.kill();
-//     console.log(`Stream stopped: ${id}`);
-//   });
+  activeStreams[id].processes.forEach((process) => {
+    process.kill();
+    console.log(`Stream stopped: ${id}`);
+  });
 
-//   delete activeStreams[id];
-// };
+  delete activeStreams[id];
+};
 
-// exports.stopAllStreams = () => {
-//   Object.keys(activeStreams).forEach((id) => {
-//     exports.stopStream(id);
-//   });
+exports.stopAllStreams = () => {
+  Object.keys(activeStreams).forEach((id) => {
+    exports.stopStream(id);
+  });
 
-//   console.log("All streams stopped.");
-// };
+  console.log("All streams stopped.");
+};
