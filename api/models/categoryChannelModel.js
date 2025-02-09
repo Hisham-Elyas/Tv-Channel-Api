@@ -87,6 +87,7 @@ const CategoryChannel = {
 
       return {
         categoryName: category[0].name,
+        categoryId: category[0].id,
         count: channels.length,
         channels: channels,
       };
