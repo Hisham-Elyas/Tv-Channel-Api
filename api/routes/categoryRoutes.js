@@ -10,7 +10,9 @@ router.post("/", categoryController.createCategory);
 router.get("/", categoryController.getCategories);
 
 // Add a channel to a category
-router.post("/:id/channels", categoryController.addChannelToCategory);
+router.post("/addChannel", categoryController.addChannelToCategory);
+
+// router.post("/:id/channels", categoryController.addChannelToCategory);
 
 // Get channels of a category
 router.get("/:id/channels", categoryController.getCategoryChannels);

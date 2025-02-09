@@ -55,23 +55,24 @@ const categoryController = {
   },
 
   // Add a channel to a category
-  async addChannelToCategory(req, res) {
+
+  addChannelToCategory: async (req, res) => {
     try {
-      const category_id = req.params.id;
-      const { channel_id } = req.body;
-      if (!channel_id) {
-        return res.status(400).json({ error: "channel_id is required." });
+      const { categoryId, channelId, channelName } = req.body;
+
+      if (!categoryId || !channelId || !channelName) {
+        return res
+          .status(400)
+          .json({
+            message: "categoryId, channelId, and channelName are required",
+          });
       }
-      // Optionally, check if the category and channel exist here.
 
       const result = await CategoryChannel.addChannelToCategory(
-        category_id,
-        channel_id
+        categoryId,
+        channelId,
+        channelName
       );
-
-      if (result.message === "Channel is already assigned to this category") {
-        return res.status(409).json({ message: result.message }); // 409 Conflict
-      }
 
       res.status(201).json(result);
     } catch (error) {
@@ -81,6 +82,32 @@ const categoryController = {
         .json({ error: "Server error while adding channel to category." });
     }
   },
+  // async addChannelToCategory(req, res) {
+  //   try {
+  //     const category_id = req.params.id;
+  //     const { channel_id } = req.body;
+  //     if (!channel_id) {
+  //       return res.status(400).json({ error: "channel_id is required." });
+  //     }
+  //     // Optionally, check if the category and channel exist here.
+
+  //     const result = await CategoryChannel.addChannelToCategory(
+  //       category_id,
+  //       channel_id
+  //     );
+
+  //     if (result.message === "Channel is already assigned to this category") {
+  //       return res.status(409).json({ message: result.message }); // 409 Conflict
+  //     }
+
+  //     res.status(201).json(result);
+  //   } catch (error) {
+  //     console.error(error);
+  //     res
+  //       .status(500)
+  //       .json({ error: "Server error while adding channel to category." });
+  //   }
+  // },
 
   // Get channels for a specific category
   async getCategoryChannels(req, res) {

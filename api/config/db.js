@@ -102,11 +102,12 @@ const initializeDatabase = async () => {
      CREATE TABLE IF NOT EXISTS \`category_channels\` (
         category_id INT NOT NULL,
         channel_id INT NOT NULL,
+        channel_name VARCHAR(255) NOT NULL,
         PRIMARY KEY (category_id, channel_id),
         FOREIGN KEY (category_id) REFERENCES \`categories\`(id) ON DELETE CASCADE,
         FOREIGN KEY (channel_id) REFERENCES \`channels\`(id) ON DELETE CASCADE  )
     `);
-
+    // ALTER TABLE category_channels ADD COLUMN channel_name VARCHAR(255) NOT NULL;
     await pool.query("COMMIT");
     console.log("✅ Database initialized successfully");
   } catch (error) {
