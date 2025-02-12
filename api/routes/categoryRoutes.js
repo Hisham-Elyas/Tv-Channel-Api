@@ -25,5 +25,6 @@ router.put("/:categoryId", categoryController.updateCategory);
 
 // Delete a category
 router.delete("/:categoryId", categoryController.deleteCategory);
-
+// Route to get all categories with their channels
+router.get("/all-with-channels", categoryController.getCategoriesWithChannels);
 module.exports = router;

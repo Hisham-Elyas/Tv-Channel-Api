@@ -212,6 +212,64 @@ const CategoryChannel = {
       throw new Error(err);
     }
   },
+  getAllCategoriesWithChannels: async () => {
+    // Query that LEFT JOINs categories to their channels via category_channels.
+    try {
+      const [rows] = await pool.query(`
+        SELECT
+          c.id AS categoryId,
+          c.name AS categoryName,
+          ch.id AS channelId,
+          ch.group_id,
+          ch.tvg_id,
+          ch.tvg_name,
+          ch.tvg_logo,
+          ch.name AS channelName,
+          ch.url,
+          ch.created_at,
+          cc.channel_name AS customName
+        FROM categories c
+        LEFT JOIN category_channels cc ON c.id = cc.category_id
+        LEFT JOIN channels ch ON cc.channel_id = ch.id
+        ORDER BY c.id, ch.id;
+      `);
+
+      // Aggregate results into categories
+      const categoriesMap = new Map();
+
+      rows.forEach((row) => {
+        if (!categoriesMap.has(row.categoryId)) {
+          categoriesMap.set(row.categoryId, {
+            categoryId: row.categoryId,
+            categoryName: row.categoryName,
+            count: 0,
+            channels: [],
+          });
+        }
+
+        if (row.channelId) {
+          categoriesMap.get(row.categoryId).channels.push({
+            id: row.channelId,
+            group_id: row.group_id,
+            tvg_id: row.tvg_id,
+            tvg_name: row.tvg_name,
+            tvg_logo: row.tvg_logo,
+            name: row.channelName,
+            url: row.url,
+            created_at: row.created_at,
+            customName: row.customName, // Include custom name from category_channels
+          });
+
+          categoriesMap.get(row.categoryId).count++;
+        }
+      });
+
+      return Array.from(categoriesMap.values());
+    } catch (err) {
+      console.error("Error fetching categories with channels:", err);
+      throw new Error("Error retrieving categories with channels");
+    }
+  },
 };
 
 module.exports = CategoryChannel;

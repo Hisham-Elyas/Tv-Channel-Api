@@ -61,11 +61,9 @@ const categoryController = {
       const { categoryId, channelId, channelName } = req.body;
 
       if (!categoryId || !channelId || !channelName) {
-        return res
-          .status(400)
-          .json({
-            message: "categoryId, channelId, and channelName are required",
-          });
+        return res.status(400).json({
+          message: "categoryId, channelId, and channelName are required",
+        });
       }
 
       const result = await CategoryChannel.addChannelToCategory(
@@ -161,6 +159,17 @@ const categoryController = {
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: "Server error while deleting category." });
+    }
+  },
+  async getCategoriesWithChannels(req, res) {
+    try {
+      const data = await CategoryChannel.getAllCategoriesWithChannels();
+      res.status(200).json(data);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({
+        error: "Server error while fetching categories with channels.",
+      });
     }
   },
 };
