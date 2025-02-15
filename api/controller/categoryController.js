@@ -58,18 +58,20 @@ const categoryController = {
 
   addChannelToCategory: async (req, res) => {
     try {
-      const { categoryId, channelId, channelName } = req.body;
+      const { categoryId, channelId, channelName, channelUrl } = req.body;
 
-      if (!categoryId || !channelId || !channelName) {
+      if (!categoryId || !channelId || !channelName || !channelUrl) {
         return res.status(400).json({
-          message: "categoryId, channelId, and channelName are required",
+          message:
+            "categoryId, channelId, channelUrl, and channelName are required",
         });
       }
 
       const result = await CategoryChannel.addChannelToCategory(
         categoryId,
         channelId,
-        channelName
+        channelName,
+        channelUrl
       );
 
       res.status(201).json(result);
@@ -169,6 +171,52 @@ const categoryController = {
       console.error(error);
       res.status(500).json({
         error: "Server error while fetching categories with channels.",
+      });
+    }
+  },
+  // Add a new link to a category-channel
+  async addLink(req, res) {
+    try {
+      const { categoryId, channelId, linkName, linkUrl } = req.body;
+
+      if (!categoryId || !channelId || !linkName || !linkUrl) {
+        return res.status(400).json({ error: "All fields are required." });
+      }
+
+      const result = await CategoryChannel.addLink(
+        categoryId,
+        channelId,
+        linkName,
+        linkUrl
+      );
+      res.status(201).json(result);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({
+        error: "Server error while adding the link.",
+      });
+    }
+  },
+
+  // Remove a link from a category-channel
+  async removeLink(req, res) {
+    try {
+      const { categoryId, channelId, linkUrl } = req.body;
+
+      if (!categoryId || !channelId || !linkUrl) {
+        return res.status(400).json({ error: "All fields are required." });
+      }
+
+      const result = await CategoryChannel.removeLink(
+        categoryId,
+        channelId,
+        linkUrl
+      );
+      res.status(200).json(result);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({
+        error: "Server error while removing the link.",
       });
     }
   },

@@ -107,7 +107,19 @@ const initializeDatabase = async () => {
         FOREIGN KEY (category_id) REFERENCES \`categories\`(id) ON DELETE CASCADE,
         FOREIGN KEY (channel_id) REFERENCES \`channels\`(id) ON DELETE CASCADE  )
     `);
-    // ALTER TABLE category_channels ADD COLUMN channel_name VARCHAR(255) NOT NULL;
+    await pool.query(`
+CREATE TABLE IF NOT EXISTS category_channel_links (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    category_id INT NOT NULL,
+    channel_id INT NOT NULL,
+    name VARCHAR(255) NOT NULL, -- Custom name for the link
+    url TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE CASCADE,
+    FOREIGN KEY (channel_id) REFERENCES channels(id) ON DELETE CASCADE
+)
+    `);
+
     await pool.query("COMMIT");
     console.log("✅ Database initialized successfully");
   } catch (error) {
