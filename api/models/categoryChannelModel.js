@@ -1,5 +1,6 @@
 // models/categoryChannelModel.js
 const { pool } = require("../config/db");
+const { modifyIPTVUrl, loadIPTVConfig } = require("../config/config"); // Import the function
 
 const CategoryChannel = {
   // async addChannelToCategory(categoryId, channelId, channelName) {

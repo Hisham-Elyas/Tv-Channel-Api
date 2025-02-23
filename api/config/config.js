@@ -2,7 +2,7 @@ module.exports = {
   baseUrl: "http://172.105.81.117",
   port: 3000,
 };
-const pool = require("./db");
+const { pool } = require("./db");
 
 let IPTV_CONFIG = {
   host: "http://depot52967.cdngold.me:80",
@@ -20,7 +20,7 @@ async function loadIPTVConfig() {
       IPTV_CONFIG = {
         host: rows[0].host,
         username: rows[0].username,
-        password: rows[0].password,
+        // password: rows[0].password,
       };
       console.log("✅ IPTV Config Loaded:", IPTV_CONFIG);
     } else {
@@ -32,4 +32,15 @@ async function loadIPTVConfig() {
   }
 }
 
-module.exports = { loadIPTVConfig, IPTV_CONFIG };
+// Function to modify IPTV URL using stored settings
+function modifyIPTVUrl(originalUrl) {
+  let parts = originalUrl.split("/");
+  if (parts.length < 5) return originalUrl;
+
+  parts[2] = IPTV_CONFIG.host;
+  parts[3] = IPTV_CONFIG.username;
+  parts[4] = IPTV_CONFIG.password;
+
+  return parts.join("/");
+}
+module.exports = { loadIPTVConfig, IPTV_CONFIG, modifyIPTVUrl };

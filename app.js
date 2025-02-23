@@ -40,7 +40,7 @@ app.use((req, res, next) => {
   next();
 });
 // app.use("/api/stream", streamRoutes);
-app.use("/settings", settingsRoutes);
+app.use("/api/settings", settingsRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/groups", groupRoutes);
 app.use("/api/channels", channelRoutes);
@@ -219,9 +219,10 @@ app.use((error, req, res, next) => {
 
 // Database connection
 const db = require("./api/config/db");
-const config = require("./api/config/config");
+
+const { loadIPTVConfig } = require("./api/config/config");
 db.initializeDatabase();
-config.loadIPTVConfig();
+loadIPTVConfig();
 // scrapeTodayMatches();
 
 cron.schedule(

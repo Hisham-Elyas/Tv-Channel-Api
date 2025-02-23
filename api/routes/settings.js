@@ -1,6 +1,6 @@
 const express = require("express");
 const { loadIPTVConfig, IPTV_CONFIG } = require("../config/config");
-const pool = require("../config/db");
+const { pool } = require("../config/db");
 
 const router = express.Router();
 
