@@ -35,12 +35,20 @@ async function loadIPTVConfig() {
 // Function to modify IPTV URL using stored settings
 function modifyIPTVUrl(originalUrl) {
   let parts = originalUrl.split("/");
+
   if (parts.length < 5) return originalUrl;
 
-  parts[2] = IPTV_CONFIG.host;
+  // Ensure the host has `http://` protocol
+  if (!IPTV_CONFIG.host.startsWith("http://")) {
+    IPTV_CONFIG.host = "http://" + IPTV_CONFIG.host; // Add http:// if missing
+  }
+
+  // Replace host, username, and password
+  parts[2] = IPTV_CONFIG.host.replace(/^https?:\/\//, ""); // Remove any protocol if present
   parts[3] = IPTV_CONFIG.username;
   parts[4] = IPTV_CONFIG.password;
 
   return parts.join("/");
 }
+
 module.exports = { loadIPTVConfig, IPTV_CONFIG, modifyIPTVUrl };
