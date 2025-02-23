@@ -119,6 +119,15 @@ CREATE TABLE IF NOT EXISTS category_channel_links (
     FOREIGN KEY (channel_id) REFERENCES channels(id) ON DELETE CASCADE
 )
     `);
+    await pool.query(`
+CREATE TABLE IF NOT EXISTS \`settings\` (
+    id INT AUTO_INCREMENT PRIMARY KEY, 
+    host VARCHAR(255) NOT NULL,
+    username VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    allow_use BOOLEAN DEFAULT FALSE
+);
+    `);
 
     await pool.query("COMMIT");
     console.log("✅ Database initialized successfully");

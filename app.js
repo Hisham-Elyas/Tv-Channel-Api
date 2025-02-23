@@ -9,6 +9,8 @@ const groupRoutes = require("./api/routes/groupRoutes");
 const channelRoutes = require("./api/routes/channelRoutes");
 const streamRoutes = require("./api/routes/streamRoutes");
 const categoryRoutes = require("./api/routes/categoryRoutes");
+
+const settingsRoutes = require("./api/routes/settings");
 const scrapeTodayMatches = require("./scrape");
 const parseM3UtoJSONtoDB = require("./parseM3UtoJSONtoDB");
 const cron = require("node-cron");
@@ -38,6 +40,7 @@ app.use((req, res, next) => {
   next();
 });
 // app.use("/api/stream", streamRoutes);
+app.use("/settings", settingsRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/groups", groupRoutes);
 app.use("/api/channels", channelRoutes);
@@ -46,6 +49,77 @@ app.use("/api/users", userRoutes);
 app.use("/api/today_matches", today_matchesRoutes);
 // Routes
 app.use("/api/stream", streamRoutes);
+// Function to modify the IPTV URL
+function modifyIPTVUrl(originalUrl, newHost, newUser, newPass) {
+  let parts = originalUrl.split("/");
+  if (parts.length < 5) return originalUrl; // Keep original if format is incorrect
+
+  parts[2] = newHost; // Update Host
+  parts[3] = newUser; // Update Username
+  parts[4] = newPass; // Update Password
+
+  return parts.join("/");
+}
+
+// API to update channels in batches
+app.post("api/update-channels", async (req, res) => {
+  const { newHost, newUser, newPass } = req.body;
+  const batchSize = 100; // Update 100 rows per batch
+
+  if (!newHost || !newUser || !newPass) {
+    return res.status(400).json({ message: "Missing required fields" });
+  }
+
+  let connection;
+
+  try {
+    connection = await pool.getConnection();
+    await connection.beginTransaction();
+
+    // Get total count of channels
+    const [countResult] = await connection.execute(
+      "SELECT COUNT(*) AS total FROM channels"
+    );
+    const totalChannels = countResult[0].total;
+    console.log(`Total Channels: ${totalChannels}`);
+
+    let updatedCount = 0;
+    for (let offset = 0; offset < totalChannels; offset += batchSize) {
+      console.log(`Processing batch: ${offset} - ${offset + batchSize}`);
+
+      // Fetch 100 channels at a time
+      const [channels] = await connection.execute(
+        `SELECT id, url FROM channels ORDER BY id LIMIT ? OFFSET ?`,
+        [batchSize, offset]
+      );
+
+      if (channels.length === 0) break; // No more data
+
+      // Prepare batch updates
+      for (let channel of channels) {
+        let newUrl = modifyIPTVUrl(channel.url, newHost, newUser, newPass);
+        await connection.execute("UPDATE channels SET url = ? WHERE id = ?", [
+          newUrl,
+          channel.id,
+        ]);
+      }
+
+      updatedCount += channels.length;
+      console.log(`Updated: ${updatedCount}/${totalChannels}`);
+
+      // Commit after each batch
+      await connection.commit();
+    }
+
+    res.json({ message: `Updated ${updatedCount} channels successfully` });
+  } catch (error) {
+    console.error("Error updating channels:", error);
+    if (connection) await connection.rollback(); // Rollback on failure
+    res.status(500).json({ message: "Server error", error });
+  } finally {
+    if (connection) connection.release(); // Release connection back to pool
+  }
+});
 
 app.get("/api/run-script", (req, res) => {
   const { nextDaytoScrape = 1 } = req.body;
@@ -145,7 +219,9 @@ app.use((error, req, res, next) => {
 
 // Database connection
 const db = require("./api/config/db");
+const config = require("./api/config/config");
 db.initializeDatabase();
+config.loadIPTVConfig();
 // scrapeTodayMatches();
 
 cron.schedule(
