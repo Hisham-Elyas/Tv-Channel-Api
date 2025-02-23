@@ -20,9 +20,9 @@ async function loadIPTVConfig() {
       IPTV_CONFIG = {
         host: rows[0].host,
         username: rows[0].username,
-        // password: rows[0].password,
+        password: rows[0].password,
       };
-      console.log("✅ IPTV Config Loaded:", IPTV_CONFIG);
+      console.log("✅ IPTV Config Loaded:", IPTV_CONFIG.host);
     } else {
       IPTV_CONFIG = null;
       console.log("⚠️ No active IPTV settings found.");
