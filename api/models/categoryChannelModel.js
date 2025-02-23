@@ -65,6 +65,94 @@ const CategoryChannel = {
       throw new Error(err);
     }
   },
+  // async getChannelsByCategory(categoryId) {
+  //   try {
+  //     // Get category info
+  //     const [category] = await pool.query(
+  //       "SELECT id, name FROM `categories` WHERE id = ?",
+  //       [categoryId]
+  //     );
+
+  //     if (category.length === 0) {
+  //       return null; // Category not found
+  //     }
+
+  //     // Fetch channels with category-specific names
+  //     const [rows] = await pool.query(
+  //       `SELECT
+  //               c.id AS channelId,
+  //               c.group_id,
+  //               c.tvg_id,
+  //               c.tvg_name,
+  //               c.tvg_logo,
+  //               c.name AS originalName,
+  //               c.url AS defaultUrl,
+  //               c.created_at,
+  //               cc.channel_name AS customName
+  //           FROM channels c
+  //           JOIN category_channels cc ON c.id = cc.channel_id
+  //           WHERE cc.category_id = ?`,
+  //       [categoryId]
+  //     );
+
+  //     // Map channels and include links
+  //     const channelMap = new Map();
+
+  //     for (const row of rows) {
+  //       if (!channelMap.has(row.channelId)) {
+  //         channelMap.set(row.channelId, {
+  //           id: row.channelId,
+  //           group_id: row.group_id,
+  //           tvg_id: row.tvg_id,
+  //           tvg_name: row.tvg_name,
+  //           url: row.defaultUrl,
+  //           tvg_logo: row.tvg_logo,
+  //           name: row.originalName,
+  //           customName: row.customName,
+  //           created_at: row.created_at,
+  //           links: [],
+  //         });
+  //       }
+  //     }
+
+  //     // Fetch additional links from category_channel_links
+  //     const [links] = await pool.query(
+  //       `SELECT channel_id, name, url
+  //            FROM category_channel_links
+  //            WHERE category_id = ?`,
+  //       [categoryId]
+  //     );
+
+  //     // Assign links to their respective channels
+  //     links.forEach((link) => {
+  //       if (channelMap.has(link.channel_id)) {
+  //         channelMap.get(link.channel_id).links.push({
+  //           name: link.name,
+  //           url: link.url,
+  //         });
+  //       }
+  //     });
+
+  //     // Ensure each channel has a default link
+  //     for (const channel of channelMap.values()) {
+  //       if (!channel.links.find((link) => link.url === channel.defaultUrl)) {
+  //         channel.links.push({
+  //           name: channel.customName,
+  //           url: channel.url,
+  //         });
+  //       }
+  //     }
+
+  //     return {
+  //       categoryName: category[0].name,
+  //       categoryId: category[0].id,
+  //       count: channelMap.size,
+  //       channels: Array.from(channelMap.values()),
+  //     };
+  //   } catch (err) {
+  //     throw new Error(err);
+  //   }
+  // },
   async getChannelsByCategory(categoryId) {
     try {
       // Get category info
@@ -80,18 +168,18 @@ const CategoryChannel = {
       // Fetch channels with category-specific names
       const [rows] = await pool.query(
         `SELECT 
-                c.id AS channelId, 
-                c.group_id, 
-                c.tvg_id, 
-                c.tvg_name, 
-                c.tvg_logo, 
-                c.name AS originalName, 
-                c.url AS defaultUrl, 
-                c.created_at, 
-                cc.channel_name AS customName
-            FROM channels c
-            JOIN category_channels cc ON c.id = cc.channel_id
-            WHERE cc.category_id = ?`,
+                  c.id AS channelId, 
+                  c.group_id, 
+                  c.tvg_id, 
+                  c.tvg_name, 
+                  c.tvg_logo, 
+                  c.name AS originalName, 
+                  c.url AS defaultUrl, 
+                  c.created_at, 
+                  cc.channel_name AS customName
+              FROM channels c
+              JOIN category_channels cc ON c.id = cc.channel_id
+              WHERE cc.category_id = ?`,
         [categoryId]
       );
 
@@ -105,7 +193,7 @@ const CategoryChannel = {
             group_id: row.group_id,
             tvg_id: row.tvg_id,
             tvg_name: row.tvg_name,
-            url: row.defaultUrl,
+            url: modifyIPTVUrl(row.defaultUrl), // Modify the IPTV URL
             tvg_logo: row.tvg_logo,
             name: row.originalName,
             customName: row.customName,
@@ -118,27 +206,27 @@ const CategoryChannel = {
       // Fetch additional links from category_channel_links
       const [links] = await pool.query(
         `SELECT channel_id, name, url 
-             FROM category_channel_links 
-             WHERE category_id = ?`,
+         FROM category_channel_links 
+         WHERE category_id = ?`,
         [categoryId]
       );
 
-      // Assign links to their respective channels
+      // Assign links to their respective channels and modify the URL
       links.forEach((link) => {
         if (channelMap.has(link.channel_id)) {
           channelMap.get(link.channel_id).links.push({
             name: link.name,
-            url: link.url,
+            url: modifyIPTVUrl(link.url), // Modify the IPTV URL for additional links
           });
         }
       });
 
       // Ensure each channel has a default link
       for (const channel of channelMap.values()) {
-        if (!channel.links.find((link) => link.url === channel.defaultUrl)) {
+        if (!channel.links.find((link) => link.url === channel.url)) {
           channel.links.push({
             name: channel.customName,
-            url: channel.url,
+            url: channel.url, // Use the modified URL here
           });
         }
       }
@@ -153,6 +241,7 @@ const CategoryChannel = {
       throw new Error(err);
     }
   },
+
   removeChannelFromCategory: async (categoryId, channelId) => {
     try {
       const [result] = await pool.query(
@@ -296,6 +385,79 @@ const CategoryChannel = {
   //     throw new Error("Error retrieving categories with channels");
   //   }
   // },
+  // getAllCategoriesWithChannels: async () => {
+  //   try {
+  //     const [rows] = await pool.query(
+  //       `SELECT
+  //         c.id AS categoryId,
+  //         c.name AS categoryName,
+  //         ch.id AS channelId,
+  //         ch.group_id,
+  //         ch.tvg_id,
+  //         ch.tvg_name,
+  //         ch.tvg_logo,
+  //         ch.name AS channelName,
+  //         ch.url AS defaultUrl,
+  //         ch.created_at,
+  //         cc.channel_name AS customName,
+  //         cl.name AS linkName,
+  //         cl.url AS extraUrl
+  //       FROM categories c
+  //       LEFT JOIN category_channels cc ON c.id = cc.category_id
+  //       LEFT JOIN channels ch ON cc.channel_id = ch.id
+  //       LEFT JOIN category_channel_links cl ON cc.category_id = cl.category_id AND cc.channel_id = cl.channel_id
+  //       ORDER BY c.id, ch.id, cl.id;`
+  //     );
+
+  //     // Aggregate data
+  //     const categoriesMap = new Map();
+
+  //     rows.forEach((row) => {
+  //       if (!categoriesMap.has(row.categoryId)) {
+  //         categoriesMap.set(row.categoryId, {
+  //           categoryId: row.categoryId,
+  //           categoryName: row.categoryName,
+  //           count: 0,
+  //           channels: [],
+  //         });
+  //       }
+
+  //       let category = categoriesMap.get(row.categoryId);
+
+  //       let channel = category.channels.find((ch) => ch.id === row.channelId);
+  //       if (!channel) {
+  //         channel = {
+  //           id: row.channelId,
+  //           group_id: row.group_id,
+  //           tvg_id: row.tvg_id,
+  //           tvg_name: row.tvg_name,
+  //           tvg_logo: row.tvg_logo,
+  //           name: row.channelName,
+  //           url: row.defaultUrl,
+  //           created_at: row.created_at,
+  //           customName: row.customName,
+  //           links: [], // Store links as an array [{name, url}]
+  //         };
+  //         category.channels.push(channel);
+  //         category.count++;
+  //       }
+
+  //       if (row.extraUrl) {
+  //         channel.links.push({ name: row.linkName, url: row.extraUrl });
+  //       }
+
+  //       if (!channel.links.find((link) => link.url === row.defaultUrl)) {
+  //         channel.links.push({ name: row.customName, url: row.defaultUrl });
+  //       }
+  //     });
+
+  //     return Array.from(categoriesMap.values());
+  //   } catch (err) {
+  //     console.error("Error fetching categories with channels:", err);
+  //     throw new Error("Error retrieving categories with channels");
+  //   }
+  // },
+
   getAllCategoriesWithChannels: async () => {
     try {
       const [rows] = await pool.query(
@@ -344,7 +506,7 @@ const CategoryChannel = {
             tvg_name: row.tvg_name,
             tvg_logo: row.tvg_logo,
             name: row.channelName,
-            url: row.defaultUrl,
+            url: modifyIPTVUrl(row.defaultUrl), // Modify the IPTV URL here
             created_at: row.created_at,
             customName: row.customName,
             links: [], // Store links as an array [{name, url}]
@@ -354,11 +516,18 @@ const CategoryChannel = {
         }
 
         if (row.extraUrl) {
-          channel.links.push({ name: row.linkName, url: row.extraUrl });
+          channel.links.push({
+            name: row.linkName,
+            url: modifyIPTVUrl(row.extraUrl),
+          }); // Modify the extra URL here
         }
 
-        if (!channel.links.find((link) => link.url === row.defaultUrl)) {
-          channel.links.push({ name: row.customName, url: row.defaultUrl });
+        // Ensure each channel has a default link and modify the URL
+        if (!channel.links.find((link) => link.url === channel.url)) {
+          channel.links.push({
+            name: row.customName,
+            url: modifyIPTVUrl(row.defaultUrl),
+          });
         }
       });
 
@@ -368,6 +537,7 @@ const CategoryChannel = {
       throw new Error("Error retrieving categories with channels");
     }
   },
+
   async addLink(categoryId, channelId, linkName, linkUrl) {
     try {
       // Check if the link already exists

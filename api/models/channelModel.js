@@ -1,4 +1,6 @@
 const { pool } = require("../config/db");
+
+const { modifyIPTVUrl, loadIPTVConfig } = require("../config/config"); // Import the function
 const Channel = {
   // Insert a new channel
   createChannel: async (groupId, tvgId, tvgName, tvgLogo, name, url) => {
@@ -24,6 +26,32 @@ const Channel = {
   },
 
   // Get channels by group ID
+  // getChannelsByGroupId: async (groupId) => {
+  //   try {
+  //     const [group] = await pool.query(
+  //       "SELECT id, group_title FROM `groups` WHERE id = ?",
+  //       [groupId]
+  //     );
+
+  //     if (group.length === 0) {
+  //       return null; // Group not found
+  //     }
+
+  //     const [channels] = await pool.query(
+  //       "SELECT * FROM `channels` WHERE `group_id` = ?",
+  //       [groupId]
+  //     );
+
+  //     return {
+  //       groupId: group[0].id,
+  //       groupName: group[0].group_title,
+  //       count: channels.length,
+  //       channels: channels,
+  //     };
+  //   } catch (err) {
+  //     throw new Error(err);
+  //   }
+  // },
   getChannelsByGroupId: async (groupId) => {
     try {
       const [group] = await pool.query(
@@ -40,6 +68,11 @@ const Channel = {
         [groupId]
       );
 
+      // Modify the IPTV URL for each channel
+      channels.forEach((channel) => {
+        channel.url = modifyIPTVUrl(channel.url); // Modify the URL for each channel
+      });
+
       return {
         groupId: group[0].id,
         groupName: group[0].group_title,
@@ -50,6 +83,7 @@ const Channel = {
       throw new Error(err);
     }
   },
+
   searchChannelsInGroupByTitle: async (group_id, title) => {
     try {
       const [channels] = await db.query(
@@ -60,6 +94,10 @@ const Channel = {
       `,
         [group_id, `%${title}%`]
       );
+      // Modify the IPTV URL for each channel
+      channels.forEach((channel) => {
+        channel.url = modifyIPTVUrl(channel.url); // Modify the URL for each channel
+      });
       return channels;
     } catch (err) {
       throw new Error(err);
