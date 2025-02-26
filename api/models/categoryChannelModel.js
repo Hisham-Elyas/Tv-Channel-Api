@@ -466,7 +466,6 @@ const CategoryChannel = {
       const [rows] = await pool.query(
         `SELECT
           c.id AS categoryId,
-          c.name AS categoryName,
           ch.id AS channelId,
           ch.group_id,
           ch.tvg_id,
@@ -502,6 +501,7 @@ const CategoryChannel = {
         if (!category) return;
 
         let channel = category.channels.find((ch) => ch.id === row.channelId);
+
         if (!channel && row.channelId) {
           channel = {
             id: row.channelId,
@@ -510,7 +510,7 @@ const CategoryChannel = {
             tvg_name: row.tvg_name,
             tvg_logo: row.tvg_logo,
             name: row.channelName,
-            url: row.defaultUrl ? modifyIPTVUrl(row.defaultUrl) : null, // Ensure valid URL
+            url: row.defaultUrl ? modifyIPTVUrl(row.defaultUrl) : null,
             created_at: row.created_at,
             customName: row.customName,
             links: [],
@@ -519,14 +519,19 @@ const CategoryChannel = {
           category.count++;
         }
 
-        if (row.extraUrl) {
+        // ✅ Ensure `channel` exists before accessing `links`
+        if (channel && row.extraUrl) {
           channel.links.push({
             name: row.linkName,
             url: modifyIPTVUrl(row.extraUrl),
           });
         }
 
-        if (!channel.links.find((link) => link.url === row.defaultUrl)) {
+        // ✅ Ensure `channel` exists before checking `links`
+        if (
+          channel &&
+          !channel.links.find((link) => link.url === row.defaultUrl)
+        ) {
           channel.links.push({
             name: row.customName,
             url: modifyIPTVUrl(row.defaultUrl),
