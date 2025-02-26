@@ -47,11 +47,11 @@ const CategoryChannel = {
         );
       }
 
-      // Insert into category_channel_links
-      await pool.query(
-        "INSERT INTO category_channel_links (category_id, channel_id, name, url) VALUES (?, ?, ?, ?)",
-        [categoryId, channelId, channelName, channelUrl]
-      );
+      // // Insert into category_channel_links
+      // await pool.query(
+      //   "INSERT INTO category_channel_links (category_id, channel_id, name, url) VALUES (?, ?, ?, ?)",
+      //   [categoryId, channelId, channelName, channelUrl]
+      // );
 
       return {
         message: "Channel added to category successfully",
