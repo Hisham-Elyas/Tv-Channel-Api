@@ -32,7 +32,7 @@ const CategoryChannel = {
   //     throw new Error(err);
   //   }
   // },
-  async addChannelToCategory(categoryId, channelId, channelName, channelUrl) {
+  async addChannelToCategory(categoryId, channelId, channelName) {
     try {
       const [existing] = await pool.query(
         "SELECT * FROM category_channels WHERE category_id = ? AND channel_id = ?",
@@ -58,7 +58,6 @@ const CategoryChannel = {
         channel: {
           id: channelId,
           name: channelName,
-          links: [{ name: channelName, url: channelUrl }], // Store the first link
         },
       };
     } catch (err) {
