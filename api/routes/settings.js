@@ -21,7 +21,7 @@ router.post("/add", async (req, res) => {
     );
 
     connection.release();
-    res.json({ message: "Setting added successfully!" });
+    res.status(201).json({ message: "Setting added successfully!" });
   } catch (error) {
     res
       .status(500)
@@ -58,7 +58,9 @@ router.post("/set-allow-use", async (req, res) => {
     // ✅ Reload the active config
     await loadIPTVConfig();
 
-    res.json({ message: `Setting ID ${id} is now active!`, IPTV_CONFIG });
+    res
+      .status(200)
+      .json({ message: `Setting ID ${id} is now active!`, IPTV_CONFIG });
   } catch (error) {
     res
       .status(500)
@@ -74,7 +76,7 @@ router.get("/get-all-settings", async (req, res) => {
       return res.status(404).json({ error: "No settings found" });
     }
 
-    res.json(rows);
+    res.status(200).json(rows);
   } catch (error) {
     res
       .status(500)
