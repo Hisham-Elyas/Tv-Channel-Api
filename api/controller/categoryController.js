@@ -60,7 +60,7 @@ const categoryController = {
     try {
       const { categoryId, channelId, channelName, channelUrl } = req.body;
 
-      if (!categoryId || !channelId || !channelName || !channelUrl) {
+      if (!categoryId || !channelId || !channelName) {
         return res.status(400).json({
           message:
             "categoryId, channelId, channelUrl, and channelName are required",
@@ -70,8 +70,7 @@ const categoryController = {
       const result = await CategoryChannel.addChannelToCategory(
         categoryId,
         channelId,
-        channelName,
-        channelUrl
+        channelName
       );
 
       res.status(201).json(result);
