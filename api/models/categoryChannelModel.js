@@ -457,9 +457,12 @@ const CategoryChannel = {
   //     throw new Error("Error retrieving categories with channels");
   //   }
   // },
-
   getAllCategoriesWithChannels: async () => {
     try {
+      const [categories] = await pool.query(
+        `SELECT id AS categoryId, name AS categoryName FROM categories`
+      );
+
       const [rows] = await pool.query(
         `SELECT
           c.id AS categoryId,
@@ -482,23 +485,24 @@ const CategoryChannel = {
         ORDER BY c.id, ch.id, cl.id;`
       );
 
-      // Aggregate data
+      // Initialize category map with empty channels
       const categoriesMap = new Map();
+      categories.forEach((category) => {
+        categoriesMap.set(category.categoryId, {
+          categoryId: category.categoryId,
+          categoryName: category.categoryName,
+          count: 0,
+          channels: [],
+        });
+      });
 
       rows.forEach((row) => {
-        if (!categoriesMap.has(row.categoryId)) {
-          categoriesMap.set(row.categoryId, {
-            categoryId: row.categoryId,
-            categoryName: row.categoryName,
-            count: 0,
-            channels: [],
-          });
-        }
-
         let category = categoriesMap.get(row.categoryId);
 
+        if (!category) return;
+
         let channel = category.channels.find((ch) => ch.id === row.channelId);
-        if (!channel) {
+        if (!channel && row.channelId) {
           channel = {
             id: row.channelId,
             group_id: row.group_id,
@@ -506,10 +510,10 @@ const CategoryChannel = {
             tvg_name: row.tvg_name,
             tvg_logo: row.tvg_logo,
             name: row.channelName,
-            url: modifyIPTVUrl(row.defaultUrl), // Modify the IPTV URL here
+            url: row.defaultUrl ? modifyIPTVUrl(row.defaultUrl) : null, // Ensure valid URL
             created_at: row.created_at,
             customName: row.customName,
-            links: [], // Store links as an array [{name, url}]
+            links: [],
           };
           category.channels.push(channel);
           category.count++;
@@ -519,11 +523,10 @@ const CategoryChannel = {
           channel.links.push({
             name: row.linkName,
             url: modifyIPTVUrl(row.extraUrl),
-          }); // Modify the extra URL here
+          });
         }
 
-        // Ensure each channel has a default link and modify the URL
-        if (!channel.links.find((link) => link.url === channel.url)) {
+        if (!channel.links.find((link) => link.url === row.defaultUrl)) {
           channel.links.push({
             name: row.customName,
             url: modifyIPTVUrl(row.defaultUrl),
