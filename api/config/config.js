@@ -35,6 +35,9 @@ async function loadIPTVConfig() {
 
 // Function to modify IPTV URL using stored settings
 function modifyIPTVUrl(originalUrl) {
+  if (!originalUrl || typeof originalUrl !== "string") {
+    return originalUrl; // Return as is if it's null or not a string
+  }
   let parts = originalUrl.split("/");
 
   if (parts.length < 5) return originalUrl;
