@@ -176,6 +176,26 @@ const AuthController = {
       res.status(500).json(errorHandler(500, err.message));
     }
   },
+
+  // Get user data by ID
+  getUserData: async (req, res) => {
+    try {
+      const { id } = req.params;
+
+      // Fetch user data
+      const user = await User.findById(id);
+      if (!user) {
+        return res.status(404).json(errorHandler(404, "User not found."));
+      }
+
+      res.status(200).json({
+        status: 200,
+        user,
+      });
+    } catch (err) {
+      res.status(500).json(errorHandler(500, err.message));
+    }
+  },
 };
 
 module.exports = AuthController;
