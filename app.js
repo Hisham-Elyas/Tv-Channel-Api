@@ -40,12 +40,12 @@ app.use((req, res, next) => {
   next();
 });
 // app.use("/api/stream", streamRoutes);
-app.use("/api/settings", settingsRoutes);
 app.use("/api/auth", authRoutes);
+// app.use("/api/users", userRoutes);
+app.use("/api/settings", settingsRoutes);
 app.use("/api/groups", groupRoutes);
 app.use("/api/channels", channelRoutes);
 app.use("/api/categories", categoryRoutes);
-app.use("/api/users", userRoutes);
 app.use("/api/today_matches", today_matchesRoutes);
 // Routes
 app.use("/api/stream", streamRoutes);
@@ -160,7 +160,7 @@ app.get("/", (req, res) => {
     endpoints: [
       {
         method: "POST",
-        path: "/api/users/signup",
+        path: "/api/users/register",
         description: "Create new user",
         body: {
           username: "string",
@@ -171,21 +171,21 @@ app.get("/", (req, res) => {
       },
       {
         method: "POST",
-        path: "/api/users/login",
+        path: "/api/auth/login",
         description: "User login",
         body: {
           email: "string",
           password: "string",
         },
       },
-      {
-        method: "DELETE",
-        path: "/api/users/delete",
-        description: "Delete user account",
-        headers: {
-          Authorization: "Bearer <token>",
-        },
-      },
+      // {
+      //   method: "DELETE",
+      //   path: "/api/users/delete",
+      //   description: "Delete user account",
+      //   headers: {
+      //     Authorization: "Bearer <token>",
+      //   },
+      // },
       {
         method: "GET",
         path: "/api/today_matches",
@@ -202,8 +202,8 @@ app.use((req, res) => {
     error: "Endpoint not found",
 
     availableEndpoints: [
-      "/api/users/signup",
-      "/api/users/login",
+      "/api/auth/register",
+      "/api/auth/login",
       "/api/today_matches",
     ],
   });
@@ -261,9 +261,6 @@ cron.schedule(
   }
 );
 
-// setInterval(() => {
-//   scrapeTodayMatches.scrapeTodayMatches();
-// }, 43200000); // Scrape every 12 hours
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server api  running on http://172.105.81.117:${PORT}`);

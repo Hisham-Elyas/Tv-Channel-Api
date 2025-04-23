@@ -12,7 +12,14 @@ const AuthController = {
       // Check if user already exists
       const existingUser = await User.findByEmail(email);
       if (existingUser) {
-        return res.status(400).json(errorHandler(400, "Email already in use"));
+        return res
+          .status(409)
+          .json(
+            errorHandler(
+              409,
+              "This email is already registered. Please use a different email."
+            )
+          );
       }
 
       // Create user
@@ -37,7 +44,7 @@ const AuthController = {
       if (!user) {
         return res
           .status(401)
-          .json(errorHandler(401, "Invalid email or password"));
+          .json(errorHandler(401, "Invalid credentials. Please try again."));
       }
 
       // Check password
@@ -49,14 +56,121 @@ const AuthController = {
       }
 
       // Generate JWT token
-      const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, {
-        expiresIn: "7d",
-      });
+      const token = jwt.sign(
+        {
+          userId: user.id,
+          email: user.email,
+        },
+        process.env.JWT_SECRET,
+        {
+          expiresIn: "30d",
+        }
+      );
 
       res.status(200).json({
         status: 200,
         message: "Login successful",
         token,
+      });
+    } catch (err) {
+      res.status(500).json(errorHandler(500, err.message));
+    }
+  },
+  // Update user details
+  updateUserDetails: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { username, phone } = req.body;
+
+      // Update user details
+      const isUpdated = await User.updateUserDetails({ id, username, phone });
+      if (!isUpdated) {
+        return res
+          .status(404)
+          .json(errorHandler(404, "User not found or no changes made."));
+      }
+
+      res.status(200).json({
+        status: 200,
+        message: "User details updated successfully",
+      });
+    } catch (err) {
+      res.status(500).json(errorHandler(500, err.message));
+    }
+  },
+
+  // Update user password
+  updateUserPassword: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { password } = req.body;
+
+      const isUpdated = await User.updateUserPassword({ id, password });
+      if (!isUpdated) {
+        return res
+          .status(404)
+          .json(errorHandler(404, "User not found or no changes made."));
+      }
+
+      res.status(200).json({
+        status: 200,
+        message: "Password updated successfully",
+      });
+    } catch (err) {
+      res.status(500).json(errorHandler(500, err.message));
+    }
+  },
+
+  // Update user email
+  updateUserEmail: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { email } = req.body;
+
+      const isUpdated = await User.updateUserEmail({ id, email });
+      if (!isUpdated) {
+        return res
+          .status(404)
+          .json(errorHandler(404, "User not found or no changes made."));
+      }
+
+      res.status(200).json({
+        status: 200,
+        message: "Email updated successfully",
+      });
+    } catch (err) {
+      res.status(500).json(errorHandler(500, err.message));
+    }
+  },
+
+  // Delete user account
+  deleteUser: async (req, res) => {
+    try {
+      const { id } = req.params;
+
+      const isDeleted = await User.deleteUser(id);
+      if (!isDeleted) {
+        return res
+          .status(404)
+          .json(errorHandler(404, "User not found or already deleted."));
+      }
+
+      res.status(200).json({
+        status: 200,
+        message: "User deleted successfully",
+      });
+    } catch (err) {
+      res.status(500).json(errorHandler(500, err.message));
+    }
+  },
+
+  // Get all users
+  getAllUsers: async (req, res) => {
+    try {
+      const users = await User.getAllUsers();
+      res.status(200).json({
+        status: 200,
+        users,
       });
     } catch (err) {
       res.status(500).json(errorHandler(500, err.message));
