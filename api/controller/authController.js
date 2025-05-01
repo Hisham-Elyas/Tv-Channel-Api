@@ -3,6 +3,11 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const { errorHandler } = require("../utils/errorHandler");
 
+const { sendOtpEmail } = require("../utils/mailer");
+function generateOTP() {
+  return Math.floor(100000 + Math.random() * 900000).toString();
+}
+
 const AuthController = {
   // Register User
   register: async (req, res) => {
@@ -194,6 +199,48 @@ const AuthController = {
       });
     } catch (err) {
       res.status(500).json(errorHandler(500, err.message));
+    }
+  },
+
+  sendResetOtp: async (req, res) => {
+    const { email } = req.body;
+
+    try {
+      const user = await User.findByEmail(email);
+      if (!user) return res.status(404).json({ message: "User not found" });
+
+      const otp = generateOTP();
+      const hashedOtp = await bcrypt.hash(otp, 10);
+      const expireTime = new Date(Date.now() + 10 * 60000);
+
+      await User.updateOtp(email, hashedOtp, expireTime);
+      await sendOtpEmail(email, otp);
+
+      res.status(200).json({ message: `OTP sent to email ${email}` });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: "Server error" });
+    }
+  },
+
+  resetPasswordWithOtp: async (req, res) => {
+    const { email, otp, newPassword } = req.body;
+
+    try {
+      const user = await User.verifyOtp(email);
+      if (!user)
+        return res.status(400).json({ message: "Invalid or expired OTP" });
+
+      const isMatch = await bcrypt.compare(otp, user.reset_otp);
+      if (!isMatch) return res.status(400).json({ message: "Incorrect OTP" });
+
+      const hashedPassword = await bcrypt.hash(newPassword, 10);
+      await User.updatePassword(email, hashedPassword);
+
+      res.status(200).json({ message: "Password reset successfully" });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: "Server error" });
     }
   },
 };

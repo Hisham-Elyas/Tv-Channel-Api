@@ -61,6 +61,28 @@ const User = {
     const [users] = await pool.query("SELECT * FROM users");
     return users;
   },
+
+  updateOtp: async (email, hashedOtp, expireTime) => {
+    await pool.query(
+      "UPDATE users SET reset_otp = ?, reset_otp_expire = ? WHERE email = ?",
+      [hashedOtp, expireTime, email]
+    );
+  },
+
+  verifyOtp: async (email) => {
+    const [rows] = await pool.query(
+      "SELECT * FROM users WHERE email = ? AND reset_otp_expire > NOW()",
+      [email]
+    );
+    return rows[0];
+  },
+
+  updatePassword: async (email, hashedPassword) => {
+    await pool.query(
+      "UPDATE users SET password = ?, reset_otp = NULL, reset_otp_expire = NULL WHERE email = ?",
+      [hashedPassword, email]
+    );
+  },
 };
 
 module.exports = User;

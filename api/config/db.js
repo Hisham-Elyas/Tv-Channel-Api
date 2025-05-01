@@ -37,6 +37,10 @@ const initializeDatabase = async () => {
         email VARCHAR(255) NOT NULL UNIQUE,
         password VARCHAR(255) NOT NULL,
         phone VARCHAR(20) NOT NULL,
+
+        reset_token VARCHAR(255),
+        reset_token_expire DATETIME,
+
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
       )
