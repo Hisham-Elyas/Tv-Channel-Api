@@ -2,7 +2,7 @@ const nodemailer = require("nodemailer");
 require("dotenv").config();
 
 const transporter = nodemailer.createTransport({
-  host: "mail5017.site4now.net",
+  host: process.env.EMAIL_HOST,
   port: 465, // Secure SSL SMTP
   secure: true, // Use SSL
   auth: {
@@ -13,7 +13,7 @@ const transporter = nodemailer.createTransport({
 
 exports.sendOtpEmail = async (email, otp) => {
   await transporter.sendMail({
-    from: '"TV Plus" <postmaster@tv.plus>',
+    from: `"TV Plus" <${process.env.EMAIL_PASS}>'`,
     to: email,
     subject: "🔐 Your OTP for Password Reset",
     text: `Hello! Here's your OTP code: ${otp}\n\nIf you didn't request this, please ignore.`,
