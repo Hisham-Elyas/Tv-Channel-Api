@@ -9,6 +9,7 @@ const groupRoutes = require("./api/routes/groupRoutes");
 const channelRoutes = require("./api/routes/channelRoutes");
 const streamRoutes = require("./api/routes/streamRoutes");
 const categoryRoutes = require("./api/routes/categoryRoutes");
+const fixturesRoutes = require("./api/routes/fixturesRoutes");
 
 const settingsRoutes = require("./api/routes/settings");
 const scrapeTodayMatches = require("./scrape");
@@ -49,6 +50,11 @@ app.use("/api/categories", categoryRoutes);
 app.use("/api/today_matches", today_matchesRoutes);
 // Routes
 app.use("/api/stream", streamRoutes);
+
+//==========================
+app.use("/api/fixtures", fixturesRoutes);
+//==========================
+
 // Function to modify the IPTV URL
 function modifyIPTVUrl(originalUrl, newHost, newUser, newPass) {
   let parts = originalUrl.split("/");
