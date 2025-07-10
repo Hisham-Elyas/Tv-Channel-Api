@@ -41,3 +41,31 @@ exports.getFixturesByDate = async (date, tz = "Asia/Riyadh") => {
 
   return data;
 };
+exports.getFixtureById = async (fixtureId, tz = "Asia/Riyadh") => {
+  if (!fixtureId) throw new Error("❌ Fixture ID is required.");
+
+  const cacheKey = `fixture:${fixtureId}:${tz}`;
+  const cached = cache.get(cacheKey);
+  if (cached) {
+    console.log("✅ Fixture served from cache");
+    return cached;
+  }
+
+  console.log("🌐 Fetching fixture from API");
+  const url = `https://api.sportmonks.com/v3/football/fixtures/${fixtureId}?api_token=${API_TOKEN}&include=tvStations;scores;sport;round;stage;group;aggregate;league;season;referees;coaches;venue;state;weatherReport;lineups;events;timeline;comments;statistics;periods;participants;odds;metadata;sidelined;formations&timezone=${tz}`;
+  const response = await axios.get(url);
+  const data = response.data;
+
+  if (!data || !data.data) {
+    const error = new Error("⚠️ Fixture not found.");
+    error.status = 404;
+    throw error;
+  }
+
+  // Determine TTL (short if live or today, longer if old match)
+  const fixtureDate = data.data.starting_at;
+  const ttl = calculateTTL(fixtureDate, tz);
+  cache.set(cacheKey, data, ttl);
+
+  return data;
+};

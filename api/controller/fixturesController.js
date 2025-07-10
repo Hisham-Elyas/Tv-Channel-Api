@@ -34,3 +34,30 @@ exports.getFixtures = async (req, res) => {
     res.status(500).json({ error: "Something went wrong." });
   }
 };
+
+exports.getFixtureById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { timezone = "Asia/Riyadh" } = req.query;
+
+    if (!id) {
+      return res.status(400).json({ error: "❌ Fixture ID is required." });
+    }
+
+    const data = await fixturesService.getFixtureById(id, timezone);
+
+    if (!data?.data) {
+      return res.status(404).json({ message: "⚠️ Fixture not found." });
+    }
+    const filtered = {
+      data: data.data || [],
+      timezone: data.timezone || "UTC",
+    };
+
+    // Return only main fixture data
+    res.json(filtered);
+  } catch (err) {
+    console.error("❌ Error fetching fixture:", err.message);
+    res.status(err.status || 500).json({ error: err.message });
+  }
+};

@@ -9,10 +9,10 @@ exports.calculateTTL = (date, tz) => {
   const now = dayjs().tz(tz);
   const requestedDate = dayjs(date).tz(tz);
 
-  // If same day, short cache (5 s)
+  // Live day: cache for 5 seconds
   if (requestedDate.isSame(now, "day")) return 5;
 
-  // Else, cache until midnight
+  // Other days: cache until midnight
   const midnight = requestedDate.add(1, "day").startOf("day");
   return midnight.diff(now, "second");
 };
