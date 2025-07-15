@@ -227,8 +227,8 @@ app.use((error, req, res, next) => {
 const db = require("./api/config/db");
 
 const { loadIPTVConfig } = require("./api/config/config");
-db.initializeDatabase();
-loadIPTVConfig();
+// db.initializeDatabase();
+// loadIPTVConfig();
 // scrapeTodayMatches();
 
 cron.schedule(
