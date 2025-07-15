@@ -9,10 +9,20 @@ exports.calculateTTL = (date, tz) => {
   const now = dayjs().tz(tz);
   const requestedDate = dayjs(date).tz(tz);
 
-  // Live day: cache for 5 seconds
-  if (requestedDate.isSame(now, "day")) return 5;
+  // ✅ Today: Live update every 5 seconds
+  if (requestedDate.isSame(now, "day")) {
+    return 5;
+  }
 
-  // Other days: cache until midnight
-  const midnight = requestedDate.add(1, "day").startOf("day");
-  return midnight.diff(now, "second");
+  // ✅ Past date: cache for 30 days
+  if (requestedDate.isBefore(now, "day")) {
+    return 60 * 60 * 24 * 30; // 30 days
+  }
+
+  // ✅ Future date: cache until 1 day before match
+  const oneDayBeforeMatch = requestedDate.subtract(1, "day").startOf("day");
+  const ttl = oneDayBeforeMatch.diff(now, "second");
+
+  // If somehow TTL is negative or 0 (e.g., date is tomorrow but now is midnight), fallback to 5 min
+  return ttl > 0 ? ttl : 60 * 5;
 };

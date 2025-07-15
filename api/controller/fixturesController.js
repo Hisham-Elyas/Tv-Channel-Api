@@ -27,7 +27,9 @@ exports.getFixtures = async (req, res) => {
     res.json(filtered);
   } catch (err) {
     if (err.status === 204) {
-      return res.status(204).json({ message: err.message });
+      return res
+        .status(204)
+        .json({ message: "⚠️ No matches found for this date." });
     }
 
     console.error("❌", err.message);
@@ -58,6 +60,96 @@ exports.getFixtureById = async (req, res) => {
     res.json(filtered);
   } catch (err) {
     console.error("❌ Error fetching fixture:", err.message);
+    res.status(err.status || 500).json({ error: err.message });
+  }
+};
+exports.getTeamMatches = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { timezone = "Asia/Riyadh" } = req.query;
+
+    if (!id) {
+      return res.status(400).json({ error: "❌ Team ID is required." });
+    }
+
+    const response = await fixturesService.getTeamMatches(id, timezone);
+
+    // Filter out unwanted fields
+    const { data, timezone: tz } = response || {};
+    if (!data) {
+      return res.status(404).json({ error: "⚠️ Team not found or empty." });
+    }
+
+    res.json({
+      data, // full team info with `upcoming` and `latest`
+      timezone: tz || "UTC",
+    });
+  } catch (err) {
+    console.error("❌ Error fetching team matches:", err.message);
+    res.status(err.status || 500).json({ error: err.message });
+  }
+};
+
+exports.getStandingsBySeason = async (req, res) => {
+  try {
+    const { seasonId } = req.params;
+    const { timezone = "Asia/Riyadh" } = req.query;
+
+    if (!seasonId) {
+      return res.status(400).json({ error: "❌ Season ID is required." });
+    }
+
+    const data = await fixturesService.getStandingsBySeason(seasonId, timezone);
+
+    const filtered = {
+      data: data.data || [],
+      timezone: data.timezone || "UTC",
+    };
+
+    res.json(filtered);
+  } catch (err) {
+    console.error("❌ Error fetching standings:", err.message);
+    res.status(err.status || 500).json({ error: err.message });
+  }
+};
+exports.getTopScorersBySeason = async (req, res) => {
+  try {
+    const { seasonId } = req.params;
+    const { type = "goals", timezone = "Asia/Riyadh" } = req.query;
+
+    if (!seasonId) {
+      return res.status(400).json({ error: "❌ Season ID is required." });
+    }
+
+    const topScorerTypeMap = {
+      goals: 208,
+      assists: 209,
+      yellowCards: 84,
+      redCards: 83,
+    };
+
+    const typeId = topScorerTypeMap[type.toLowerCase()];
+    if (!typeId) {
+      return res.status(400).json({
+        error:
+          "❌ Invalid type. Use one of: goals, assists, yellowCards, redCards",
+      });
+    }
+
+    const data = await fixturesService.getTopScorersBySeason(
+      seasonId,
+      typeId,
+      timezone
+    );
+
+    const filtered = {
+      data: data.data || [],
+      timezone: data.timezone || "UTC",
+    };
+
+    res.json(filtered);
+  } catch (err) {
+    console.error("❌ Error fetching top scorers:", err.message);
     res.status(err.status || 500).json({ error: err.message });
   }
 };
