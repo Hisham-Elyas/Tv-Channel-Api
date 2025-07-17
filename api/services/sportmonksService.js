@@ -22,8 +22,6 @@ exports.getFixturesByDate = async (date, tz = "Asia/Riyadh") => {
   if (cached) {
     console.log("✅ Served from cache");
     return cached;
-  } else {
-    console.log("✅ Served from server");
   }
 
   const url = `https://api.sportmonks.com/v3/football/leagues/date/${date}?include=today.scores;today.participants;today.stage;today.group;today.round&timezone=${tz}&api_token=${API_TOKEN}`;
@@ -51,8 +49,8 @@ exports.getFixtureById = async (fixtureId, tz = "Asia/Riyadh") => {
     return cached;
   }
 
-  console.log("🌐 Fetching fixture from API");
-  const url = `https://api.sportmonks.com/v3/football/fixtures/${fixtureId}?api_token=${API_TOKEN}&include=tvStations;scores;sport;round;stage;group;aggregate;league;season;referees;coaches;venue;state;weatherReport;lineups;events;timeline;comments;statistics;periods;participants;odds;metadata;sidelined;formations&timezone=${tz}`;
+  // console.log("🌐 Fetching fixture from API");
+  const url = `https://api.sportmonks.com/v3/football/fixtures/${fixtureId}?api_token=${API_TOKEN}&include=participants;league;venue;state;scores;events.type;events.period;events.player;statistics.type;sidelined.sideline.player;sidelined.sideline.type;weatherReport&timezone=${tz}`;
   const response = await axios.get(url);
   const data = response.data;
 
@@ -78,8 +76,6 @@ exports.getTeamMatches = async (teamId, tz = "Asia/Riyadh") => {
     console.log("✅ Team matches served from cache");
     return cached;
   }
-
-  console.log("🌐 Fetching team matches from API");
 
   const url = `https://api.sportmonks.com/v3/football/teams/${teamId}?include=upcoming.participants;upcoming.league;latest.participants;latest.scores;latest.league&timezone=${tz}&api_token=${API_TOKEN}`;
   const response = await axios.get(url);
