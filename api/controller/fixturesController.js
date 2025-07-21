@@ -128,7 +128,7 @@ exports.getTopScorersBySeason = async (req, res) => {
       redCards: 83,
     };
 
-    const typeId = topScorerTypeMap[type.toLowerCase()];
+    const typeId = topScorerTypeMap[type];
     if (!typeId) {
       return res.status(400).json({
         error:
