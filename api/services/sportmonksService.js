@@ -12,19 +12,19 @@ dayjs.extend(timezone);
 const API_TOKEN =
   "tIjAU51bCJl6y715qf1LZ38brS1iW0bgWxn1EGMH1b3cWpVS19cERuAQg3L6";
 
-exports.getFixturesByDate = async (date, tz = "Asia/Riyadh") => {
+exports.getFixturesByDate = async (date, tz = "Asia/Riyadh", locale = "en") => {
   if (!date) {
     throw new Error("❌ Date is required in format YYYY-MM-DD.");
   }
 
-  const cacheKey = `calendar:${date}:${tz}`;
+  const cacheKey = `calendar:${date}:${tz}:${locale}`;
   const cached = cache.get(cacheKey);
   if (cached) {
     console.log("✅ Served from cache");
     return cached;
   }
 
-  const url = `https://api.sportmonks.com/v3/football/leagues/date/${date}?include=today.scores;today.participants;today.stage;today.group;today.round&timezone=${tz}&api_token=${API_TOKEN}`;
+  const url = `https://api.sportmonks.com/v3/football/leagues/date/${date}?include=today.scores;today.participants;today.stage;today.group;today.round&timezone=${tz}&locale=${locale}&api_token=${API_TOKEN}`;
   const response = await axios.get(url);
   const data = response.data;
 
@@ -39,10 +39,14 @@ exports.getFixturesByDate = async (date, tz = "Asia/Riyadh") => {
 
   return data;
 };
-exports.getFixtureById = async (fixtureId, tz = "Asia/Riyadh") => {
+exports.getFixtureById = async (
+  fixtureId,
+  tz = "Asia/Riyadh",
+  locale = "en"
+) => {
   if (!fixtureId) throw new Error("❌ Fixture ID is required.");
 
-  const cacheKey = `fixture:${fixtureId}:${tz}`;
+  const cacheKey = `fixture:${fixtureId}:${tz}:${locale}`;
   const cached = cache.get(cacheKey);
   if (cached) {
     console.log("✅ Fixture served from cache");
@@ -50,7 +54,7 @@ exports.getFixtureById = async (fixtureId, tz = "Asia/Riyadh") => {
   }
 
   // console.log("🌐 Fetching fixture from API");
-  const url = `https://api.sportmonks.com/v3/football/fixtures/${fixtureId}?api_token=${API_TOKEN}&include=participants;league;venue;state;scores;events.type;events.period;events.player;statistics.type;sidelined.sideline.player;sidelined.sideline.type;weatherReport&timezone=${tz}`;
+  const url = `https://api.sportmonks.com/v3/football/fixtures/${fixtureId}?api_token=${API_TOKEN}&include=participants;league;venue;state;scores;events.type;events.period;events.player;statistics.type;sidelined.sideline.player;sidelined.sideline.type;weatherReport&timezone=${tz}&locale=${locale}`;
   const response = await axios.get(url);
   const data = response.data;
 
@@ -67,17 +71,17 @@ exports.getFixtureById = async (fixtureId, tz = "Asia/Riyadh") => {
 
   return data;
 };
-exports.getTeamMatches = async (teamId, tz = "Asia/Riyadh") => {
+exports.getTeamMatches = async (teamId, tz = "Asia/Riyadh", locale = "en") => {
   if (!teamId) throw new Error("❌ Team ID is required.");
 
-  const cacheKey = `teamMatches:${teamId}:${tz}`;
+  const cacheKey = `teamMatches:${teamId}:${tz}:${locale}`;
   const cached = cache.get(cacheKey);
   if (cached) {
     console.log("✅ Team matches served from cache");
     return cached;
   }
 
-  const url = `https://api.sportmonks.com/v3/football/teams/${teamId}?include=upcoming.participants;upcoming.league;latest.participants;latest.scores;latest.league&timezone=${tz}&api_token=${API_TOKEN}`;
+  const url = `https://api.sportmonks.com/v3/football/teams/${teamId}?include=upcoming.participants;upcoming.league;latest.participants;latest.scores;latest.league&timezone=${tz}&api_token=${API_TOKEN}&locale=${locale}`;
   const response = await axios.get(url);
   const data = response.data;
 
@@ -93,17 +97,21 @@ exports.getTeamMatches = async (teamId, tz = "Asia/Riyadh") => {
 
   return data;
 };
-exports.getStandingsBySeason = async (seasonId, tz = "Asia/Riyadh") => {
+exports.getStandingsBySeason = async (
+  seasonId,
+  tz = "Asia/Riyadh",
+  locale = "en"
+) => {
   if (!seasonId) throw new Error("❌ Season ID is required.");
 
-  const cacheKey = `standings:${seasonId}:${tz}`;
+  const cacheKey = `standings:${seasonId}:${tz}:${locale}`;
   const cached = cache.get(cacheKey);
   if (cached) {
     console.log("✅ Standings served from cache");
     return cached;
   }
 
-  const url = `https://api.sportmonks.com/v3/football/standings/seasons/${seasonId}?include=participant;rule.type;details.type;form;stage;league;group&api_token=${API_TOKEN}&timezone=${tz}`;
+  const url = `https://api.sportmonks.com/v3/football/standings/seasons/${seasonId}?include=participant;rule.type;details.type;form;stage;league;group&api_token=${API_TOKEN}&timezone=${tz}&locale=${locale}`;
   const response = await axios.get(url);
   const data = response.data;
   // console.log(data);
@@ -122,18 +130,19 @@ exports.getStandingsBySeason = async (seasonId, tz = "Asia/Riyadh") => {
 exports.getTopScorersBySeason = async (
   seasonId,
   type = 208,
-  tz = "Asia/Riyadh"
+  tz = "Asia/Riyadh",
+  locale = "en"
 ) => {
   if (!seasonId) throw new Error("❌ Season ID is required.");
 
-  const cacheKey = `topscorers:${seasonId}:${type}:${tz}`;
+  const cacheKey = `topscorers:${seasonId}:${type}:${tz}:${locale}`;
   const cached = cache.get(cacheKey);
   if (cached) {
     console.log("✅ Top scorers served from cache");
     return cached;
   }
 
-  const url = `https://api.sportmonks.com/v3/football/topscorers/seasons/${seasonId}?include=player.nationality;player.position;participant;type;season.league&filters=seasontopscorerTypes:${type}&api_token=${API_TOKEN}&timezone=${tz}`;
+  const url = `https://api.sportmonks.com/v3/football/topscorers/seasons/${seasonId}?include=player.nationality;player.position;participant;type;season.league&filters=seasontopscorerTypes:${type}&api_token=${API_TOKEN}&timezone=${tz}&locale=${locale}`;
 
   const response = await axios.get(url);
   const data = response.data;
