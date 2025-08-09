@@ -43,13 +43,22 @@ exports.getFixtures = async (req, res) => {
 exports.getFixtureById = async (req, res) => {
   try {
     const { id } = req.params;
-    const { timezone = "Asia/Riyadh", locale = "en" } = req.query;
+    const {
+      timezone = "Asia/Riyadh",
+      locale = "en",
+      channel_commm_id,
+    } = req.query;
 
     if (!id) {
       return res.status(400).json({ error: "❌ Fixture ID is required." });
     }
 
-    const data = await fixturesService.getFixtureById(id, timezone, locale);
+    const data = await fixturesService.getFixtureById(
+      id,
+      channel_commm_id,
+      timezone,
+      locale
+    );
 
     if (!data?.data) {
       return res.status(404).json({ message: "⚠️ Fixture not found." });
