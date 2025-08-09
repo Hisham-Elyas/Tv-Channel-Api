@@ -77,7 +77,7 @@ exports.getFixturesByDate = async (date, tz = "Asia/Riyadh", locale = "en") => {
         //   `Added channel_commm_id for match: ${match.name}, ID: ${results[0].item.matchId}`
         // );
       } else {
-        match.channel_commm_id = null;
+        match.channel_commm_id = "0";
       }
     });
   });
