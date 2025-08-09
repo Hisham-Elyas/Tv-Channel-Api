@@ -152,6 +152,7 @@ exports.getFixtureById = async (
   // Fetch channel commentary info and enrich the data
   const channelCommData = await getChannelComm(channel_commm_id);
   data.data.channel_commm = channelCommData;
+  data.data.channel_commm_id = channel_commm_id;
 
   // Determine TTL (short if live or today, longer if old match)
   const fixtureDate = data.data.starting_at;
