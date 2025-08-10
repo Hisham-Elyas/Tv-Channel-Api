@@ -231,41 +231,41 @@ const { loadIPTVConfig } = require("./api/config/config");
 // loadIPTVConfig();
 // scrapeTodayMatches();
 
-cron.schedule(
-  "2 21 * * *", // Runs at 21:00 UTC (which is 00:20 in Riyadh)
-  async () => {
-    try {
-      console.log(
-        `Runs at 21:00 UTC (which is 00:20 in Riyadh timezone: Asia/Riyadh`
-      );
-      console.log(`Script schedule running at: ${new Date().toISOString()}`);
-      await scrapeTodayMatches.scrapeTodayMatches(1);
-      console.log("Scraping completed successfully.");
-    } catch (error) {
-      console.error("Error occurred in scheduled task:", error);
-    }
-  },
-  {
-    timezone: "Asia/Riyadh",
-  }
-);
+// cron.schedule(
+//   "2 21 * * *", // Runs at 21:00 UTC (which is 00:20 in Riyadh)
+//   async () => {
+//     try {
+//       console.log(
+//         `Runs at 21:00 UTC (which is 00:20 in Riyadh timezone: Asia/Riyadh`
+//       );
+//       console.log(`Script schedule running at: ${new Date().toISOString()}`);
+//       await scrapeTodayMatches.scrapeTodayMatches(1);
+//       console.log("Scraping completed successfully.");
+//     } catch (error) {
+//       console.error("Error occurred in scheduled task:", error);
+//     }
+//   },
+//   {
+//     timezone: "Asia/Riyadh",
+//   }
+// );
 
-cron.schedule(
-  "0 0 * * *", // Runs every day at 00:00 UTC
-  async () => {
-    try {
-      console.log(`Runs every day at 00:00 UTC     timezone: -Etc/UTC`);
-      console.log(`Script schedule running at: ${new Date().toISOString()}`);
-      await scrapeTodayMatches.scrapeTodayMatches(1);
-      console.log("Scraping completed successfully.");
-    } catch (error) {
-      console.error("Error occurred in scheduled task:", error);
-    }
-  },
-  {
-    timezone: "Etc/UTC", // ✅ Ensure it's running in UTC
-  }
-);
+// cron.schedule(
+//   "0 0 * * *", // Runs every day at 00:00 UTC
+//   async () => {
+//     try {
+//       console.log(`Runs every day at 00:00 UTC     timezone: -Etc/UTC`);
+//       console.log(`Script schedule running at: ${new Date().toISOString()}`);
+//       await scrapeTodayMatches.scrapeTodayMatches(1);
+//       console.log("Scraping completed successfully.");
+//     } catch (error) {
+//       console.error("Error occurred in scheduled task:", error);
+//     }
+//   },
+//   {
+//     timezone: "Etc/UTC", // ✅ Ensure it's running in UTC
+//   }
+// );
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
