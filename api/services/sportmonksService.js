@@ -394,3 +394,35 @@ exports.getLeagueMatches = async (
     throw error;
   }
 };
+exports.getTopScorersBySeason = async (
+  seasonId,
+  type = 208,
+  tz = "Asia/Riyadh",
+  locale = "en"
+) => {
+  if (!seasonId) throw new Error("❌ Season ID is required.");
+
+  const cacheKey = `topscorers:${seasonId}:${type}:${tz}:${locale}`;
+  const cached = cache.get(cacheKey);
+  if (cached) {
+    console.log("✅ Top scorers served from cache");
+    return cached;
+  }
+
+  const url = `https://api.sportmonks.com/v3/football/topscorers/seasons/${seasonId}?include=player.nationality;player.position;participant;type;season.league&filters=seasontopscorerTypes:${type}&api_token=${API_TOKEN}&timezone=${tz}&locale=${locale}`;
+
+  const response = await axios.get(url);
+  const data = response.data;
+
+  if (!data || !data.data) {
+    const error = new Error("⚠️ Top scorers not found.");
+    error.status = 404;
+    throw error;
+  }
+
+  // Cache for 1 hours
+  const ttl = 60 * 60;
+  cache.set(cacheKey, data, ttl);
+
+  return data;
+};
