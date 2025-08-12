@@ -174,3 +174,53 @@ exports.getTopScorersBySeason = async (req, res) => {
     res.status(err.status || 500).json({ error: err.message });
   }
 };
+
+exports.getLeagueMatches = async (req, res) => {
+  try {
+    const { id: leagueId } = req.params;
+    const { timezone = "Asia/Riyadh", locale = "en" } = req.query;
+
+    if (!leagueId) {
+      return res.status(400).json({ error: "❌ League ID is required." });
+    }
+
+    const data = await fixturesService.getLeagueMatches(
+      leagueId,
+      timezone,
+      locale
+    );
+
+    // if (!data?.data || (Array.isArray(data.data) && data.data.length === 0)) {
+    //   return res.status(204).json({ message: "⚠️ No matches found for this league." });
+    // }
+    const filtered = {
+      data: data.data || [],
+      timezone: data.timezone || "UTC",
+    };
+
+    res.json(filtered);
+  } catch (err) {
+    console.error("❌ Error fetching league matches:", err.message);
+    res.status(err.status || 500).json({ error: err.message });
+  }
+};
+exports.getAllLeagues = async (req, res) => {
+  try {
+    const { timezone = "Asia/Riyadh", locale = "en" } = req.query;
+
+    const data = await fixturesService.getAllLeagues(timezone, locale);
+
+    if (!data?.data || (Array.isArray(data.data) && data.data.length === 0)) {
+      return res.status(204).json({ message: "⚠️ No leagues found." });
+    }
+    const filtered = {
+      data: data.data || [],
+      timezone: data.timezone || "UTC",
+    };
+
+    res.json(filtered);
+  } catch (err) {
+    console.error("❌ Error fetching leagues:", err.message);
+    res.status(err.status || 500).json({ error: err.message });
+  }
+};

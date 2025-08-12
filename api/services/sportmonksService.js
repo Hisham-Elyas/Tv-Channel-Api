@@ -40,6 +40,79 @@ async function getMatchesApi1(date, tz = "Asia/Riyadh") {
     return [];
   }
 }
+async function getChannelComm(matchId, locale = "en") {
+  const cacheKey = `channelComm:${matchId}:${locale}`;
+  const cached = cache.get(cacheKey);
+  if (cached) {
+    console.log("✅ Channel comm data served from cache");
+    return cached;
+  }
+
+  // Determine the appropriate base URL based on locale
+  let baseUrl;
+  if (locale === "ar") {
+    baseUrl = "https://api-ar.ysscores.com";
+  } else {
+    baseUrl = "https://api-en.ysscores.com";
+  }
+
+  const url = `${baseUrl}/api/matches/match_info/${matchId}`;
+
+  try {
+    const response = await axios.get(url);
+    const data = response.data;
+    const channelCommData = data.data ? data.data.channel_commm || [] : [];
+    const ttl = 30 * 24 * 60 * 60 * 1000;
+
+    cache.set(cacheKey, channelCommData, ttl);
+    return channelCommData;
+  } catch (error) {
+    console.error(
+      `Error fetching channel comm data for match ${matchId}:`,
+      error
+    );
+    return [];
+  }
+}
+
+async function searchChannelsByName(channelNames) {
+  try {
+    // Step 1: Get all AR| channels from 'channels' table
+    const [allChannels] = await pool.query(`
+      SELECT c.*, g.group_title
+      FROM channels c
+      JOIN \`groups\` g ON c.group_id = g.id
+      WHERE g.group_title LIKE 'AR|%'
+    `);
+
+    // Step 2: Set up Fuse.js for fuzzy searching
+    const fuse = new Fuse(allChannels, {
+      keys: ["name", "tvg_name"],
+      threshold: 0.24,
+    });
+
+    // Step 3: Search for each channel name provided
+    const searchResultsByChannel = [];
+
+    for (const channelName of channelNames) {
+      const searchResults = fuse.search(channelName).map((res) => res.item);
+
+      console.log(
+        `🔍 Searching for: "${channelName}" ➜ Found: ${searchResults.length}`
+      );
+
+      searchResultsByChannel.push({
+        search: channelName,
+        results: searchResults,
+      });
+    }
+
+    return searchResultsByChannel;
+  } catch (error) {
+    console.error("❌ Error:", error.message);
+    throw error;
+  }
+}
 
 exports.getFixturesByDate = async (date, tz = "Asia/Riyadh", locale = "en") => {
   if (!date) {
@@ -87,41 +160,6 @@ exports.getFixturesByDate = async (date, tz = "Asia/Riyadh", locale = "en") => {
 
   return data;
 };
-
-async function getChannelComm(matchId, locale = "en") {
-  const cacheKey = `channelComm:${matchId}:${locale}`;
-  const cached = cache.get(cacheKey);
-  if (cached) {
-    console.log("✅ Channel comm data served from cache");
-    return cached;
-  }
-
-  // Determine the appropriate base URL based on locale
-  let baseUrl;
-  if (locale === "ar") {
-    baseUrl = "https://api-ar.ysscores.com";
-  } else {
-    baseUrl = "https://api-en.ysscores.com";
-  }
-
-  const url = `${baseUrl}/api/matches/match_info/${matchId}`;
-
-  try {
-    const response = await axios.get(url);
-    const data = response.data;
-    const channelCommData = data.data ? data.data.channel_commm || [] : [];
-    const ttl = 30 * 24 * 60 * 60 * 1000;
-
-    cache.set(cacheKey, channelCommData, ttl);
-    return channelCommData;
-  } catch (error) {
-    console.error(
-      `Error fetching channel comm data for match ${matchId}:`,
-      error
-    );
-    return [];
-  }
-}
 
 exports.getFixtureById = async (
   fixtureId,
@@ -288,73 +326,71 @@ exports.getStandingsBySeason = async (
 
   return data;
 };
-exports.getTopScorersBySeason = async (
-  seasonId,
-  type = 208,
-  tz = "Asia/Riyadh",
-  locale = "en"
-) => {
-  if (!seasonId) throw new Error("❌ Season ID is required.");
 
-  const cacheKey = `topscorers:${seasonId}:${type}:${tz}:${locale}`;
+exports.getAllLeagues = async (tz = "Asia/Riyadh", locale = "en") => {
+  const cacheKey = `leagues:${tz}:${locale}`;
   const cached = cache.get(cacheKey);
   if (cached) {
-    console.log("✅ Top scorers served from cache");
+    console.log("✅ Leagues data served from cache");
     return cached;
   }
 
-  const url = `https://api.sportmonks.com/v3/football/topscorers/seasons/${seasonId}?include=player.nationality;player.position;participant;type;season.league&filters=seasontopscorerTypes:${type}&api_token=${API_TOKEN}&timezone=${tz}&locale=${locale}`;
+  const url = `https://api.sportmonks.com/v3/football/leagues?api_token=${API_TOKEN}&include=currentSeason&timezone=${tz}&locale=${locale}`;
 
-  const response = await axios.get(url);
-  const data = response.data;
-
-  if (!data || !data.data) {
-    const error = new Error("⚠️ Top scorers not found.");
-    error.status = 404;
-    throw error;
-  }
-
-  // Cache for 1 hours
-  const ttl = 60 * 60;
-  cache.set(cacheKey, data, ttl);
-
-  return data;
-};
-async function searchChannelsByName(channelNames) {
   try {
-    // Step 1: Get all AR| channels from 'channels' table
-    const [allChannels] = await pool.query(`
-      SELECT c.*, g.group_title
-      FROM channels c
-      JOIN \`groups\` g ON c.group_id = g.id
-      WHERE g.group_title LIKE 'AR|%'
-    `);
+    const response = await axios.get(url);
+    const data = response.data;
 
-    // Step 2: Set up Fuse.js for fuzzy searching
-    const fuse = new Fuse(allChannels, {
-      keys: ["name", "tvg_name"],
-      threshold: 0.24,
-    });
-
-    // Step 3: Search for each channel name provided
-    const searchResultsByChannel = [];
-
-    for (const channelName of channelNames) {
-      const searchResults = fuse.search(channelName).map((res) => res.item);
-
-      console.log(
-        `🔍 Searching for: "${channelName}" ➜ Found: ${searchResults.length}`
-      );
-
-      searchResultsByChannel.push({
-        search: channelName,
-        results: searchResults,
-      });
+    if (!data || !data.data) {
+      const error = new Error("⚠️ Leagues not found.");
+      error.status = 404;
+      throw error;
     }
 
-    return searchResultsByChannel;
+    // Cache for 1 day
+    const ttl = 24 * 60 * 60;
+    cache.set(cacheKey, data, ttl);
+
+    return data;
   } catch (error) {
-    console.error("❌ Error:", error.message);
+    console.error("❌ Error fetching leagues data:", error);
     throw error;
   }
-}
+};
+
+exports.getLeagueMatches = async (
+  leagueId,
+  tz = "Asia/Riyadh",
+  locale = "en"
+) => {
+  if (!leagueId) throw new Error("❌ League ID is required.");
+
+  const cacheKey = `leagueMatches:${leagueId}:${tz}:${locale}`;
+  const cached = cache.get(cacheKey);
+  if (cached) {
+    console.log("✅ League matches data served from cache");
+    return cached;
+  }
+
+  const url = `https://api.sportmonks.com/v3/football/leagues/${leagueId}?api_token=${API_TOKEN}&include=upcoming;latest&timezone=${tz}&locale=${locale}`;
+
+  try {
+    const response = await axios.get(url);
+    const data = response.data;
+
+    if (!data || !data.data) {
+      const error = new Error("⚠️ League matches not found.");
+      error.status = 404;
+      throw error;
+    }
+
+    // Cache for 1 hour
+    const ttl = 60 * 60;
+    cache.set(cacheKey, data, ttl);
+
+    return data;
+  } catch (error) {
+    console.error("❌ Error fetching league matches data:", error);
+    throw error;
+  }
+};
