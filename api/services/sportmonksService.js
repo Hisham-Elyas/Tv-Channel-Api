@@ -372,7 +372,7 @@ exports.getLeagueMatches = async (
     return cached;
   }
 
-  const url = `https://api.sportmonks.com/v3/football/leagues/${leagueId}?api_token=${API_TOKEN}&include=upcoming.participants;latest.participants;latest.scores&timezone=${tz}&locale=${locale}`;
+  const url = `https://api.sportmonks.com/v3/football/leagues/${leagueId}?api_token=${API_TOKEN}&include=upcoming.participants;latest.participants;upcoming.round;latest.round;latest.scores&timezone=${tz}&locale=${locale}`;
 
   try {
     const response = await axios.get(url);
