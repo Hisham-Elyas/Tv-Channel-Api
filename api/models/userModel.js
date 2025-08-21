@@ -3,11 +3,11 @@ const bcrypt = require("bcrypt");
 
 const User = {
   // Register a new user
-  register: async ({ username, email, password, phone }) => {
+  register: async ({ username, email, password }) => {
     const hashedPassword = await bcrypt.hash(password, 10);
     const [result] = await pool.query(
-      "INSERT INTO users (username, email, password, phone) VALUES (?, ?, ?, ?)",
-      [username, email, hashedPassword, phone]
+      "INSERT INTO users (username, email, password) VALUES (?, ?, ?)",
+      [username, email, hashedPassword]
     );
     return result.insertId;
   },
@@ -26,10 +26,10 @@ const User = {
     return users.length > 0 ? users[0] : null;
   },
   // Update user details
-  updateUserDetails: async ({ id, username, phone }) => {
+  updateUserDetails: async ({ id, username }) => {
     const [result] = await pool.query(
-      "UPDATE users SET username = ?, phone = ? WHERE id = ?",
-      [username, phone, id]
+      "UPDATE users SET username = ? WHERE id = ?",
+      [username, id]
     );
     return result.affectedRows > 0;
   },

@@ -12,7 +12,7 @@ const AuthController = {
   // Register User
   register: async (req, res) => {
     try {
-      const { username, email, password, phone } = req.body;
+      const { username, email, password } = req.body;
 
       // Check if user already exists
       const existingUser = await User.findByEmail(email);
@@ -28,7 +28,7 @@ const AuthController = {
       }
 
       // Create user
-      const userId = await User.register({ username, email, password, phone });
+      const userId = await User.register({ username, email, password });
       res.status(201).json({
         status: 201,
         message: "User registered successfully",
@@ -85,10 +85,10 @@ const AuthController = {
   updateUserDetails: async (req, res) => {
     try {
       const { id } = req.params;
-      const { username, phone } = req.body;
+      const { username } = req.body;
 
       // Update user details
-      const isUpdated = await User.updateUserDetails({ id, username, phone });
+      const isUpdated = await User.updateUserDetails({ id, username });
       if (!isUpdated) {
         return res
           .status(404)
