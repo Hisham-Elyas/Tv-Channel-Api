@@ -30,13 +30,13 @@ const initializeDatabase = async () => {
     await pool.query("START TRANSACTION");
 
     // Create tables with proper constraints
+    // phone VARCHAR(20) NOT NULL,
     await pool.query(`
       CREATE TABLE IF NOT EXISTS users (
         id INT AUTO_INCREMENT PRIMARY KEY,
         username VARCHAR(255) NOT NULL,
         email VARCHAR(255) NOT NULL UNIQUE,
         password VARCHAR(255) NOT NULL,
-        phone VARCHAR(20) NOT NULL,
 
         reset_token VARCHAR(255),
         reset_token_expire DATETIME,
