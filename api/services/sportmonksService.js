@@ -161,10 +161,17 @@ async function searchChannelsByName(channelNames) {
         params
       );
 
-      // Step 2: Use Fuse.js to rank/fuzzy match the candidates
-      const fuse = new Fuse(rows, {
-        keys: ["name", "tvg_name"],
-        threshold: 0.4, // tweak this for fuzziness
+      // Step 2: Normalize names for Fuse
+      const normalizedRows = rows.map((r) => ({
+        ...r,
+        normalized_name: normalize(r.name),
+        normalized_tvg_name: normalize(r.tvg_name),
+      }));
+
+      // Step 3: Use Fuse.js on normalized fields
+      const fuse = new Fuse(normalizedRows, {
+        keys: ["normalized_name", "normalized_tvg_name"],
+        threshold: 0.4, // tweak for fuzziness
         distance: 200,
       });
 
