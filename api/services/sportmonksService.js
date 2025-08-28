@@ -75,45 +75,91 @@ async function getChannelComm(matchId, locale = "en") {
   }
 }
 
+// async function searchChannelsByName(channelNames) {
+//   try {
+//     // Step 1: Get all AR| channels from 'channels' table
+//     const [allChannels] = await pool.query(`
+//       SELECT c.*, g.group_title
+//       FROM channels c
+//       JOIN \`groups\` g ON c.group_id = g.id
+//       WHERE g.group_title LIKE 'AR|%'
+//     `);
+
+//     // Step 2: Set up Fuse.js for fuzzy searching
+//     const fuse = new Fuse(allChannels, {
+//       keys: ["name", "tvg_name"],
+//       // threshold: 0.24,
+//       threshold: 0.3,
+//       distance: 200,
+//     });
+
+//     // Step 3: Search for each channel name provided
+//     const searchResultsByChannel = [];
+
+//     for (const channelName of channelNames) {
+//       const searchResults = fuse
+//         .search(channelName, { limit: 10 })
+//         .map((res) => res.item);
+
+//       console.log(
+//         `🔍 Searching for: "${channelName}" ➜ Found: ${searchResults.length}`
+//       );
+
+//       searchResultsByChannel.push({
+//         search: channelName,
+//         results: searchResults,
+//       });
+//     }
+
+//     return searchResultsByChannel;
+//   } catch (error) {
+//     console.error("❌ Error:", error.message);
+//     throw error;
+//   }
+// }
 async function searchChannelsByName(channelNames) {
   try {
-    // Step 1: Get all AR| channels from 'channels' table
-    const [allChannels] = await pool.query(`
-      SELECT c.*, g.group_title
-      FROM channels c
-      JOIN \`groups\` g ON c.group_id = g.id
-      WHERE g.group_title LIKE 'AR|%'
-    `);
-
-    // Step 2: Set up Fuse.js for fuzzy searching
-    const fuse = new Fuse(allChannels, {
-      keys: ["name", "tvg_name"],
-      // threshold: 0.24,
-      threshold: 0.3,
-      distance: 200,
-    });
-
-    // Step 3: Search for each channel name provided
     const searchResultsByChannel = [];
 
     for (const channelName of channelNames) {
-      const searchResults = fuse
-        .search(channelName, { limit: 10 })
-        .map((res) => res.item);
+      // Break query string into tokens (words)
+      const tokens = channelName
+        .toLowerCase()
+        .split(/\s+/) // split on spaces
+        .filter(Boolean);
+
+      // Build WHERE conditions: every token must appear in name or tvg_name
+      const conditions = tokens
+        .map(() => "(LOWER(c.name) LIKE ? OR LOWER(c.tvg_name) LIKE ?)")
+        .join(" AND ");
+
+      const params = tokens.flatMap((t) => [`%${t}%`, `%${t}%`]);
+
+      const [rows] = await pool.query(
+        `
+        SELECT c.*, g.group_title
+        FROM channels c
+        JOIN \`groups\` g ON c.group_id = g.id
+        WHERE g.group_title LIKE 'AR|%'
+          AND ${conditions}
+          `,
+        params
+      );
+      // LIMIT 10
 
       console.log(
-        `🔍 Searching for: "${channelName}" ➜ Found: ${searchResults.length}`
+        `🔍 Searching in DB: "${channelName}" ➜ Found: ${rows.length}`
       );
 
       searchResultsByChannel.push({
         search: channelName,
-        results: searchResults,
+        results: rows,
       });
     }
 
     return searchResultsByChannel;
   } catch (error) {
-    console.error("❌ Error:", error.message);
+    console.error("❌ DB Error:", error.message);
     throw error;
   }
 }
