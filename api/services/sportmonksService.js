@@ -89,7 +89,7 @@ async function searchChannelsByName(channelNames) {
     const fuse = new Fuse(allChannels, {
       keys: ["name", "tvg_name"],
       // threshold: 0.24,
-      threshold: 0.2,
+      threshold: 0.3,
       distance: 200,
     });
 
