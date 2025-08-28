@@ -118,36 +118,27 @@ async function getChannelComm(matchId, locale = "en") {
 //     throw error;
 //   }
 // }
+
 async function searchChannelsByName(channelNames) {
   try {
     const searchResultsByChannel = [];
 
-    // Map of common symbols to normalize
-    const symbolMap = {
-      "⚽": "o",
-      "🅾": "o",
-      // add more symbols here if needed
-    };
-
-    // Helper to normalize a string
+    const symbolMap = { "⚽": "o", "🅾": "o" }; // normalize symbols
     const normalize = (str) => {
       if (!str) return "";
       let result = str.toLowerCase();
       for (const [symbol, replacement] of Object.entries(symbolMap)) {
         result = result.split(symbol).join(replacement);
       }
-      // remove any other non-alphanumeric chars except spaces
-      result = result.replace(/[^a-z0-9 ]/g, "");
-      return result.trim();
+      result = result.replace(/[^a-z0-9 ]/g, "").trim();
+      return result;
     };
 
     for (const channelName of channelNames) {
       const normalizedSearch = normalize(channelName);
-
-      // Split into tokens
       const tokens = normalizedSearch.split(/\s+/).filter(Boolean);
 
-      // Build SQL conditions: each token must appear in normalized column
+      // Build SQL conditions to fetch candidate channels
       const conditions = tokens
         .map(
           () =>
@@ -157,6 +148,7 @@ async function searchChannelsByName(channelNames) {
 
       const params = tokens.flatMap((t) => [`%${t}%`, `%${t}%`]);
 
+      // Step 1: Get candidate channels from SQL
       const [rows] = await pool.query(
         `
         SELECT c.*, g.group_title
@@ -164,18 +156,27 @@ async function searchChannelsByName(channelNames) {
         JOIN \`groups\` g ON c.group_id = g.id
         WHERE g.group_title LIKE 'AR|%'
           AND ${conditions}
-        LIMIT 10
+        LIMIT 50
         `,
         params
       );
 
+      // Step 2: Use Fuse.js to rank/fuzzy match the candidates
+      const fuse = new Fuse(rows, {
+        keys: ["name", "tvg_name"],
+        threshold: 0.4, // tweak this for fuzziness
+        distance: 200,
+      });
+
+      const fuseResults = fuse.search(channelName).map((r) => r.item);
+
       console.log(
-        `🔍 Searching in DB: "${channelName}" ➜ Found: ${rows.length}`
+        `🔍 Searching: "${channelName}" ➜ SQL candidates: ${rows.length}, Fuse top matches: ${fuseResults.length}`
       );
 
       searchResultsByChannel.push({
         search: channelName,
-        results: rows,
+        results: fuseResults,
       });
     }
 
