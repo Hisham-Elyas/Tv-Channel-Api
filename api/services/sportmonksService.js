@@ -7,6 +7,7 @@ const cache = require("../config/cache");
 const { calculateTTL } = require("../utils/timeUtil");
 const { pool } = require("../config/db");
 require("dotenv").config();
+const { modifyIPTVUrl, loadIPTVConfig } = require("../config/config"); // Import the function
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -150,6 +151,9 @@ async function searchChannelsByName(channelNames) {
       console.log(
         `🔍 Searching in DB: "${channelName}" ➜ Found: ${rows.length}`
       );
+      rows.forEach((channel) => {
+        channel.url = modifyIPTVUrl(channel.url); // Modify the URL for each channel
+      });
 
       searchResultsByChannel.push({
         search: channelName,
