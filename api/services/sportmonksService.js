@@ -88,14 +88,18 @@ async function searchChannelsByName(channelNames) {
     // Step 2: Set up Fuse.js for fuzzy searching
     const fuse = new Fuse(allChannels, {
       keys: ["name", "tvg_name"],
-      threshold: 0.24,
+      // threshold: 0.24,
+      threshold: 0.4,
+      distance: 200,
     });
 
     // Step 3: Search for each channel name provided
     const searchResultsByChannel = [];
 
     for (const channelName of channelNames) {
-      const searchResults = fuse.search(channelName).map((res) => res.item);
+      const searchResults = fuse
+        .search(channelName, { limit: 10 })
+        .map((res) => res.item);
 
       console.log(
         `🔍 Searching for: "${channelName}" ➜ Found: ${searchResults.length}`
