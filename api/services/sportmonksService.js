@@ -122,16 +122,37 @@ async function searchChannelsByName(channelNames) {
   try {
     const searchResultsByChannel = [];
 
-    for (const channelName of channelNames) {
-      // Break query string into tokens (words)
-      const tokens = channelName
-        .toLowerCase()
-        .split(/\s+/) // split on spaces
-        .filter(Boolean);
+    // Map of common symbols to normalize
+    const symbolMap = {
+      "⚽": "o",
+      "🅾": "o",
+      // add more symbols here if needed
+    };
 
-      // Build WHERE conditions: every token must appear in name or tvg_name
+    // Helper to normalize a string
+    const normalize = (str) => {
+      if (!str) return "";
+      let result = str.toLowerCase();
+      for (const [symbol, replacement] of Object.entries(symbolMap)) {
+        result = result.split(symbol).join(replacement);
+      }
+      // remove any other non-alphanumeric chars except spaces
+      result = result.replace(/[^a-z0-9 ]/g, "");
+      return result.trim();
+    };
+
+    for (const channelName of channelNames) {
+      const normalizedSearch = normalize(channelName);
+
+      // Split into tokens
+      const tokens = normalizedSearch.split(/\s+/).filter(Boolean);
+
+      // Build SQL conditions: each token must appear in normalized column
       const conditions = tokens
-        .map(() => "(LOWER(c.name) LIKE ? OR LOWER(c.tvg_name) LIKE ?)")
+        .map(
+          () =>
+            "(LOWER(REPLACE(REPLACE(c.name, '⚽', 'o'), '🅾', 'o')) LIKE ? OR LOWER(REPLACE(REPLACE(c.tvg_name, '⚽', 'o'), '🅾', 'o')) LIKE ?)"
+        )
         .join(" AND ");
 
       const params = tokens.flatMap((t) => [`%${t}%`, `%${t}%`]);
@@ -143,17 +164,14 @@ async function searchChannelsByName(channelNames) {
         JOIN \`groups\` g ON c.group_id = g.id
         WHERE g.group_title LIKE 'AR|%'
           AND ${conditions}
-          `,
+        LIMIT 10
+        `,
         params
       );
-      // LIMIT 10
 
       console.log(
         `🔍 Searching in DB: "${channelName}" ➜ Found: ${rows.length}`
       );
-      rows.forEach((channel) => {
-        channel.url = modifyIPTVUrl(channel.url); // Modify the URL for each channel
-      });
 
       searchResultsByChannel.push({
         search: channelName,
