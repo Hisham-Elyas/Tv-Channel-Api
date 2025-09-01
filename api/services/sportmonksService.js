@@ -206,7 +206,7 @@ exports.getFixturesByDate = async (date, tz = "Asia/Riyadh", locale = "en") => {
     return cached;
   }
 
-  const url = `https://api.sportmonks.com/v3/football/leagues/date/${date}?include=today.scores;today.participants;today.stage;today.group;today.round&timezone=${tz}&locale=${locale}&api_token=${API_TOKEN}`;
+  const url = `https://api.sportmonks.com/v3/football/leagues/date/${date}?include=today.scores;today.participants;today.stage;today.group;today.round;today.state&timezone=${tz}&locale=${locale}&api_token=${API_TOKEN}`;
   const response = await axios.get(url);
   const data = response.data;
 
