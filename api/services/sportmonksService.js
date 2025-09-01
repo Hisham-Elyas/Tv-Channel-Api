@@ -160,9 +160,9 @@ async function searchChannelsByName(channelNames) {
         `,
         params
       );
-rows.forEach((channel) => {
-channel.url = modifyIPTVUrl(channel.url); // Modify the URL for each channel
- });
+      rows.forEach((channel) => {
+        channel.url = modifyIPTVUrl(channel.url); // Modify the URL for each channel
+      });
 
       // Step 2: Normalize names for Fuse
       const normalizedRows = rows.map((r) => ({
